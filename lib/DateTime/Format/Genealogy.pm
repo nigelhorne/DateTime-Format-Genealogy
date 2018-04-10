@@ -55,8 +55,8 @@ sub new {
 
 =head2 parse_datetime($string)
 
-Given a date, runs it through L<Genealogy::Gedcom::Date> to create a L<DateTime> object;
-If a date range is given, return a two element array in array context, or undef in stalar context
+Given a date, runs it through L<Genealogy::Gedcom::Date> to create a L<DateTime> object.
+If a date range is given, return a two element array in array context, or undef in scalar context
 
 =cut
 
@@ -122,8 +122,8 @@ sub _date_parser_cached
 
 	my $date = $params{'date'};
 
-	if($self->{all_dates{$date}}) {
-		return $self->{all_dates{$date}};
+	if($self->{'all_dates'}{$date}) {
+		return $self->{'all_dates'}{$date};
 	}
 	my $date_parser = $self->{'date_parser'};
 	if(!defined($date_parser)) {
@@ -136,7 +136,7 @@ sub _date_parser_cached
 	};
 	if($d && (ref($d) eq 'ARRAY')) {
 		$d = @{$d}[0];
-		$self->{all_dates{$date}} = $d;
+		$self->{'all_dates'}{$date} = $d;
 	}
 	return $d;
 }
