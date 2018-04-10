@@ -1,6 +1,6 @@
-# DateTime::Format::Genealogy
+# NAME
 
-Create a DateTime object from a Genealogy Date
+DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 # VERSION
 
@@ -16,8 +16,8 @@ Creates a DateTime::Format::Genealogy object.
 
 ## parse\_datetime($string)
 
-Given a date, runs it through [Genealogy::Gedcom::Date](https://metacpan.org/pod/Genealogy::Gedcom::Date) to create a [DateTime](https://metacpan.org/pod/DateTime) object;
-If a date range is given, return a two element array in array context, or undef in stalar context
+Given a date, runs it through [Genealogy::Gedcom::Date](https://metacpan.org/pod/Genealogy::Gedcom::Date) to create a [DateTime](https://metacpan.org/pod/DateTime) object.
+If a date range is given, return a two element array in array context, or undef in scalar context
 
 # AUTHOR
 
