@@ -18,11 +18,11 @@ DATA: {
 	isa($dt, 'DateTime');
 	ok($dt->dmy() eq '29-09-1939');
 
-	$dt = $f->parse_datetime('bet 28 Jul 1914 and 11 Nov 1919');
+	$dt = $f->parse_datetime(date => 'bet 28 Jul 1914 and 11 Nov 1919');
 
 	ok(!defined($dt));
 
-	my @dts = $f->parse_datetime('bet 28 Jul 1914 and 11 Nov 1918');
+	my @dts = $f->parse_datetime({ date => 'bet 28 Jul 1914 and 11 Nov 1918' });
 
 	ok(scalar(@dts) == 2);
 	isa($dts[0], 'DateTime');
