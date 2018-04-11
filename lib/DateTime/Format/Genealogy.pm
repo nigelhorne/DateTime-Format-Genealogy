@@ -68,6 +68,8 @@ sub parse_datetime {
 
 	if(ref($_[0]) eq 'HASH') {
 		%params = %{$_[0]};
+	} elsif(ref($_[0])) {
+		Carp::croak('invalid parameter received.');
 	} elsif(scalar(@_) % 2 == 0) {
 		%params = @_;
 	} else {
