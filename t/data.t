@@ -31,6 +31,5 @@ DATA: {
 	isa($dts[1], 'DateTime');
 	ok($dts[1]->dmy() eq '11-11-1918');
 
-	throws_ok { $f->parse_datetime(['29 Sep 1939']) } qr/invalid parameter received/,
-        'invalid parameter received';
+	throws_ok { $f->parse_datetime(['29 Sep 1939']) } qr/^Usage: parse_datetime/, 'verify invalid parameter';
 }

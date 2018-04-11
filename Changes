@@ -1,4 +1,8 @@
 Revision history for DateTime::Format::Genealogy
 
+0.02
+	Added check for invalid parameter (thanks to MANWAR)
+		See https://github.com/nigelhorne/DateTime-Format-Genealogy/pull/1
+
 0.01	Tue Apr 10 17:30:46 EDT 2018
         First release
