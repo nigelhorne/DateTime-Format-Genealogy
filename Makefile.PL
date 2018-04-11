@@ -16,6 +16,7 @@ WriteMakefile(
 	TEST_REQUIRES => {
 		'Test::Most' => 0,
 		'Test::NoWarnings' => 0,
+		'Test::Exception' => 0,
 		'Test::CleanNamespaces' => 0,
 		'autodie' => 0,
 		'IPC::System::Simple' => 0,
