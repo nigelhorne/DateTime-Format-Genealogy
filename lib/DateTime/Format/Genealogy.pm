@@ -136,6 +136,9 @@ sub _date_parser_cached
 	eval {
 		$d = $date_parser->parse(date => $date);
 	};
+	if(my $error = $date_parser->error) {
+		Carp::croak("invalid date received [$date] [$error].");
+	}
 	if($d && (ref($d) eq 'ARRAY')) {
 		$d = @{$d}[0];
 		$self->{'all_dates'}{$date} = $d;
