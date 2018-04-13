@@ -62,14 +62,15 @@ If a date range is given, return a two element array in array context, or undef 
 
 sub parse_datetime {
 	my $self = shift;
-	$self = $self->new() unless(ref($self));
-
 	my %params;
 
-	if(ref($_[0]) eq 'HASH') {
+	if(!ref($self)) {
+		%params = ( 'date' => $self );
+		$self = __PACKAGE__->new();
+	} elsif(ref($_[0]) eq 'HASH') {
 		%params = %{$_[0]};
 	} elsif(ref($_[0])) {
-		Carp::croak("Usage: parse_datetime(date => \$date)");
+		Carp::croak('Usage: parse_datetime(date => $date)');
 	} elsif(scalar(@_) % 2 == 0) {
 		%params = @_;
 	} else {
@@ -77,6 +78,11 @@ sub parse_datetime {
 	}
 
 	if(my $date = $params{'date'}) {
+		# TODO: Needs much more sanity checking
+		if($date =~ /^31 Nov/) {
+			Carp::carp("$date is invalid, there are only 30 days in November");
+			return;
+		}
 		my $dfn = $self->{'dfn'};
 		if(!defined($dfn)) {
 			$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
@@ -104,6 +110,8 @@ sub parse_datetime {
 				Carp::croak("Can't parse date '$date'");
 			}
 		}
+	} else {
+		Carp::croak('Usage: parse_datetime(date => $date)');
 	}
 }
 
@@ -116,6 +124,8 @@ sub _date_parser_cached
 
 	if(ref($_[0]) eq 'HASH') {
 		%params = %{$_[0]};
+	} elsif(ref($_[0])) {
+		Carp::croak('Usage: _date_parser_cached(date => $date)');
 	} elsif(scalar(@_) % 2 == 0) {
 		%params = @_;
 	} else {
@@ -136,8 +146,9 @@ sub _date_parser_cached
 	eval {
 		$d = $date_parser->parse(date => $date);
 	};
-	if(my $error = $date_parser->error) {
-		Carp::croak("invalid date received [$date] [$error].");
+	if(my $error = $date_parser->error()) {
+		Carp::carp("$date: '$error'");
+		return;
 	}
 	if($d && (ref($d) eq 'ARRAY')) {
 		$d = @{$d}[0];

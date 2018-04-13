@@ -1,9 +1,15 @@
+Changes
 lib/DateTime/Format/Genealogy.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
+README
 README.md
 t/00-load.t
 t/coverage.t
-t/data.t
+t/date.t
+t/error.t
+t/pod-cm.t
+t/pod.t
+t/prereq.t
 t/spelling.t

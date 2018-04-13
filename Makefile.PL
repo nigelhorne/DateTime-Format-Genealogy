@@ -15,7 +15,7 @@ WriteMakefile(
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
 		'Test::CleanNamespaces' => 0,
-		'Test::Exception' => 0,
+		'Test::Carp' => 0,
 		'Test::Most' => 0,
 		'Test::NoWarnings' => 0,
 		'autodie' => 0,
