@@ -55,7 +55,8 @@ sub new {
 
 =head2 parse_datetime($string)
 
-Given a date, runs it through L<Genealogy::Gedcom::Date> to create a L<DateTime> object.
+Given a date,
+runs it through L<Genealogy::Gedcom::Date> to create a L<DateTime> object.
 If a date range is given, return a two element array in array context, or undef in scalar context
 
 =cut
