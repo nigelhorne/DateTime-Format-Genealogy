@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use ExtUtils::MakeMaker 6.64;	# 6.64 for TEST_REQUIRES
-use File::Spec 3.4;
 
 WriteMakefile(
 	NAME		=> 'DateTime::Format::Genealogy',

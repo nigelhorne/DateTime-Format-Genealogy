@@ -9,6 +9,8 @@ t/00-load.t
 t/coverage.t
 t/date.t
 t/error.t
+t/links.t
+t/no404s.t
 t/pod-cm.t
 t/pod.t
 t/prereq.t
