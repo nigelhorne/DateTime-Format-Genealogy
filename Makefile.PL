@@ -22,6 +22,7 @@ WriteMakefile(
 		'Test::Warn' => 0,
 		'strict' => 0,
 		'warnings' => 0,
+		'WWW::RT::CPAN' => 0
 	},
 	PREREQ_PM => {
 		'namespace::clean' => 0,
