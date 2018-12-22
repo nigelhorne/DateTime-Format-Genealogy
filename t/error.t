@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 6;
+use Test::Most tests => 7;
 use DateTime::Format::Genealogy;
 
 eval 'use Test::Carp';
@@ -16,6 +16,7 @@ ERROR: {
 		does_carp_that_matches(sub { $f->parse_datetime('31 Nov 1939') }, qr/^31 Nov 1939/);
 		does_croak_that_matches(sub { $f->parse_datetime(['29 Sep 1939']) }, qr/^Usage:/);
 		does_croak_that_matches(sub { $f->parse_datetime({ datex => '30 Sep 1939' }) }, qr/^Usage:/);
+		does_carp_that_matches(sub { $f->parse_datetime('Bef 29 Sep 1939') }, qr/invalid/);
 		does_croak_that_matches(sub { $f->parse_datetime() }, qr/^Usage:/);
 	}
 }

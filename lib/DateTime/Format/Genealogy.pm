@@ -83,6 +83,10 @@ sub parse_datetime {
 
 	if(my $date = $params{'date'}) {
 		# TODO: Needs much more sanity checking
+		if($date =~ /^bef /i) {
+			Carp::carp("$date is invalid, need an exact date to create a DateTime");
+			return;
+		}
 		if($date =~ /^31 Nov/) {
 			Carp::carp("$date is invalid, there are only 30 days in November");
 			return;
