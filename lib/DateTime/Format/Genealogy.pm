@@ -71,6 +71,9 @@ sub parse_datetime {
 	if(!ref($self)) {
 		%params = ( 'date' => $self );
 		$self = __PACKAGE__->new();
+		if($params{'date'} eq __PACKAGE__) {
+			$params{'date'} = shift;
+		}
 	} elsif(ref($_[0]) eq 'HASH') {
 		%params = %{$_[0]};
 	} elsif(ref($_[0])) {

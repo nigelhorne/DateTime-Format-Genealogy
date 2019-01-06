@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 10;
+use Test::Most tests => 11;
 use Test::NoWarnings;
 
 BEGIN {
@@ -32,4 +32,7 @@ DATA: {
 
 	$dt = DateTime::Format::Genealogy::parse_datetime('29 Sep 1939');
 	ok($dt->dmy() eq '29-09-1939');
+
+	$dt = DateTime::Format::Genealogy->parse_datetime('5 Jan 2019');
+	ok($dt->dmy() eq '05-01-2019');
 }

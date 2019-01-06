@@ -5,6 +5,7 @@ Revision history for DateTime::Format::Genealogy
 		See https://github.com/nigelhorne/DateTime-Format-Genealogy/pull/1
 	Fix calling in class mode
 	Added many more sanity tests
+	support DateTime::Format::Genealogy->parse_datetime()
 
 0.01	Tue Apr 10 17:30:46 EDT 2018
         First release
