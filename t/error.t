@@ -2,15 +2,16 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 8;
+use Test::Most;
 use DateTime::Format::Genealogy;
 
 eval 'use Test::Carp';
 
 ERROR: {
 	if($@) {
-		plan skip_all => 'Test::Carp needed to check error messages';
+		plan(skip_all => 'Test::Carp needed to check error messages');
 	} else {
+		plan(tests => 8);
 		my $f = new_ok('DateTime::Format::Genealogy');
 		does_carp_that_matches(sub { $f->parse_datetime('29 SepX 1939') }, qr/^29 SepX 1939/);
 		does_carp_that_matches(sub { $f->parse_datetime('31 Nov 1939') }, qr/^31 Nov 1939/);
