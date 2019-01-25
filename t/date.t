@@ -2,8 +2,9 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 11;
+use Test::Most tests => 18;
 use Test::NoWarnings;
+use Test::Deep;
 
 BEGIN {
 	use_ok('DateTime::Format::Genealogy');
@@ -12,15 +13,11 @@ BEGIN {
 DATA: {
 	my $f = new_ok('DateTime::Format::Genealogy');
 
-	my $dt = $f->parse_datetime('29 Sep 1939');
+	cmp_deeply($f->parse_datetime('29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply($f->parse_datetime(date => '29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply($f->parse_datetime({ date => '29 Sep 1939' }), methods('dmy' => '29-09-1939'));
 
-	ok(defined($dt));
-	isa($dt, 'DateTime');
-	ok($dt->dmy() eq '29-09-1939');
-
-	$dt = $f->parse_datetime(date => 'bet 28 Jul 1914 and 11 Nov 1919');
-
-	ok(!defined($dt));
+	ok(!defined($f->parse_datetime(date => 'bet 28 Jul 1914 and 11 Nov 1919')));
 
 	my @dts = $f->parse_datetime({ date => 'bet 28 Jul 1914 and 11 Nov 1918' });
 
@@ -30,9 +27,13 @@ DATA: {
 	isa($dts[1], 'DateTime');
 	ok($dts[1]->dmy() eq '11-11-1918');
 
-	$dt = DateTime::Format::Genealogy::parse_datetime('29 Sep 1939');
-	ok($dt->dmy() eq '29-09-1939');
+	cmp_deeply(DateTime::Format::Genealogy::parse_datetime('29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply(DateTime::Format::Genealogy::parse_datetime(date => '29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply(DateTime::Format::Genealogy::parse_datetime({ date => '29 Sep 1939' }), methods('dmy' => '29-09-1939'));
+	cmp_deeply(DateTime::Format::Genealogy->parse_datetime('29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply(DateTime::Format::Genealogy->parse_datetime(date => '29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply(DateTime::Format::Genealogy->parse_datetime({ date => '29 Sep 1939' }), methods('dmy' => '29-09-1939'));
 
-	$dt = DateTime::Format::Genealogy->parse_datetime('5 Jan 2019');
-	ok($dt->dmy() eq '05-01-2019');
+	cmp_deeply(DateTime::Format::Genealogy::parse_datetime('5 Jan 2019'), methods('dmy' => '05-01-2019'));
+	cmp_deeply(DateTime::Format::Genealogy->parse_datetime('5 Jan 2019'), methods('dmy' => '05-01-2019'));
 }

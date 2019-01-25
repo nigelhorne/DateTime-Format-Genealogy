@@ -1,7 +1,7 @@
 package DateTime::Format::Genealogy;
 
 # Author Nigel Horne: njh@bandsman.co.uk
-# Copyright (C) 2018, Nigel Horne
+# Copyright (C) 2018-2019, Nigel Horne
 
 # Usage is subject to licence terms.
 # The licence terms of this software are as follows:
@@ -69,16 +69,17 @@ sub parse_datetime {
 	my %params;
 
 	if(!ref($self)) {
-		%params = ( 'date' => $self );
-		$self = __PACKAGE__->new();
-		if($params{'date'} eq __PACKAGE__) {
-			$params{'date'} = shift;
+		if(scalar(@_)) {
+			return(__PACKAGE__->new()->parse_datetime(@_));
 		}
+		return(__PACKAGE__->new()->parse_datetime($self));
+	} elsif(ref($self) eq 'HASH') {
+		return(__PACKAGE__->new()->parse_datetime($self));
 	} elsif(ref($_[0]) eq 'HASH') {
 		%params = %{$_[0]};
 	} elsif(ref($_[0])) {
-		Carp::croak('Usage: parse_datetime(date => $date)');
-	} elsif(scalar(@_) % 2 == 0) {
+		Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)');
+	} elsif(scalar(@_) && (scalar(@_) % 2 == 0)) {
 		%params = @_;
 	} else {
 		$params{'date'} = shift;
@@ -211,7 +212,7 @@ L<http://search.cpan.org/dist/DateTime-Format-Gedcom/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018 Nigel Horne.
+Copyright 2018-2019 Nigel Horne.
 
 This program is released under the following licence: GPL
 
