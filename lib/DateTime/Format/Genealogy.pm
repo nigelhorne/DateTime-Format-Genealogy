@@ -99,16 +99,15 @@ sub parse_datetime {
 		if(!defined($dfn)) {
 			$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
 		}
-		if($date =~ /^\s*(\d{3,4})\s*\-\s*(\d{3,4})\s*$/) {
+		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
 			Carp::carp("Changing date '$date' to 'bet $1 and $2'");
 			$date = "bet $1 and $2";
 		}
 		if($date =~ /^bet (.+) and (.+)/i) {
 			if(wantarray) {
 				return $self->parse_datetime($1), $self->parse_datetime($2);
-			} else {
-				return;
 			}
+			return;
 		}
 		if($date !~ /^\d{3,4}$/) {
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
