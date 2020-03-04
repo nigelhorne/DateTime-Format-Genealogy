@@ -28,5 +28,3 @@ jobs:
       - name: Run Tests
         run: |
           prove -l t
-          perl -MO=Lint ./createdatabase.PL
-          perl -c -Mwarnings::unused ./createdatabase.PL
