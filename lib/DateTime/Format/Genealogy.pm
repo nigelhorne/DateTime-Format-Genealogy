@@ -1,7 +1,7 @@
 package DateTime::Format::Genealogy;
 
 # Author Nigel Horne: njh@bandsman.co.uk
-# Copyright (C) 2018-2019, Nigel Horne
+# Copyright (C) 2018-2020, Nigel Horne
 
 # Usage is subject to licence terms.
 # The licence terms of this software are as follows:
@@ -195,23 +195,15 @@ You can also look for information at:
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Gedcom>
 
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/DateTime-Format-Gedcom>
-
 =item * CPAN Ratings
 
 L<http://cpanratings.perl.org/d/DateTime-Format-Gedcom>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/DateTime-Format-Gedcom/>
 
 =back
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018-2019 Nigel Horne.
+Copyright 2018-2020 Nigel Horne.
 
 This program is released under the following licence: GPL
 
