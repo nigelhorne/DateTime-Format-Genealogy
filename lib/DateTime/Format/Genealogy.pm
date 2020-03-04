@@ -12,7 +12,6 @@ package DateTime::Format::Genealogy;
 
 use strict;
 use warnings;
-use autodie qw(:all);
 # use diagnostics;
 # use warnings::unused;
 use 5.006_001;
