@@ -42,11 +42,11 @@ DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
@@ -234,7 +234,7 @@ L<http://cpanratings.perl.org/d/DateTime-Format-Gedcom>
 
 Copyright 2018-2020 Nigel Horne.
 
-This program is released under the following licence: GPL
+This program is released under the following licence: GPL2
 
 =cut
 

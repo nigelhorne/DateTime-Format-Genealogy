@@ -1,6 +1,6 @@
 Revision history for DateTime::Format::Genealogy
 
-0.03
+0.03	Fri Jun 12 20:25:09 EDT 2020
 	Added the quiet flag
 	Added the strict flag and allow long month names if not given
 
