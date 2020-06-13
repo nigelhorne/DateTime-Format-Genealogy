@@ -21,6 +21,21 @@ use Carp;
 use DateTime::Format::Natural;
 use Genealogy::Gedcom::Date 2.01;
 
+our %months = (
+	'January' => 'Jan',
+	'February' => 'Feb',
+	'March' => 'Mar',
+	'April' => 'Apr',
+	# 'May' => 'May',
+	'June' => 'Jun',
+	'July' => 'Jul',
+	'August' => 'Aug',
+	'September' => 'Sep',
+	'October' => 'Oct',
+	'November' => 'Nov',
+	'December' => 'Dec'
+);
+
 =head1 NAME
 
 DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
@@ -63,6 +78,7 @@ Can be called as a class or object method.
 
 date: the date to be parsed
 quiet: set to fail silently if there is an error with the date
+strict: more strictly enforce the Gedcom standard, for example don't allow long month names
 
 =cut
 
@@ -87,6 +103,7 @@ sub parse_datetime {
 		$params{'date'} = shift;
 	}
 	my $quiet = $params{'quiet'};
+	my $strict = $params{'strict'};
 
 	if(my $date = $params{'date'}) {
 		# TODO: Needs much more sanity checking
@@ -114,11 +131,19 @@ sub parse_datetime {
 			return;
 		}
 		if($date !~ /^\d{3,4}$/) {
+			if($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\s+(\d{3,4})$/i) {
+				if((!$strict) && (my $abbrev = $months{$2})) {
+					$date = "$1 $abbrev $3";
+				} else {
+					Carp::croak("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
+				}
+			}
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
 				return $dfn->parse_datetime($d->{'canonical'});
 			}
 			if(($date !~ /^(Abt|ca?)/i) && ($date =~ /^[\w\s]+$/)) {
 				# ACOM exports full month names and non-standard format dates e.g. U.S. format MMM, DD YYYY
+				# TODO: allow that when mot in strict mode
 				if(my $rc = $dfn->parse_datetime($date)) {
 					return $rc;
 				}
