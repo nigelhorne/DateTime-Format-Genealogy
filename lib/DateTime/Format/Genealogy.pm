@@ -103,7 +103,6 @@ sub parse_datetime {
 		$params{'date'} = shift;
 	}
 	my $quiet = $params{'quiet'};
-	my $strict = $params{'strict'};
 
 	if(my $date = $params{'date'}) {
 		# TODO: Needs much more sanity checking
@@ -130,8 +129,11 @@ sub parse_datetime {
 			}
 			return;
 		}
+
 		if($date !~ /^\d{3,4}$/) {
 			if($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\s+(\d{3,4})$/i) {
+				my $strict = $params{'strict'};
+
 				if((!$strict) && (my $abbrev = $months{$2})) {
 					$date = "$1 $abbrev $3";
 				} else {
@@ -142,10 +144,11 @@ sub parse_datetime {
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
 				return $dfn->parse_datetime($d->{'canonical'});
 			}
-			if(($date !~ /^(Abt|ca?)/i) && ($date =~ /^[\w\s]+$/)) {
+			if(($date !~ /^(Abt|ca?)/i) && ($date =~ /^[\w\s,]+$/)) {
 				# ACOM exports full month names and non-standard format dates e.g. U.S. format MMM, DD YYYY
-				# TODO: allow that when mot in strict mode
+				# TODO: allow that when not in strict mode
 				if(my $rc = $dfn->parse_datetime($date)) {
+					# This pretty much always succeeds even with total garbage input
 					return $rc;
 				}
 				Carp::croak("Can't parse date '$date'");
