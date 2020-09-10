@@ -22,7 +22,6 @@ jobs:
       - run: perl -V
       - name: Install Dependencies
         run: |
-  - cpanm -q --installdeps --notest .
           cpanm -iq File::Spec ExtUtils::MakeMaker
           cpanm -q --skip-satisfied -n Test::Script Test::Pod::Spelling::CommonMistakes Test::Portability::Files Test::Taint Test::Carp Test::Pod::Coverage
           cpanm -iq --installdeps --notest .
