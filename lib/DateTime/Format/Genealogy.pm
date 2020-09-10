@@ -135,7 +135,8 @@ sub parse_datetime {
 				if((!$strict) && (my $abbrev = $months{$2})) {
 					$date = "$1 $abbrev $3";
 				} else {
-					Carp::croak("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
+					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
+					return;
 				}
 			}
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
