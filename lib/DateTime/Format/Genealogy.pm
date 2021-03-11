@@ -106,7 +106,7 @@ sub parse_datetime {
 
 	if(my $date = $params{'date'}) {
 		# TODO: Needs much more sanity checking
-		if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i)) {
+		if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i) || ($date =~ /^abt\s/i)) {
 			Carp::carp("$date is invalid, need an exact date to create a DateTime")
 				unless($quiet);
 			return;
