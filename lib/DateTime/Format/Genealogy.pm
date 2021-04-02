@@ -1,7 +1,7 @@
 package DateTime::Format::Genealogy;
 
 # Author Nigel Horne: njh@bandsman.co.uk
-# Copyright (C) 2018-2020, Nigel Horne
+# Copyright (C) 2018-2021, Nigel Horne
 
 # Usage is subject to licence terms.
 # The licence terms of this software are as follows:
@@ -62,9 +62,9 @@ sub new {
 	my $proto = shift;
 	my $class = ref($proto) || $proto;
 
-	return unless(defined($class));
-
-	return bless {}, $class;
+	if(defined($class)) {
+		return bless {}, $class;
+	}
 }
 
 =head2 parse_datetime($string)
@@ -148,14 +148,18 @@ sub parse_datetime {
 				# ACOM exports full month names and non-standard format dates e.g. U.S. format MMM, DD YYYY
 				# TODO: allow that when not in strict mode
 				if(my $rc = $dfn->parse_datetime($date)) {
-					# This pretty much always succeeds even with total garbage input
-					return $rc;
+					if($dfn->success()) {
+						return $rc;
+					}
+					Carp::carp($dfn->error()) unless($quiet);
+				} else {
+					Carp::carp("Can't parse date '$date'") unless($quiet);
 				}
-				Carp::croak("Can't parse date '$date'");
+				return;
 			}
 		}
 	} else {
-		Carp::croak('Usage: parse_datetime(date => $date)');
+		Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)');
 	}
 }
 
@@ -177,6 +181,10 @@ sub _date_parser_cached
 	}
 
 	my $date = $params{'date'};
+
+	if(!defined($date)) {
+		Carp::croak('Usage: _date_parser_cached(date => $date)');
+	}
 
 	if($self->{'all_dates'}{$date}) {
 		return $self->{'all_dates'}{$date};
@@ -236,7 +244,7 @@ L<http://cpanratings.perl.org/d/DateTime-Format-Gedcom>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018-2020 Nigel Horne.
+Copyright 2018-2021 Nigel Horne.
 
 This program is released under the following licence: GPL2
 

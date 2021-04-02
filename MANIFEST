@@ -7,6 +7,7 @@ MANIFEST.SKIP
 README
 README.md
 t/00-load.t
+t/carp.t
 t/coverage.t
 t/critic.t
 t/date.t

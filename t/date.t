@@ -10,7 +10,7 @@ BEGIN {
 	use_ok('DateTime::Format::Genealogy');
 }
 
-DATA: {
+DATE: {
 	my $f = new_ok('DateTime::Format::Genealogy');
 
 	cmp_deeply($f->parse_datetime('29 Sep 1939'), methods('dmy' => '29-09-1939'));

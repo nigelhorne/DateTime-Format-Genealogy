@@ -22,8 +22,7 @@ WriteMakefile(
 		'strict' => 0,
 		'warnings' => 0,
 		'WWW::RT::CPAN' => 0
-	},
-	PREREQ_PM => {
+	}, PREREQ_PM => {
 		'namespace::clean' => 0,
 		'Carp' => 0,
 		'DateTime::Format::Natural' => 0,
@@ -38,12 +37,14 @@ WriteMakefile(
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
-			type => 'git',
-			url => 'git://github.com/nigelhorne/DateTime-Format-Genealogy.git',
-			web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy',
+				type => 'git',
+				url => 'git://github.com/nigelhorne/DateTime-Format-Genealogy.git',
+				web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy',
 			},
 			bugtracker => {
-				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DateTime-Format-Genealogy',
+				# web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DateTime-Format-Genealogy',
+				web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy/issues',
+				url => 'https://github.com/nigelhorne/DateTime-Format-Genealogy/issues',
 				mailto => 'bug-DateTime-Format-Genealogy@rt.cpan.org'
 			}
 		},
