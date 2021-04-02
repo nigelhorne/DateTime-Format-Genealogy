@@ -168,19 +168,7 @@ sub parse_datetime {
 sub _date_parser_cached
 {
 	my $self = shift;
-	my %params;
-
-	if(ref($_[0]) eq 'HASH') {
-		%params = %{$_[0]};
-	} elsif(ref($_[0])) {
-		Carp::croak('Usage: _date_parser_cached(date => $date)');
-	} elsif(scalar(@_) % 2 == 0) {
-		%params = @_;
-	} else {
-		$params{'date'} = shift;
-	}
-
-	my $date = $params{'date'};
+	my $date = shift;
 
 	if(!defined($date)) {
 		Carp::croak('Usage: _date_parser_cached(date => $date)');

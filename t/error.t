@@ -12,7 +12,7 @@ ERROR: {
 	if($@) {
 		plan(skip_all => 'Test::Carp needed to check error messages');
 	} else {
-		plan(tests => 14);
+		plan(tests => 18);
 
 		my $f = new_ok('DateTime::Format::Genealogy');
 		does_carp_that_matches(sub { $f->parse_datetime('29 SepX 1939') }, qr/^Unparseable date/);
@@ -27,12 +27,10 @@ ERROR: {
 		does_croak_that_matches(sub { $f->parse_datetime(date => undef) }, qr/^Usage:/);
 		does_carp_that_matches(sub { $f->parse_datetime({ date => '28 Jul 1914 - 11 Nov 1918' }) }, qr/Changing date/);
 		does_carp_that_matches(sub { $f->parse_datetime(date => '12 June 2020', strict => 1) }, qr/^Unparseable date/);
-
-		# Note that this always seems to succeed, see the comment in the source code
-		TODO: {
-			local $TODO = 'Always passes, should fail - see DateTime::Format::Natural';
-
-			ok(!defined($f->parse_datetime(date => 'Zzz 55, 2020', strict => 1)));
-		}
+		does_croak_that_matches(sub { my $rc = $f->parse_datetime(); }, qr/^Usage:/);
+		does_carp_that_matches(sub { my $rc = $f->parse_datetime('xyzzy'); }, qr/does not parse/);
+		does_carp_that_matches(sub { my $rc = $f->parse_datetime(date => 'xyzzy'); }, qr/does not parse/);
+		does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'xyzzy' }); }, qr/does not parse/);
+		does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'Zzz 55, 2020', strict => 1 }); }, qr/does not parse/);
 	}
 }
