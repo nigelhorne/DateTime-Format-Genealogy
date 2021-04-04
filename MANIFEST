@@ -17,6 +17,7 @@ t/noopentickets.t
 t/pod-cm.t
 t/pod.t
 t/prereq.t
+t/snippets.t
 t/spelling.t
 t/unused.t
 t/vars.t

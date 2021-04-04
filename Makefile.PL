@@ -13,6 +13,9 @@ WriteMakefile(
 	  : ()),
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
+		'Data::Dumper' => 0,
+		'English' => 0,
+		'File::Spec' => 0 ,
 		'Test::CleanNamespaces' => 0,
 		'Test::Carp' => 0,
 		'Test::Deep' => 0,
