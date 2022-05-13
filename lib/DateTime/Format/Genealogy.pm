@@ -73,7 +73,7 @@ Given a date,
 runs it through L<Genealogy::Gedcom::Date> to create a L<DateTime> object.
 If a date range is given, return a two element array in array context, or undef in scalar context
 
-Returns undef if the date can't be parsed, is just a year or if it is an appoximate date starting with "c", "ca" or "abt".
+Returns undef if the date can't be parsed, is just a year or if it is an approximate date starting with "c", "ca" or "abt".
 Can be called as a class or object method.
 
 date: the date to be parsed
