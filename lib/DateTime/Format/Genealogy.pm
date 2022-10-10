@@ -1,7 +1,7 @@
 package DateTime::Format::Genealogy;
 
 # Author Nigel Horne: njh@bandsman.co.uk
-# Copyright (C) 2018-2021, Nigel Horne
+# Copyright (C) 2018-2022, Nigel Horne
 
 # Usage is subject to licence terms.
 # The licence terms of this software are as follows:
@@ -31,6 +31,7 @@ our %months = (
 	'July' => 'Jul',
 	'August' => 'Aug',
 	'September' => 'Sep',
+	'Sept' => 'Sep',
 	'October' => 'Oct',
 	'November' => 'Nov',
 	'December' => 'Dec'
@@ -232,7 +233,7 @@ L<http://cpanratings.perl.org/d/DateTime-Format-Gedcom>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018-2021 Nigel Horne.
+Copyright 2018-2022 Nigel Horne.
 
 This program is released under the following licence: GPL2
 
