@@ -31,6 +31,6 @@ ERROR: {
 		does_carp_that_matches(sub { my $rc = $f->parse_datetime('xyzzy'); }, qr/does not parse/);
 		does_carp_that_matches(sub { my $rc = $f->parse_datetime(date => 'xyzzy'); }, qr/does not parse/);
 		does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'xyzzy' }); }, qr/does not parse/);
-		does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'Zzz 55, 2020', strict => 1 }); }, qr/does not parse/);
+		does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'Zzz 55, 2020', strict => 1 }); }, qr/^Unparseable date/);
 	}
 }

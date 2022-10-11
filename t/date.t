@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 20;
+use Test::Most tests => 22;
 use Test::NoWarnings;
 use Test::Deep;
 
@@ -32,6 +32,8 @@ DATE: {
 	cmp_deeply(DateTime::Format::Genealogy::parse_datetime(date => '29 Sep 1939'), methods('dmy' => '29-09-1939'));
 	cmp_deeply(DateTime::Format::Genealogy::parse_datetime({ date => '29 Sep 1939' }), methods('dmy' => '29-09-1939'));
 	cmp_deeply(DateTime::Format::Genealogy->parse_datetime('29 Sep 1939'), methods('dmy' => '29-09-1939'));
+	cmp_deeply(DateTime::Format::Genealogy->parse_datetime({ date => '27 sept 1791', strict => 0 }), methods('dmy' => '27-09-1791'));
+	cmp_deeply(DateTime::Format::Genealogy->parse_datetime({ date => '27 sept. 1791', strict => 0 }), methods('dmy' => '27-09-1791'));
 	cmp_deeply(DateTime::Format::Genealogy->parse_datetime(date => '29 Sep 1939'), methods('dmy' => '29-09-1939'));
 	cmp_deeply(DateTime::Format::Genealogy->parse_datetime({ date => '29 Sep 1939' }), methods('dmy' => '29-09-1939'));
 

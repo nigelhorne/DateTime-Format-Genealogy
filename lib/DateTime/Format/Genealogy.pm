@@ -32,6 +32,7 @@ our %months = (
 	'August' => 'Aug',
 	'September' => 'Sep',
 	'Sept' => 'Sep',
+	'Sept.' => 'Sep',
 	'October' => 'Oct',
 	'November' => 'Nov',
 	'December' => 'Dec'
@@ -132,10 +133,14 @@ sub parse_datetime {
 		}
 
 		if($date !~ /^\d{3,4}$/) {
-			if($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\s+(\d{3,4})$/i) {
-				my $strict = $params{'strict'};
-
-				if((!$strict) && (my $abbrev = $months{$2})) {
+			my $strict = $params{'strict'};
+			if($strict) {
+				if($date !~ /^(\d{1,2})\s+([A-Z]{3})\s+(\d{3,4})$/i) {
+					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
+					return;
+				}
+			} elsif($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\.?\s+(\d{3,4})$/i) {
+				if(my $abbrev = $months{ucfirst(lc($2))}) {
 					$date = "$1 $abbrev $3";
 				} else {
 					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
@@ -156,7 +161,7 @@ sub parse_datetime {
 				} else {
 					Carp::carp("Can't parse date '$date'") unless($quiet);
 				}
-				return;
+				# return;
 			}
 		}
 	} else {
