@@ -161,7 +161,7 @@ sub parse_datetime {
 				} else {
 					Carp::carp("Can't parse date '$date'") unless($quiet);
 				}
-				# return;
+				return;
 			}
 		}
 	} else {
