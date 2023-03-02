@@ -3,6 +3,8 @@ Revision history for DateTime::Format::Genealogy
 0.05
 	Some people use 4 letters for months - handle them
 	Allow more formats to be parsed when not strict
+	Old dates (say < AD100) used to return today's date, now rejected
+	Strings of just a year returned empty string instead of undef
 
 0.04	Sat Apr  3 20:53:13 EDT 2021
 	Warn rather than die on unparseable date
