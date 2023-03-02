@@ -52,6 +52,10 @@ our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
+    use DateTime::Format::Genealogy;
+    my $dt = DateTime::Format::Genealogy->new();
+    # ...
+
 =head1 SUBROUTINES/METHODS
 
 =head2 new

@@ -21,6 +21,7 @@ t/no404s.t
 t/noopentickets.t
 t/pod-cm.t
 t/pod-spelling.t
+t/pod-synopsis.t
 t/pod.t
 t/prereq.t
 t/snippets.t
