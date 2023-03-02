@@ -61,12 +61,17 @@ Creates a DateTime::Format::Genealogy object.
 =cut
 
 sub new {
-	my $proto = shift;
+	my($proto, %args) = @_;
 	my $class = ref($proto) || $proto;
 
-	if(defined($class)) {
-		return bless {}, $class;
+	if(!defined($class)) {
+		# FIXME: this only works when no arguments are given
+		$class = __PACKAGE__;
+	} elsif(ref($class)) {
+		# clone the given object
+		return bless { %{$class}, %args }, ref($class);
 	}
+	return bless {}, $class;
 }
 
 =head2 parse_datetime($string)
