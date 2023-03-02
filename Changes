@@ -1,6 +1,6 @@
 Revision history for DateTime::Format::Genealogy
 
-0.05
+0.05	Thu Mar  2 09:55:57 EST 2023
 	Some people use 4 letters for months - handle them
 	Allow more formats to be parsed when not strict
 	Old dates (say < AD100) used to return today's date, now rejected

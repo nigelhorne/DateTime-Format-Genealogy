@@ -4,7 +4,7 @@ DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 # VERSION
 
-Version 0.04
+Version 0.05
 
 # SYNOPSIS
 
@@ -24,7 +24,9 @@ Given a date,
 runs it through [Genealogy::Gedcom::Date](https://metacpan.org/pod/Genealogy%3A%3AGedcom%3A%3ADate) to create a [DateTime](https://metacpan.org/pod/DateTime) object.
 If a date range is given, return a two element array in array context, or undef in scalar context
 
-Returns undef if the date can't be parsed, is just a year or if it is an approximate date starting with "c", "ca" or "abt".
+Returns undef if the date can't be parsed,
+is before AD100,
+is just a year or if it is an approximate date starting with "c", "ca" or "abt".
 Can be called as a class or object method.
 
     my $dt = DateTime::Format::Genealogy('25 Dec 2022');
