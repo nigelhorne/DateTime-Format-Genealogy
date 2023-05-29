@@ -177,11 +177,9 @@ sub parse_datetime {
 				} else {
 					Carp::carp("Can't parse date '$date'") unless($quiet);
 				}
-				return;
 			}
-		} else {
-			return;	# undef
 		}
+		return;	# undef
 	} else {
 		Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)');
 	}
