@@ -160,6 +160,9 @@ sub parse_datetime {
 					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
 					return;
 				}
+			} elsif($date =~ /^(\d{1,2})\s+Mai\s+(\d{3,4})$/i) {
+				# I've seen a tree that uses some French months
+				$date = "$1 May $2";
 			}
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
 				# D:T:Natural doesn't seem to work before AD100
