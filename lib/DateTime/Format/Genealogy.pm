@@ -131,10 +131,6 @@ sub parse_datetime {
 			Carp::carp("$date is invalid, there are only 30 days in November");
 			return;
 		}
-		my $dfn = $self->{'dfn'};
-		if(!defined($dfn)) {
-			$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
-		}
 		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
 			Carp::carp("Changing date '$date' to 'bet $1 and $2'");
 			$date = "bet $1 and $2";
@@ -146,6 +142,10 @@ sub parse_datetime {
 			return;
 		}
 
+		my $dfn = $self->{'dfn'};
+		if(!defined($dfn)) {
+			$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
+		}
 		if($date !~ /^\d{3,4}$/) {
 			my $strict = $params{'strict'};
 			if($strict) {
