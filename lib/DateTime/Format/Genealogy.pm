@@ -132,8 +132,13 @@ sub parse_datetime {
 			return;
 		}
 		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
-			Carp::carp("Changing date '$date' to 'bet $1 and $2'");
-			$date = "bet $1 and $2";
+			if($date =~ /^(\d{4})-(\d{2})-(\d{2})$/) {
+				Carp::carp("Changing date '$date' to '$3/$2/$1'") unless($quiet);
+				$date = "$3 $2 $1";
+			} else {
+				Carp::carp("Changing date '$date' to 'bet $1 and $2'") unless($quiet);
+				$date = "bet $1 and $2";
+			}
 		}
 		if($date =~ /^bet (.+) and (.+)/i) {
 			if(wantarray) {
@@ -142,10 +147,6 @@ sub parse_datetime {
 			return;
 		}
 
-		my $dfn = $self->{'dfn'};
-		if(!defined($dfn)) {
-			$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
-		}
 		if($date !~ /^\d{3,4}$/) {
 			my $strict = $params{'strict'};
 			if($strict) {
@@ -163,6 +164,10 @@ sub parse_datetime {
 			} elsif($date =~ /^(\d{1,2})\s+Mai\s+(\d{3,4})$/i) {
 				# I've seen a tree that uses some French months
 				$date = "$1 May $2";
+			}
+			my $dfn = $self->{'dfn'};
+			if(!defined($dfn)) {
+				$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
 			}
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
 				# D:T:Natural doesn't seem to work before AD100
@@ -212,7 +217,7 @@ sub _date_parser_cached
 		$d = $date_parser->parse(date => $date);
 	};
 	if(my $error = $date_parser->error()) {
-		Carp::carp("$date: '$error'");
+		Carp::carp("$date: '$error'") unless($self->{'quiet'});
 		return;
 	}
 	if($d && (ref($d) eq 'ARRAY')) {
