@@ -26,6 +26,7 @@ jobs:
           apk add perl perl-app-cpanminus make gzip git
           apk add perl-test-most perl-test-nowarnings
           apk add perl-datetime-format-natural perl-params-util
+          apk add perl-html-parser
           perl -V
           # cpanm -iqn ExtUtils::MakeMaker File::Spec Test::Most
           # cpanm -iqn Sub::Identify Log::Any
@@ -34,7 +35,7 @@ jobs:
           git clone --recurse-submodules $GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git
           cd $GITHUB_WORKSPACE
           cpanm -iqn File::Spec ExtUtils::MakeMaker
-          cpanm -iqn PPI Marpa::R2 Genealogy::Gedcom::Date
+          cpanm -iqn HTML::Entities PPI Marpa::R2 Genealogy::Gedcom::Date
           cpanm -iqn --installdeps .
       - name: Make module
         run: |
