@@ -132,7 +132,7 @@ sub parse_datetime {
 			return;
 		}
 		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
-			if($date =~ /^(\d{4})-(\d{2})-(\d{2})$/) {
+			if($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) {
 				Carp::carp("Changing date '$date' to '$3/$2/$1'") unless($quiet);
 				$date = "$3 $2 $1";
 			} else {
