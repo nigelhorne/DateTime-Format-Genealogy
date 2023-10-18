@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use ExtUtils::MakeMaker 6.64;	# 6.64 for TEST_REQUIRES
-use File::Spec 3.4;
 
 WriteMakefile(
 	NAME		=> 'DateTime::Format::Genealogy',
@@ -14,17 +13,20 @@ WriteMakefile(
 	  : ()),
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
+		'Data::Dumper' => 0,
+		'English' => 0,
+		'File::Spec' => 0 ,
 		'Test::CleanNamespaces' => 0,
 		'Test::Carp' => 0,
+		'Test::Compile' => 0,
+		'Test::Deep' => 0,
 		'Test::Most' => 0,
 		'Test::NoWarnings' => 0,
-		'autodie' => 0,
-		'IPC::System::Simple' => 0,
 		'Test::Warn' => 0,
 		'strict' => 0,
 		'warnings' => 0,
-	},
-	PREREQ_PM => {
+		'WWW::RT::CPAN' => 0
+	}, PREREQ_PM => {
 		'namespace::clean' => 0,
 		'Carp' => 0,
 		'DateTime::Format::Natural' => 0,
@@ -39,12 +41,14 @@ WriteMakefile(
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
-			type => 'git',
-			url => 'git://github.com/nigelhorne/DateTime-Format-Genealogy.git',
-			web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy',
+				type => 'git',
+				url => 'git://github.com/nigelhorne/DateTime-Format-Genealogy.git',
+				web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy',
 			},
 			bugtracker => {
-				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DateTime-Format-Genealogy',
+				# web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DateTime-Format-Genealogy',
+				web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy/issues',
+				url => 'https://github.com/nigelhorne/DateTime-Format-Genealogy/issues',
 				mailto => 'bug-DateTime-Format-Genealogy@rt.cpan.org'
 			}
 		},
