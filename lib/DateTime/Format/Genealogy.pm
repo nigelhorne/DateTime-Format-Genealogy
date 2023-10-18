@@ -100,27 +100,11 @@ strict: more strictly enforce the Gedcom standard, for example don't allow long 
 
 sub parse_datetime {
 	my $self = shift;
-	my %params;
+	my $params;
 
-	if(!ref($self)) {
-		if(scalar(@_)) {
-			return(__PACKAGE__->new()->parse_datetime(@_));
-		}
-		return(__PACKAGE__->new()->parse_datetime($self));
-	} elsif(ref($self) eq 'HASH') {
-		return(__PACKAGE__->new()->parse_datetime($self));
-	} elsif(ref($_[0]) eq 'HASH') {
-		%params = %{$_[0]};
-	} elsif(ref($_[0])) {
-		Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)');
-	} elsif(scalar(@_) && (scalar(@_) % 2 == 0)) {
-		%params = @_;
-	} else {
-		$params{'date'} = shift;
-	}
-	my $quiet = $params{'quiet'};
+	($self, $params) = _fetch_params($self, 'parse_datetime', @_);
 
-	if(my $date = $params{'date'}) {
+	if(my $date = $params->{'date'}) {
 		# TODO: Needs much more sanity checking
 		if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i) || ($date =~ /^abt\s/i)) {
 			Carp::carp("$date is invalid, need an exact date to create a DateTime")
@@ -198,11 +182,11 @@ sub parse_datetime {
 sub _date_parser_cached
 {
 	my $self = shift;
-	my $date = shift;
+	my $params;
 
-	if(!defined($date)) {
-		Carp::croak('Usage: _date_parser_cached(date => $date)');
-	}
+	($self, $params) = _fetch_params($self, '_date_parser_cached', @_);
+
+	my $date = $params->{'date'};
 
 	if($self->{'all_dates'}{$date}) {
 		return $self->{'all_dates'}{$date};
@@ -225,6 +209,27 @@ sub _date_parser_cached
 		$self->{'all_dates'}{$date} = $d;
 	}
 	return $d;
+}
+
+sub _fetch_params {
+	my $self = shift;
+	my $sub_name = shift;
+	my %params;
+
+	if(!ref($self)) {
+		%params = ( 'date' => $self );
+		$self = __PACKAGE__->new();
+	} elsif(ref($_[0]) eq 'HASH') {
+		%params = %{$_[0]};
+	} elsif(ref($_[0])) {
+		Carp::croak("Usage: $sub_name(date => \$date)");
+	} elsif(scalar(@_) % 2 == 0) {
+		%params = @_;
+	} else {
+		$params{'date'} = shift;
+	}
+
+	return ($self, \%params);
 }
 
 1;
