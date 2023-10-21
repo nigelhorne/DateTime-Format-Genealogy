@@ -12,7 +12,7 @@ ERROR: {
 	if($@) {
 		plan(skip_all => 'Test::Carp needed to check error messages');
 	} else {
-		plan(tests => 20);
+		plan(tests => 21);
 
 		my $f = new_ok('DateTime::Format::Genealogy');
 
@@ -28,7 +28,8 @@ ERROR: {
 		does_croak_that_matches(sub { $f->parse_datetime() }, qr/^Usage:/);
 		does_croak_that_matches(sub { $f->parse_datetime(date => undef) }, qr/^Usage:/);
 		does_carp_that_matches(sub { $f->parse_datetime({ date => '28 Jul 1914 - 11 Nov 1918' }) }, qr/Changing date/);
-		does_carp_that_matches(sub { $f->parse_datetime({ date => '1517-05-04' }) }, qr/Changing date/);
+		does_carp_that_matches(sub { $f->parse_datetime({ date => '1517-05-04' }) }, qr/Changing date .+04 May 1517/);
+		cmp_ok($f->parse_datetime({ date => '1517-05-04', strict => 0, quiet => 0 })->dmy, 'eq', '04-05-1517', 'Handle dashes in dates');
 		does_carp_that_matches(sub { $f->parse_datetime(date => '12 June 2020', strict => 1) }, qr/^Unparseable date/);
 		does_croak_that_matches(sub { my $rc = $f->parse_datetime(); }, qr/^Usage:/);
 		does_carp_that_matches(sub { my $rc = $f->parse_datetime('xyzzy'); }, qr/does not parse/);

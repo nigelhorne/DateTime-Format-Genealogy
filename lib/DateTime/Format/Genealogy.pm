@@ -38,6 +38,8 @@ our %months = (
 	'December' => 'Dec'
 );
 
+our @months = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+
 =head1 NAME
 
 DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
@@ -133,8 +135,9 @@ sub parse_datetime {
 		}
 		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
 			if($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) {
-				Carp::carp("Changing date '$date' to '$3/$2/$1'") unless($quiet);
-				$date = "$3 $2 $1";
+				my $month = $months[$2 - 1];
+				Carp::carp("Changing date '$date' to '$3 $month $1'") unless($quiet);
+				$date = "$3 $month $1";
 			} else {
 				Carp::carp("Changing date '$date' to 'bet $1 and $2'") unless($quiet);
 				$date = "bet $1 and $2";
