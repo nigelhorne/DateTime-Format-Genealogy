@@ -1,7 +1,7 @@
 package DateTime::Format::Genealogy;
 
 # Author Nigel Horne: njh@bandsman.co.uk
-# Copyright (C) 2018-2023, Nigel Horne
+# Copyright (C) 2018-2024, Nigel Horne
 
 # Usage is subject to licence terms.
 # The licence terms of this software are as follows:
@@ -273,7 +273,7 @@ L<DateTime>
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc DateTime::Format::Gedcom
+    perldoc DateTime::Format::Genealogy
 
 You can also look for information at:
 
@@ -281,17 +281,13 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Gedcom>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/DateTime-Format-Gedcom>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy>
 
 =back
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018-2023 Nigel Horne.
+Copyright 2018-2024 Nigel Horne.
 
 This program is released under the following licence: GPL2
 

@@ -54,20 +54,16 @@ so this module rejects dates that old.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc DateTime::Format::Gedcom
+    perldoc DateTime::Format::Genealogy
 
 You can also look for information at:
 
 - RT: CPAN's request tracker
 
-    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Gedcom](http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Gedcom)
-
-- CPAN Ratings
-
-    [http://cpanratings.perl.org/d/DateTime-Format-Gedcom](http://cpanratings.perl.org/d/DateTime-Format-Gedcom)
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy](http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy)
 
 # LICENSE AND COPYRIGHT
 
-Copyright 2018-2023 Nigel Horne.
+Copyright 2018-2024 Nigel Horne.
 
 This program is released under the following licence: GPL2
