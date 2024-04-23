@@ -4,7 +4,7 @@ DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 # VERSION
 
-Version 0.05
+Version 0.06
 
 # SYNOPSIS
 
@@ -29,9 +29,9 @@ is before AD100,
 is just a year or if it is an approximate date starting with "c", "ca" or "abt".
 Can be called as a class or object method.
 
-    my $dt = DateTime::Format::Genealogy('25 Dec 2022');
-    $dt = $dtg->(date => '25 Dec 2022');
+    my $dt = DateTime::Format::Genealogy->new()->parse_datetime('25 Dec 2022');
 
+Optional arguments:
 date: the date to be parsed
 quiet: set to fail silently if there is an error with the date
 strict: more strictly enforce the Gedcom standard, for example don't allow long month names

@@ -1,6 +1,6 @@
 Revision history for DateTime::Format::Genealogy
 
-0.06
+0.06	Tue Apr 23 08:28:40 EDT 2024
 	Handle entries which have the French 'Mai' instead of the English 'May'
 	Some messages were printed even in quiet mode
 	Handle '1517-05-04' as '04/05/1517'
