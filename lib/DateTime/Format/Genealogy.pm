@@ -160,6 +160,9 @@ sub parse_datetime {
 			} elsif($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\.?\s+(\d{3,4})$/i) {
 				if(my $abbrev = $months{ucfirst(lc($2))}) {
 					$date = "$1 $abbrev $3";
+				} elsif($2 eq 'Janv') {
+					# I've seen a tree that uses some French months
+					$date = "$1 Jan $3";
 				} else {
 					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
 					return;
