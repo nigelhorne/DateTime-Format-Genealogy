@@ -27,3 +27,4 @@ t/prereq.t
 t/snippets.t
 t/unused.t
 t/vars.t
+t/version.t
