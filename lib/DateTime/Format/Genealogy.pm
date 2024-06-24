@@ -163,6 +163,8 @@ sub parse_datetime {
 				} elsif($2 eq 'Janv') {
 					# I've seen a tree that uses some French months
 					$date = "$1 Jan $3";
+				} elsif($2 eq 'Juli') {
+					$date = "$1 Jul $3";
 				} else {
 					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
 					return;
@@ -170,7 +172,11 @@ sub parse_datetime {
 			} elsif($date =~ /^(\d{1,2})\s+Mai\s+(\d{3,4})$/i) {
 				# I've seen a tree that uses some French months
 				$date = "$1 May $2";
+			} elsif($date =~ /^(\d{1,2})\-([A-Z]{3}+)\-(\d{3,4})$/i) {
+				# 29-Aug-1938
+				$date = "$1 $2 $3";
 			}
+
 			my $dfn = $self->{'dfn'};
 			if(!defined($dfn)) {
 				$self->{'dfn'} = $dfn = DateTime::Format::Natural->new();
