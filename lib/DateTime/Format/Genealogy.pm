@@ -46,11 +46,11 @@ DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 =head1 VERSION
 
-Version 0.07
+Version 0.08
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
@@ -77,7 +77,7 @@ sub new {
 		# clone the given object
 		return bless { %{$class}, %args }, ref($class);
 	}
-	return bless {}, $class;
+	return bless { %args }, $class;
 }
 
 =head2 parse_datetime($string)
