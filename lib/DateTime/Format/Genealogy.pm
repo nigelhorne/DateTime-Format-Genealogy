@@ -172,7 +172,7 @@ sub parse_datetime {
 			} elsif($date =~ /^(\d{1,2})\s+Mai\s+(\d{3,4})$/i) {
 				# I've seen a tree that uses some French months
 				$date = "$1 May $2";
-			} elsif($date =~ /^(\d{1,2})\-([A-Z]{3}+)\-(\d{3,4})$/i) {
+			} elsif($date =~ /^(\d{1,2})\-([A-Z]{3})\-(\d{3,4})$/i) {
 				# 29-Aug-1938
 				$date = "$1 $2 $3";
 			}
