@@ -67,8 +67,8 @@ Creates a DateTime::Format::Genealogy object.
 =cut
 
 sub new {
-	my($proto, %args) = @_;
-	my $class = ref($proto) || $proto;
+	my $class = shift;
+	my %args = (ref($_[0]) eq 'HASH') ? %{$_[0]} : @_;
 
 	if(!defined($class)) {
 		# FIXME: this only works when no arguments are given
