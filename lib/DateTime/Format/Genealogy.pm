@@ -20,6 +20,7 @@ use namespace::clean;
 use Carp;
 use DateTime::Format::Natural;
 use Genealogy::Gedcom::Date 2.01;
+use Scalar::Util;
 
 our %months = (
 	'January' => 'Jan',
@@ -66,17 +67,21 @@ Creates a DateTime::Format::Genealogy object.
 
 =cut
 
-sub new {
+sub new
+{
 	my $class = shift;
+
+	# Handle hash or hashref arguments
 	my %args = (ref($_[0]) eq 'HASH') ? %{$_[0]} : @_;
 
 	if(!defined($class)) {
 		# FIXME: this only works when no arguments are given
 		$class = __PACKAGE__;
-	} elsif(ref($class)) {
-		# clone the given object
+	} elsif(Scalar::Util::blessed($class)) {
+		# If $class is an object, clone it with new arguments
 		return bless { %{$class}, %args }, ref($class);
 	}
+	# Return the blessed object
 	return bless { %args }, $class;
 }
 
@@ -209,35 +214,36 @@ sub parse_datetime {
 # Genealogy::Gedcom::Date is expensive, so cache results
 sub _date_parser_cached
 {
-	my $self = shift;
-	my $date = shift;
+	my ($self, $date) = @_;
 
-	if(!defined($date)) {
-		Carp::croak('Usage: _date_parser_cached(date => $date)');
-	}
+	Carp::croak('Usage: _date_parser_cached(date => $date)') unless defined $date;
 
-	if($self->{'all_dates'}{$date}) {
-		return $self->{'all_dates'}{$date};
-	}
-	my $date_parser = $self->{'date_parser'};
-	if(!defined($date_parser)) {
-		$date_parser = $self->{'date_parser'} = Genealogy::Gedcom::Date->new();
-	}
+	# Check and return if date already parsed and cached
+	return $self->{'all_dates'}{$date} if exists $self->{'all_dates'}{$date};
 
-	my $d;
+	# Initialize the date parser if not already set
+	my $date_parser = $self->{'date_parser'} ||= Genealogy::Gedcom::Date->new();
+
+	# Parse the date
+	my $parsed_date;
 	eval {
-		$d = $date_parser->parse(date => $date);
+		$parsed_date = $date_parser->parse(date => $date);
 	};
+
+	# Check for errors
 	if(my $error = $date_parser->error()) {
-		Carp::carp("$date: '$error'") unless($self->{'quiet'});
+		Carp::carp("$date: '$error'") unless $self->{'quiet'};
 		return;
 	}
-	if($d && (ref($d) eq 'ARRAY')) {
-		$d = @{$d}[0];
-		$self->{'all_dates'}{$date} = $d;
+
+	# Cache and return the first parsed date if it's an array reference
+	if((ref($parsed_date) eq 'ARRAY') && @{$parsed_date}) {
+		return $self->{'all_dates'}{$date} = $parsed_date->[0];
 	}
-	return $d;
+
+	return;
 }
+
 
 # From https://github.com/nigelhorne/DateTime-Format-Genealogy/commit/dd61fefde3d037e251df34654a67e241c4117461
 # TODO: I have not been able to get this to work, but it's a good idea so I'm leaving it here for future investigation
