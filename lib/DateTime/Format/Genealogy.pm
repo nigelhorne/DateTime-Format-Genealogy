@@ -244,7 +244,6 @@ sub _date_parser_cached
 	return;
 }
 
-
 # From https://github.com/nigelhorne/DateTime-Format-Genealogy/commit/dd61fefde3d037e251df34654a67e241c4117461
 # TODO: I have not been able to get this to work, but it's a good idea so I'm leaving it here for future investigation
 # sub _fetch_params {
