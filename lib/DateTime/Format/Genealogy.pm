@@ -134,7 +134,7 @@ sub parse_datetime {
 				unless($quiet);
 			return;
 		}
-		if($date =~ /^31 Nov/) {
+		if($date =~ /^31\s+Nov/) {
 			Carp::carp("$date is invalid, there are only 30 days in November");
 			return;
 		}
