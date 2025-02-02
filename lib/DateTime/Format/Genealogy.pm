@@ -47,11 +47,11 @@ DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 =head1 VERSION
 
-Version 0.09
+Version 0.10
 
 =cut
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 =head1 SYNOPSIS
 
@@ -72,7 +72,18 @@ sub new
 	my $class = shift;
 
 	# Handle hash or hashref arguments
-	my %args = (ref($_[0]) eq 'HASH') ? %{$_[0]} : @_;
+	my %args;
+	if((@_ == 1) && (ref $_[0] eq 'HASH')) {
+		# If the first argument is a hash reference, dereference it
+		%args = %{$_[0]};
+	} elsif((@_ % 2) == 0) {
+		# If there is an even number of arguments, treat them as key-value pairs
+		%args = @_;
+	} else {
+		# If there is an odd number of arguments, treat it as an error
+		carp(__PACKAGE__, ': Invalid arguments passed to new()');
+		return;
+	}
 
 	if(!defined($class)) {
 		# FIXME: this only works when no arguments are given
