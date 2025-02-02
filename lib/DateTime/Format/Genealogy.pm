@@ -278,6 +278,9 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
+Please report any bugs or feature requests to the author.
+This module is provided as-is without any warranty.
+
 I can't get L<DateTime::Format::Natural> to work on dates before AD100,
 so this module rejects dates that old.
 
@@ -304,7 +307,7 @@ L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018-2024 Nigel Horne.
+Copyright 2018-2025 Nigel Horne.
 
 This program is released under the following licence: GPL2
 
