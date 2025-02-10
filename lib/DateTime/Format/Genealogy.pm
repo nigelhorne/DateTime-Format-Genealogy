@@ -165,6 +165,12 @@ sub parse_datetime {
 			}
 			return;
 		}
+		if($date =~ /^from (.+) to (.+)/i) {
+			if(wantarray) {
+				return $self->parse_datetime($1), $self->parse_datetime($2);
+			}
+			return;
+		}
 
 		if($date !~ /^\d{3,4}$/) {
 			my $strict = $params{'strict'};
