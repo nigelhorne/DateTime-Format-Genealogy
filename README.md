@@ -34,11 +34,13 @@ Can be called as a class or object method.
 
     my $dt = DateTime::Format::Genealogy->new()->parse_datetime('25 Dec 2022');
 
-Optional arguments:
+Mandatory arguments:
 
 - `date`
 
     The date to be parsed.
+
+Optional arguments:
 
 - `quiet`
 

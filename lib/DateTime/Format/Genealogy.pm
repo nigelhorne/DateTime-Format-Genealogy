@@ -112,13 +112,19 @@ Can be called as a class or object method.
 
     my $dt = DateTime::Format::Genealogy->new()->parse_datetime('25 Dec 2022');
 
-Optional arguments:
+Mandatory arguments:
 
 =over 4
 
 =item * C<date>
 
 The date to be parsed.
+
+=back
+
+Optional arguments:
+
+=over 4
 
 =item * C<quiet>
 
