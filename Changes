@@ -1,5 +1,8 @@
 Revision history for DateTime::Format::Genealogy
 
+0.12
+	Use Params::Get
+
 0.11	Tue Feb 11 14:05:44 EST 2025
 	Handle "from xxx to yyy" as well as the more correct "bet xxx and yyy"
 	Added _get_params()

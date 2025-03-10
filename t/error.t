@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 23;
+use Test::Most tests => 24;
 use Test::Needs 'Test::Carp';
 use DateTime::Format::Genealogy;
 use Carp;
@@ -34,4 +34,5 @@ ERROR: {
 	does_carp_that_matches(sub { my $rc = $f->parse_datetime(date => 'xyzzy'); }, qr/does not parse/);
 	does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'xyzzy' }); }, qr/does not parse/);
 	does_carp_that_matches(sub { my $rc = $f->parse_datetime({ date => 'Zzz 55, 2020', strict => 1 }); }, qr/^Unparseable date/);
+	does_carp_that_matches(sub { my $rc = $f->parse_datetime('1941-08-02') }, qr/Changing date/);
 }
