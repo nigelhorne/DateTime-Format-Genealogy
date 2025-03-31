@@ -40,7 +40,7 @@ our %months = (
 	'December' => 'Dec'
 );
 
-our @months = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+our @short_month_names = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 
 =head1 NAME
 
@@ -170,7 +170,7 @@ sub parse_datetime {
 		}
 		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
 			if($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) {
-				my $month = $months[$2 - 1];
+				my $month = $short_month_names[$2 - 1];
 				Carp::carp("Changing date '$date' to '$3 $month $1'") unless($quiet);
 				$date = "$3 $month $1";
 			} else {
