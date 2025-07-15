@@ -41,7 +41,7 @@ WriteMakefile(
 		'Carp' => 0,
 		'DateTime::Format::Natural' => 0,
 		'Genealogy::Gedcom::Date' => 2.01,
-		'Params::Get' => 0,
+		'Params::Get' => 0.08,
 		'Scalar::Util' => 0
 	}, dist => $dist,
 	clean		=> { FILES => 'DateTime-Format-Genealogy-*' },
