@@ -2,7 +2,8 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 15;
+
+use Test::Most;
 
 BEGIN { use_ok('DateTime::Format::Genealogy') }
 
@@ -44,3 +45,27 @@ ok(defined($dt_julian), "Parsed Julian date: $julian_date");
 is($dt_julian->year(), 1620, 'Gregorian year is correct');
 is($dt_julian->month(), 3, 'Gregorian month is correct');
 is($dt_julian->day(), 25, 'Gregorian day is correct');
+
+# Test Hebrew calendar date (only if module installed)
+SKIP: {
+	if (eval { use_module('DateTime::Calendar::Hebrew'); 1 }) {
+		my $hebrew_date = '@#DHEBREW@ 14 Tishri 5783';
+		my $dt_hebrew   = $dtf->parse_datetime($hebrew_date);
+		ok(defined $dt_hebrew, "Parsed Hebrew date: $hebrew_date");
+	} else {
+		skip 'DateTime::Calendar::Hebrew not installed', 1;
+	}
+}
+
+# Test French Republican calendar date (only if module installed)
+SKIP: {
+	if (eval { use_module('DateTime::Calendar::FrenchRevolutionary'); 1 }) {
+		my $french_date = '@#DFRENCH R@ 1 Vendémiaire 1';
+		my $dt_french   = $dtf->parse_datetime($french_date);
+		ok(defined $dt_french, "Parsed French Republican date: $french_date");
+	} else {
+		skip 'DateTime::Calendar::FrenchRevolutionary not installed', 1;
+	}
+}
+
+done_testing();

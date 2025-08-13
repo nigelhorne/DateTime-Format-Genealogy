@@ -95,6 +95,7 @@ sub new
 		# If $class is an object, clone it with new arguments
 		return bless { %{$class}, %args }, ref($class);
 	}
+
 	# Return the blessed object
 	return bless { %args }, $class;
 }
@@ -162,7 +163,6 @@ sub parse_datetime {
 		my $calendar_type = 'DGREGORIAN';
 		if ($date =~ s/^@#D([A-Z ]+?)@\s*//) {
 			$calendar_type = 'D' . uc($1);  # normalise
-			::diag $calendar_type;
 		}
 
 		# TODO: Needs much more sanity checking
@@ -241,12 +241,8 @@ sub parse_datetime {
 				return if($date =~ /\s\d{1,2}$/);
 				my $rc = $dfn->parse_datetime($d->{'canonical'});
 
-				# Convert Julian to Gregorian if needed
-				if($rc && ($calendar_type eq 'DJULIAN')) {
-					# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it
-					# Approximate historical offset
-					my $offset_days = _julian_to_gregorian_offset($rc->year);
-					$rc = $rc->clone->add(days => $offset_days);
+				if($rc && $calendar_type ne 'DGREGORIAN') {
+					return _convert_calendar($rc, $calendar_type, $quiet);
 				}
 
 				return $rc;
@@ -303,6 +299,42 @@ sub _date_parser_cached
 	}
 
 	return;
+}
+
+sub _convert_calendar {
+	my ($dt, $calendar_type, $quiet) = @_;
+
+	if ($calendar_type eq 'DJULIAN') {
+		# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it
+		# Approximate historical offset
+		my $offset_days = _julian_to_gregorian_offset($dt->year);
+		return $dt->clone->add(days => $offset_days);
+	} elsif ($calendar_type eq 'DHEBREW') {
+		eval {
+			require DateTime::Calendar::Hebrew;
+			my $h = DateTime::Calendar::Hebrew->new(
+				year  => $dt->year,
+				month => $dt->month,
+				day   => $dt->day
+			);
+			$dt = DateTime->from_object(object => $h);
+		};
+		Carp::carp("Hebrew calendar conversion failed: $@") if $@ && !$quiet;
+	} elsif ($calendar_type =~ /FRENCH R/) {
+		eval {
+			require DateTime::Calendar::FrenchRevolutionary;
+			my $f = DateTime::Calendar::FrenchRevolutionary->new(
+				year  => $dt->year,
+				month => $dt->month,
+				day   => $dt->day
+			);
+			$dt = DateTime->from_object(object => $f);
+		};
+		Carp::carp("French Republican calendar conversion failed: $@") if $@ && !$quiet;
+	} else {	# e.g DROMAN
+		Carp::carp("Calendar type $calendar_type not supported") unless $quiet;
+	}
+	return $dt;
 }
 
 sub _julian_to_gregorian_offset {
