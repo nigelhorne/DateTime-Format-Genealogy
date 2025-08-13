@@ -47,11 +47,11 @@ DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
 
 =head1 VERSION
 
-Version 0.11
+Version 0.12
 
 =cut
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 =head1 SYNOPSIS
 
@@ -113,6 +113,9 @@ if it is an approximate date starting with "c", "ca" or "abt".
 Can be called as a class or object method.
 
     my $dt = DateTime::Format::Genealogy->new()->parse_datetime('25 Dec 2022');
+
+Recognizes GEDCOM calendar escapes such as @#DJULIAN@, @#DHEBREW@, and @#DFRENCH R@,
+converting them to DateTime objects when the appropriate calendar modules are installed.
 
 Mandatory arguments:
 
@@ -304,7 +307,7 @@ sub _date_parser_cached
 sub _convert_calendar {
 	my ($dt, $calendar_type, $quiet) = @_;
 
-	if ($calendar_type eq 'DJULIAN') {
+	if($calendar_type eq 'DJULIAN') {
 		# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it
 		# Approximate historical offset
 		my $offset_days = _julian_to_gregorian_offset($dt->year);
@@ -317,7 +320,7 @@ sub _convert_calendar {
 				month => $dt->month,
 				day   => $dt->day
 			);
-			$dt = DateTime->from_object(object => $h);
+			return DateTime->from_object(object => $h);
 		};
 		Carp::carp("Hebrew calendar conversion failed: $@") if $@ && !$quiet;
 	} elsif ($calendar_type =~ /FRENCH R/) {
@@ -328,7 +331,7 @@ sub _convert_calendar {
 				month => $dt->month,
 				day   => $dt->day
 			);
-			$dt = DateTime->from_object(object => $f);
+			return DateTime->from_object(object => $f);
 		};
 		Carp::carp("French Republican calendar conversion failed: $@") if $@ && !$quiet;
 	} else {	# e.g DROMAN

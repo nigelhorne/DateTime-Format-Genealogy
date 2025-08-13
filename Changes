@@ -1,6 +1,6 @@
 Revision history for DateTime::Format::Genealogy
 
-0.12
+0.12	Wed Aug 13 08:23:37 EDT 2025
 	Use Params::Get
 	Use Readonly::Values::Months
 	Handle DJULIAN, DHEBREW and DFRENCH R in the data 
