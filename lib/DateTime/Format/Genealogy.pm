@@ -107,7 +107,8 @@ If a date range is given, return a two-element array in array context, or undef 
 
 Returns undef if the date can't be parsed,
 is before AD100,
-is just a year or if it is an approximate date starting with "c", "ca" or "abt".
+is just a year or,
+if it is an approximate date starting with "c", "ca" or "abt".
 Can be called as a class or object method.
 
     my $dt = DateTime::Format::Genealogy->new()->parse_datetime('25 Dec 2022');
@@ -157,6 +158,12 @@ sub parse_datetime {
 	if((!ref($params->{'date'})) && (my $date = $params->{'date'})) {
 		my $quiet = $params->{'quiet'};
 
+		# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it.
+		my $is_julian = 0;
+		if($date =~ s/^@#DJULIAN@\s//) {
+			$is_julian = 1;
+		}
+
 		# TODO: Needs much more sanity checking
 		if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i) || ($date =~ /^abt\s/i)) {
 			Carp::carp("$date is invalid, need an exact date to create a DateTime")
@@ -199,6 +206,9 @@ sub parse_datetime {
 					return;
 				}
 			} elsif($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\.?\s+(\d{3,4})$/i) {
+				# FIXME: Doesn't include sept
+				# if(my $abbrev = $month_names_to_short{lc($2)}) {
+					# $abbrev = ucfirst($abbrev);
 				if(my $abbrev = $months{ucfirst(lc($2))}) {
 					$date = "$1 $abbrev $3";
 				} elsif($2 eq 'Janv') {
@@ -228,7 +238,16 @@ sub parse_datetime {
 			if(($date =~ /^\d/) && (my $d = $self->_date_parser_cached($date))) {
 				# D:T:Natural doesn't seem to work before AD100
 				return if($date =~ /\s\d{1,2}$/);
-				return $dfn->parse_datetime($d->{'canonical'});
+				my $rc = $dfn->parse_datetime($d->{'canonical'});
+
+				# Convert Julian to Gregorian if needed
+				if($is_julian && $rc) {
+					# Approximate historical offset
+					my $offset_days = _julian_to_gregorian_offset($rc->year);
+					$rc = $rc->clone->add(days => $offset_days);
+				}
+
+				return $rc;
 			}
 			if(($date !~ /^(Abt|ca?)/i) && ($date =~ /^[\w\s,]+$/)) {
 				# ACOM exports full month names and non-standard format dates e.g. U.S. format MMM, DD YYYY
@@ -282,6 +301,21 @@ sub _date_parser_cached
 	}
 
 	return;
+}
+
+sub _julian_to_gregorian_offset {
+	my $year = $_[0];
+
+	# The gap widened over centuries:
+	# 10 days from 5 Oct 1582 to 28 Feb 1700
+	# 11 days from 1 Mar 1700 to 28 Feb 1800
+	# 12 days from 1 Mar 1800 to 28 Feb 1900
+	# 13 days from 1 Mar 1900 onwards
+
+	return 10 if $year < 1700;
+	return 11 if $year < 1800;
+	return 12 if $year < 1900;
+	return 13;
 }
 
 1;

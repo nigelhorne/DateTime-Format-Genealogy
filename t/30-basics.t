@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::Most tests => 11;
+use Test::Most tests => 15;
 
 BEGIN { use_ok('DateTime::Format::Genealogy') }
 
@@ -33,3 +33,14 @@ is($range_dates[1]->day(), 31, 'Range end day');
 my $approx_date = 'abt 2022';
 my $dt_approx = $dtf->parse_datetime(date => $approx_date);
 ok(!defined($dt_approx), "Approximate date: $approx_date");
+
+# Test DJULIAN date
+my $julian_date = '@#DJULIAN@ 15 Mar 1620';
+my $dt_julian = $dtf->parse_datetime($julian_date);
+ok(defined($dt_julian), "Parsed Julian date: $julian_date");
+
+# Historical fact: In 1620, England was still using the Julian calendar.
+# 15 Mar 1620 Julian = 25 Mar 1620 Gregorian
+is($dt_julian->year(), 1620, 'Gregorian year is correct');
+is($dt_julian->month(), 3, 'Gregorian month is correct');
+is($dt_julian->day(), 25, 'Gregorian day is correct');
