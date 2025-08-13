@@ -20,7 +20,7 @@ use namespace::clean;
 use Carp;
 use DateTime::Format::Natural;
 use Genealogy::Gedcom::Date 2.01;
-use Params::Get 0.08;
+use Params::Get 0.13;
 use Readonly::Values::Months 0.02 qw(@short_month_names);
 use Scalar::Util;
 
