@@ -158,10 +158,11 @@ sub parse_datetime {
 	if((!ref($params->{'date'})) && (my $date = $params->{'date'})) {
 		my $quiet = $params->{'quiet'};
 
-		# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it.
-		my $is_julian = 0;
-		if($date =~ s/^@#DJULIAN@\s//) {
-			$is_julian = 1;
+		# Detect GEDCOM calendar escape
+		my $calendar_type = 'DGREGORIAN';
+		if ($date =~ s/^@#D([A-Z ]+?)@\s*//) {
+			$calendar_type = 'D' . uc($1);  # normalise
+			::diag $calendar_type;
 		}
 
 		# TODO: Needs much more sanity checking
@@ -241,7 +242,8 @@ sub parse_datetime {
 				my $rc = $dfn->parse_datetime($d->{'canonical'});
 
 				# Convert Julian to Gregorian if needed
-				if($is_julian && $rc) {
+				if($rc && ($calendar_type eq 'DJULIAN')) {
+					# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it
 					# Approximate historical offset
 					my $offset_days = _julian_to_gregorian_offset($rc->year);
 					$rc = $rc->clone->add(days => $offset_days);
