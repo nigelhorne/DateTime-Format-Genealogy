@@ -10,6 +10,11 @@ use Test::Memory::Cycle;
 use Readonly;
 use Scalar::Util qw(blessed refaddr);
 
+# Allow white-box tests to call private/protected subroutines directly.
+# Under prove/make test HARNESS_ACTIVE is set and Sub::Private skips its
+# enforcer automatically; this covers direct 'perl t/function.t' runs.
+$Sub::Private::BYPASS = 1;
+
 BEGIN {
 	use_ok('DateTime::Format::Genealogy') || BAIL_OUT('Cannot load module');
 }
@@ -76,10 +81,9 @@ subtest '_julian_to_gregorian_offset' => sub {
 # Verify every calling style, flag propagation, and that the object graph
 # is free of circular references.
 #
-# Note: parse_datetime reads "quiet" and "strict" from its own call-time
-# parameters, not from the object.  The constructor stores them for use
-# by internal helpers (_date_parser_cached reads $self->{'quiet'}), but
-# callers must pass those flags explicitly to parse_datetime.
+# Note: parse_datetime first checks its own call-time parameters for "quiet"
+# and "strict", then falls back to the object's stored attributes set at
+# construction time.  Per-call values always take precedence.
 # =======================================================================
 
 subtest 'new() - construction' => sub {
@@ -590,6 +594,62 @@ subtest 'parse_datetime - repeated calls use the internal cache' => sub {
 
 	diag('Cache size after repeated parse: ' . scalar(keys %{$obj->{all_dates}}) . ' entries')
 		if $ENV{TEST_VERBOSE};
+};
+
+# =======================================================================
+# SECTION 14: parse_datetime - quiet/strict inherited from object
+#
+# Flags set at construction time are picked up by subsequent calls to
+# parse_datetime without needing to pass them per-call.  Per-call values
+# override object-level defaults.
+# =======================================================================
+
+subtest 'parse_datetime - quiet inherited from constructor' => sub {
+	# Build an object with quiet permanently on; parse_datetime should
+	# suppress all carps without needing quiet => 1 on each call.
+	my $obj = $PKG->new(quiet => 1);
+
+	# These would normally carp - silence proves the object flag was read.
+	my $nw1;
+	warnings_are(
+		sub { $nw1 = $obj->parse_datetime(date => 'bef 1 Jan 2000') },
+		[],
+		'bef prefix: object-level quiet suppresses carp',
+	);
+	ok(!defined $nw1, 'bef prefix still returns undef with quiet on object');
+
+	my $nw2;
+	warnings_are(
+		sub { $nw2 = $obj->parse_datetime(date => 'xyzzy') },
+		[],
+		'garbage date: object-level quiet suppresses carp',
+	);
+	ok(!defined $nw2, 'garbage date still returns undef with quiet on object');
+
+	# Per-call quiet => 0 must override the object attribute, restoring carps.
+	warning_like(
+		sub { $obj->parse_datetime(date => 'bef 1 Jan 2000', quiet => 0) },
+		qr/is invalid.*need an exact date/,
+		'per-call quiet => 0 overrides object-level quiet => 1',
+	);
+};
+
+subtest 'parse_datetime - strict inherited from constructor' => sub {
+	my $obj_strict = $PKG->new(strict => 1, quiet => 1);
+
+	# Long month name must be rejected without passing strict per-call.
+	ok(!defined $obj_strict->parse_datetime(date => '12 June 2020'),
+		'object-level strict rejects long month name');
+
+	# Valid 3-letter month must still work under object-level strict.
+	my $dt = $obj_strict->parse_datetime(date => '29 Sep 1939');
+	isa_ok($dt, 'DateTime', 'object-level strict accepts 3-letter month');
+	is($dt->dmy, '29-09-1939', 'date value correct under object-level strict');
+
+	# Per-call strict => 0 must override the object attribute.
+	my $dt2 = $obj_strict->parse_datetime(date => '12 June 2020', strict => 0);
+	isa_ok($dt2, 'DateTime', 'per-call strict => 0 overrides object-level strict');
+	is($dt2->dmy, '12-06-2020', 'date value correct after per-call strict override');
 };
 
 done_testing();

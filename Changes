@@ -1,13 +1,29 @@
 Revision history for DateTime::Format::Genealogy
 
-0.13
+0.13	Thu Jul 24 2026
 	[ Bug Fixes ]
 	- Fix t/error.t failures when Params::Get >= 0.13 croaks before our own usage check
-	See https://github.com/nigelhorne/DateTime-Format-Genealogy/issues/11
+		See https://github.com/nigelhorne/DateTime-Format-Genealogy/issues/11
+	- Fix 'return inside eval' bug in _convert_calendar that silently discarded
+		Hebrew and French Republican calendar conversions
+	- Fix bare clone (->new() on an object) returning the original reference
+		instead of a copy
 
 	[ Enhancements ]
 	- Support Object::Configure
 	- Use Params::Get in new()
+	- Use Params::Validate::Strict to reject unknown parameter keys
+	- Use Sub::Private (enforce mode) for _convert_calendar and
+		_julian_to_gregorian_offset; use Sub::Protected for _date_parser_cached
+	- Use Readonly constants for month alias table and Julian offset tiers
+	- Consolidate French/German month aliases (Janv, Juli, Mai) into the main
+		%MONTH_ALIAS lookup table; remove separate special-case branches
+	- quiet and strict flags now fall back to object-level attributes when
+		not supplied per-call to parse_datetime
+	- Full POD added: EXAMPLE, API SPECIFICATION, MESSAGES, FORMAL SPECIFICATION,
+		PSEUDOCODE, and LIMITATIONS sections
+	- New t/locales.t covering POSIX locale behaviour
+	- Eliminate duplicate =head1 SEE ALSO section
 
 0.12	Wed Aug 13 08:23:37 EDT 2025
 	Use Params::Get
