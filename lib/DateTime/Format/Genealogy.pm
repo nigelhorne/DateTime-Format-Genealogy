@@ -86,7 +86,7 @@ sub new
 		if($params) {
 			return bless { %{$class}, %{$params} }, ref($class);
 		}
-		return bless $class, ref($class);
+		return bless { %{$class} }, ref($class);
 	}
 
 	# Load the configuration from a config file, if provided
@@ -311,6 +311,9 @@ sub _convert_calendar {
 		my $offset_days = _julian_to_gregorian_offset($dt->year);
 		return $dt->clone->add(days => $offset_days);
 	} elsif ($calendar_type eq 'DHEBREW') {
+		# "return" inside eval{} exits the eval block, not this sub, so we
+		# must capture the result in a variable and return it afterwards.
+		my $result;
 		eval {
 			require DateTime::Calendar::Hebrew;
 			my $h = DateTime::Calendar::Hebrew->new(
@@ -318,10 +321,12 @@ sub _convert_calendar {
 				month => $dt->month,
 				day   => $dt->day
 			);
-			return DateTime->from_object(object => $h);
+			$result = DateTime->from_object(object => $h);
 		};
 		Carp::carp("Hebrew calendar conversion failed: $@") if $@ && !$quiet;
+		return $result if defined $result;
 	} elsif ($calendar_type =~ /FRENCH R/) {
+		my $result;
 		eval {
 			require DateTime::Calendar::FrenchRevolutionary;
 			my $f = DateTime::Calendar::FrenchRevolutionary->new(
@@ -329,9 +334,10 @@ sub _convert_calendar {
 				month => $dt->month,
 				day   => $dt->day
 			);
-			return DateTime->from_object(object => $f);
+			$result = DateTime->from_object(object => $f);
 		};
 		Carp::carp("French Republican calendar conversion failed: $@") if $@ && !$quiet;
+		return $result if defined $result;
 	} else {	# e.g DROMAN
 		Carp::carp("Calendar type $calendar_type not supported") unless $quiet;
 	}
