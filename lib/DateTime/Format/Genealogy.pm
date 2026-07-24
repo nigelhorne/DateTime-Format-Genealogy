@@ -157,6 +157,8 @@ sub parse_datetime {
 		return(__PACKAGE__->new()->parse_datetime($self));
 	}
 
+	Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)') unless scalar(@_);
+
 	my $params = Params::Get::get_params('date', @_);
 
 	if((!ref($params->{'date'})) && (my $date = $params->{'date'})) {
