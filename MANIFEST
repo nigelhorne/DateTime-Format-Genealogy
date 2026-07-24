@@ -1,4 +1,5 @@
 Changes
+cpanfile
 lib/DateTime/Format/Genealogy.pm
 LICENSE
 Makefile.PL

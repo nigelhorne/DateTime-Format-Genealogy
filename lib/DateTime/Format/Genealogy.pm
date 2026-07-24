@@ -20,6 +20,7 @@ use namespace::clean;
 use Carp;
 use DateTime::Format::Natural;
 use Genealogy::Gedcom::Date 2.01;
+use Object::Configure 0.19;
 use Params::Get 0.13;
 use Readonly::Values::Months 0.02 qw(@short_month_names);
 use Scalar::Util;
@@ -75,29 +76,24 @@ sub new
 	my $class = shift;
 
 	# Handle hash or hashref arguments
-	my %args;
-	if((@_ == 1) && (ref $_[0] eq 'HASH')) {
-		# If the first argument is a hash reference, dereference it
-		%args = %{$_[0]};
-	} elsif((@_ % 2) == 0) {
-		# If there is an even number of arguments, treat them as key-value pairs
-		%args = @_;
-	} else {
-		# If there is an odd number of arguments, treat it as an error
-		carp(__PACKAGE__, ': Invalid arguments passed to new()');
-		return;
-	}
+	my $params = Params::Get::get_params(undef, \@_);
 
 	if(!defined($class)) {
 		# FIXME: this only works when no arguments are given
 		$class = __PACKAGE__;
 	} elsif(Scalar::Util::blessed($class)) {
 		# If $class is an object, clone it with new arguments
-		return bless { %{$class}, %args }, ref($class);
+		if($params) {
+			return bless { %{$class}, %{$params} }, ref($class);
+		}
+		return bless $class, ref($class);
 	}
 
+	# Load the configuration from a config file, if provided
+	$params = Object::Configure::configure($class, $params);
+
 	# Return the blessed object
-	return bless { %args }, $class;
+	return bless $params, $class;
 }
 
 =head2 parse_datetime($string)
@@ -378,6 +374,8 @@ L<DateTime>
 
 =head1 SUPPORT
 
+This module is provided as-is without any warranty.
+
 You can find documentation for this module with the perldoc command.
 
     perldoc DateTime::Format::Genealogy
@@ -389,6 +387,16 @@ You can also look for information at:
 =item * RT: CPAN's request tracker
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy>
+
+=back
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Configure an Object at Runtime|Object::Configure>
+
+=item * L<Test Dashboard|https://nigelhorne.github.io/DateTime-Format-Genealogy/coverage/>
 
 =back
 

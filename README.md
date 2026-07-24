@@ -75,6 +75,8 @@ so this module rejects dates that are that old.
 
 # SUPPORT
 
+This module is provided as-is without any warranty.
+
 You can find documentation for this module with the perldoc command.
 
     perldoc DateTime::Format::Genealogy
@@ -84,6 +86,11 @@ You can also look for information at:
 - RT: CPAN's request tracker
 
     [http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy](http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy)
+
+# SEE ALSO
+
+- [Configure an Object at Runtime](https://metacpan.org/pod/Object%3A%3AConfigure)
+- [Test Dashboard](https://nigelhorne.github.io/DateTime-Format-Genealogy/coverage/)
 
 # LICENSE AND COPYRIGHT
 

@@ -2,8 +2,12 @@ Revision history for DateTime::Format::Genealogy
 
 0.13
 	[ Bug Fixes ]
-	Fix t/error.t failures when Params::Get >= 0.13 croaks before our own usage check
-		See https://github.com/nigelhorne/DateTime-Format-Genealogy/issues/11
+	- Fix t/error.t failures when Params::Get >= 0.13 croaks before our own usage check
+	See https://github.com/nigelhorne/DateTime-Format-Genealogy/issues/11
+
+	[ Enhancements ]
+	- Support Object::Configure
+	- Use Params::Get in new()
 
 0.12	Wed Aug 13 08:23:37 EDT 2025
 	Use Params::Get

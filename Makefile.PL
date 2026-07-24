@@ -42,6 +42,7 @@ WriteMakefile(
 		'Carp' => 0,
 		'DateTime::Format::Natural' => 0,
 		'Genealogy::Gedcom::Date' => 2.01,
+		'Object::Configure' => 0,
 		'Params::Get' => 0.13,
 		'Readonly::Values::Months' => 0.02,
 		'Scalar::Util' => 0
