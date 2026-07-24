@@ -136,15 +136,6 @@ Creates or clones a C<DateTime::Format::Genealogy> object.
 
 This method does not emit any diagnostics directly.
 
-=head3 FORMAL SPECIFICATION
-
-    State S ::= [ attrs : Name -> Value ]
-
-    new(class, params) = bless(params U configure(class))   when !blessed(class)
-    new(obj,   params) = bless(obj.attrs (+) params)         when  blessed(obj)
-
-    where (+) denotes right-biased union (params values take precedence).
-
 =head3 PSEUDOCODE
 
     FUNCTION new(class, *args):
@@ -327,29 +318,6 @@ Warned (carp) for GEDCOM calendar escapes other than GREGORIAN, JULIAN,
 HEBREW, and FRENCH R.  Silenced by C<quiet>.
 
 =back
-
-=head3 FORMAL SPECIFICATION
-
-Let D be the set of genealogical date strings and DT the co-domain of
-L<DateTime> objects.
-
-    parse_datetime : D -> DT | bot | (DT x DT)
-
-    YearOnly ::= { s in D | s ~ /^\d{3,4}$/ }
-    Approx   ::= { s in D | s ~ /^(bef|aft|abt)\s/i }
-    Ranges   ::= { s in D | s ~ /^bet\s.+\sand\s.+/i
-                           | s ~ /^from\s.+\sto\s.+/i }
-
-    Pre:  date != bot
-
-    Post:
-      date in YearOnly              => result = bot
-      date in Approx                => result = bot  (carp unless quiet)
-      date in Ranges /\ wantarray   => result in DT x DT
-      date in Ranges /\ !wantarray  => result = bot
-      date in Parseable \
-        (YearOnly u Approx u Ranges) => result in DT
-      date not in Parseable         => result = bot  (carp unless quiet)
 
 =head3 PSEUDOCODE
 
@@ -779,11 +747,47 @@ L<https://github.com/nigelhorne/DateTime-Format-Genealogy/issues>
 
 =back
 
+=head1 FORMAL SPECIFICATION
+
+=head2 new
+
+    State S ::= [ attrs : Name -> Value ]
+
+    new(class, params) = bless(params U configure(class))   when !blessed(class)
+    new(obj,   params) = bless(obj.attrs (+) params)         when  blessed(obj)
+
+    where (+) denotes right-biased union (params values take precedence).
+
+=head2 parse_datetime
+
+Let D be the set of genealogical date strings and DT the co-domain of
+L<DateTime> objects.
+
+    parse_datetime : D -> DT | bot | (DT x DT)
+
+    YearOnly ::= { s in D | s ~ /^\d{3,4}$/ }
+    Approx   ::= { s in D | s ~ /^(bef|aft|abt)\s/i }
+    Ranges   ::= { s in D | s ~ /^bet\s.+\sand\s.+/i
+                           | s ~ /^from\s.+\sto\s.+/i }
+
+    Pre:  date != bot
+
+    Post:
+      date in YearOnly              => result = bot
+      date in Approx                => result = bot  (carp unless quiet)
+      date in Ranges /\ wantarray   => result in DT x DT
+      date in Ranges /\ !wantarray  => result = bot
+      date in Parseable \
+        (YearOnly u Approx u Ranges) => result in DT
+      date not in Parseable         => result = bot  (carp unless quiet)
+
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2018-2026 Nigel Horne.
 
-This program is released under the following licence: GPL2
+Usage is subject to the GPL2 licence terms.
+If you use it,
+please let me know.
 
 =cut
 

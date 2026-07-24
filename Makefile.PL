@@ -35,6 +35,7 @@ WriteMakefile(
 		'Test::Needs' => 0,
 		'Test::Mockingbird' => 0,
 		'Test::NoWarnings' => 0,
+		'Test::Returns' => 0,
 		'Test::Warn' => 0,
 		'strict' => 0,
 		'warnings' => 0,

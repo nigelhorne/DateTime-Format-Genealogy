@@ -20,6 +20,7 @@ t/eol.t
 t/error.t
 t/function.t
 t/links.t
+t/locales.t
 t/no404s.t
 t/noopentickets.t
 t/pod-cm.t
