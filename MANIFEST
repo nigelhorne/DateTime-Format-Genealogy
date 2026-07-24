@@ -29,6 +29,7 @@ t/pod-synopsis.t
 t/pod.t
 t/prereq.t
 t/snippets.t
+t/unit.t
 t/unused.t
 t/vars.t
 t/version.t

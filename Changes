@@ -1,6 +1,6 @@
 Revision history for DateTime::Format::Genealogy
 
-0.13	Thu Jul 24 2026
+0.13
 	[ Bug Fixes ]
 	- Fix t/error.t failures when Params::Get >= 0.13 croaks before our own usage check
 		See https://github.com/nigelhorne/DateTime-Format-Genealogy/issues/11

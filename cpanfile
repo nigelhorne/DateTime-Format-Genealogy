@@ -24,6 +24,7 @@ on 'test' => sub {
 	requires 'Test::Compile';
 	requires 'Test::Deep';
 	requires 'Test::DescribeMe';
+	requires 'Test::Memory::Cycle';
 	requires 'Test::Mockingbird';
 	requires 'Test::Most';
 	requires 'Test::Needs';
