@@ -621,7 +621,11 @@ sub _convert_calendar :Private
 			$result = DateTime->from_object(object => $h);
 		};
 		Carp::carp("Hebrew calendar conversion failed: $@") if $@ && !$quiet;
-		return $result if defined $result;
+		# Return the converted DateTime on success, undef on failure.
+		# The POD (LIMITATIONS) documents that undef is returned when the
+		# optional module is unavailable rather than passing back the
+		# unconverted Gregorian DateTime.
+		return $result;
 	} elsif($calendar_type =~ /FRENCH R/) {
 		my $result;
 		eval {
@@ -634,7 +638,7 @@ sub _convert_calendar :Private
 			$result = DateTime->from_object(object => $f);
 		};
 		Carp::carp("French Republican calendar conversion failed: $@") if $@ && !$quiet;
-		return $result if defined $result;
+		return $result;
 	} else {
 		# DROMAN and any other future escape types are not yet supported.
 		Carp::carp("Calendar type $calendar_type not supported") unless $quiet;
