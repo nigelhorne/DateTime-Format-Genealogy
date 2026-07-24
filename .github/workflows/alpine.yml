@@ -26,7 +26,7 @@ jobs:
           apk update
           apk upgrade
           apk add perl perl-app-cpanminus make gzip git gcc musl-dev perl-dev
-          apk add perl-test-most perl-test-nowarnings
+          apk add perl-test-most perl-test-nowarnings perl-ipc-system-simple
           apk add perl-datetime-format-natural perl-params-util
           apk add perl-html-parser
           perl -V
