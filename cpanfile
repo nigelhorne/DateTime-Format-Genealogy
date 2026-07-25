@@ -1,6 +1,6 @@
 # Generated from Makefile.PL using makefilepl2cpanfile
 
-requires 'perl', '5.6.2';
+requires 'perl', '5.10.0';
 
 requires 'Carp';
 requires 'DateTime::Format::Natural';

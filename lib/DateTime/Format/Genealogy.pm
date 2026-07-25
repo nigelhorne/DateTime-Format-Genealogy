@@ -8,7 +8,7 @@ package DateTime::Format::Genealogy;
 use strict;
 use warnings;
 use autodie qw(:all);
-use 5.006_001;
+use 5.010;
 
 # Sub::Private in 'enforce' mode makes calling private subs from outside the
 # package a runtime error.  HARNESS_ACTIVE (set by prove/make test) or
@@ -18,8 +18,10 @@ BEGIN { $Sub::Private::config{mode} = 'enforce' }
 use Sub::Private;
 use Sub::Protected;
 
-use namespace::clean;
-use Carp;
+# Explicit () — we use Carp::carp / Carp::croak throughout; importing the
+# short names into the namespace only to have namespace::clean remove them
+# is unnecessary noise.
+use Carp ();
 use DateTime::Format::Natural;
 use Genealogy::Gedcom::Date 2.01;
 use Object::Configure 0.19;
@@ -27,7 +29,12 @@ use Params::Get 0.13;
 use Params::Validate::Strict qw(validate_strict);
 use Readonly;
 use Readonly::Values::Months 0.02 qw(@short_month_names);
-use Scalar::Util;
+use Scalar::Util ();
+
+# namespace::clean placed last so the import list above is self-documenting:
+# every 'use' that precedes it has its imported symbols removed from the
+# public namespace at the end of compilation.
+use namespace::clean;
 
 # ---------------------------------------------------------------------------
 # Compile-time constants
@@ -393,7 +400,7 @@ sub parse_datetime
 
 	# Normalise class-method and bare-function call styles into an object call.
 	if(!ref($self)) {
-		if(scalar(@_)) {
+		if(@_) {
 			return(__PACKAGE__->new()->parse_datetime(@_));
 		}
 		return(__PACKAGE__->new()->parse_datetime($self));
@@ -402,7 +409,7 @@ sub parse_datetime
 	}
 
 	# Guard before Params::Get so *our* croak message is what Test::Carp sees.
-	Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)') unless scalar(@_);
+	Carp::croak('Usage: ', __PACKAGE__, '::parse_datetime(date => $date)') unless @_;
 
 	my $params = Params::Get::get_params('date', @_);
 
@@ -696,8 +703,6 @@ sub _julian_to_gregorian_offset :Private
 	}
 	return 13;	# catch-all: 1 Mar 1900 onwards
 }
-
-1;
 
 =head1 LIMITATIONS
 
