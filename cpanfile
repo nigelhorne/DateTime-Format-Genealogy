@@ -31,6 +31,7 @@ on 'test' => sub {
 	requires 'Test::NoWarnings';
 	requires 'Test::Returns';
 	requires 'Test::Warn';
+	requires 'Test::Without::Module';
 	requires 'WWW::RT::CPAN';
 	requires 'strict';
 	requires 'warnings';

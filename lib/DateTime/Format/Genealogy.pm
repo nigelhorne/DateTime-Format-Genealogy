@@ -4,11 +4,6 @@ package DateTime::Format::Genealogy;
 # Copyright (C) 2018-2026, Nigel Horne
 
 # Usage is subject to licence terms.
-# The licence terms of this software are as follows:
-# Personal single user, single computer use: GPL2
-# All other users (including Commercial, Charity, Educational, Government)
-#	must apply in writing for a licence for use from Nigel Horne at the
-#	above e-mail.
 
 use strict;
 use warnings;
