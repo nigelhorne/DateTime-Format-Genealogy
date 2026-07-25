@@ -13,7 +13,7 @@ if($^O eq 'darwin') {
 
 WriteMakefile(
 	NAME		=> 'DateTime::Format::Genealogy',
-	AUTHOR		=> q{Nigel Horne <njh@bandsman.co.uk>},
+	AUTHOR		=> q{Nigel Horne <njh@nigelhorne.com>},
 	VERSION_FROM	=> 'lib/DateTime/Format/Genealogy.pm',
 	ABSTRACT_FROM	=> 'lib/DateTime/Format/Genealogy.pm',
 	((defined($ExtUtils::MakeMaker::VERSION) &&

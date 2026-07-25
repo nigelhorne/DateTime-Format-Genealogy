@@ -1,6 +1,6 @@
 package DateTime::Format::Genealogy;
 
-# Author Nigel Horne: njh@bandsman.co.uk
+# Author Nigel Horne: njh@nigelhorne.com
 # Copyright (C) 2018-2026, Nigel Horne
 
 # Usage is subject to licence terms.
@@ -420,6 +420,8 @@ sub parse_datetime
 		my $strict = $params->{'strict'} // $self->{'strict'};
 
 		# Detect and strip any GEDCOM calendar escape at the front of the string.
+		# Pattern: @#D<NAME>@ where NAME is uppercase letters/spaces (lazy match
+		# so it stops at the first closing '@' rather than a later one).
 		my $calendar_type = 'DGREGORIAN';
 		if($date =~ s/^@#D([A-Z ]+?)@\s*//) {
 			$calendar_type = 'D' . uc($1);
@@ -427,7 +429,7 @@ sub parse_datetime
 
 		# Approximate-date prefixes (bef/aft/abt) signal "no exact date known",
 		# so a DateTime object would be misleading.
-		if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i) || ($date =~ /^abt\s/i)) {
+		if($date =~ /^(?:bef|aft|abt)\s/i) {
 			Carp::carp("$date is invalid, need an exact date to create a DateTime")
 				unless($quiet);
 			return;
@@ -439,28 +441,33 @@ sub parse_datetime
 			return;
 		}
 
-		# Rewrite dash-separated constructs.  ISO "YYYY-MM-DD" is reformatted to
-		# "DD Mon YYYY".  Any other "X - Y" is treated as a date range.
-		if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {
-			if($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) {
-				my $month = ucfirst($short_month_names[$2 - 1]);
-				Carp::carp("Changing date '$date' to '$3 $month $1'") unless($quiet);
-				$date = "$3 $month $1";
-			} else {
-				Carp::carp("Changing date '$date' to 'bet $1 and $2'") unless($quiet);
-				$date = "bet $1 and $2";
-			}
+		# Rewrite dash-separated constructs.
+		# ISO "YYYY-MM-DD" is checked first — the pattern is fully anchored with
+		# fixed-width fields so there is zero backtracking.
+		# A spaced range "X - Y" (spaces required on both sides of the hyphen)
+		# is converted to "bet X and Y".  The \s+ discriminator ensures that a
+		# bare ISO date (no spaces around the hyphen) never matches this branch,
+		# eliminating the need for a combined pre-filter.
+		if($date =~ /^(\d{4})-(\d{2})-(\d{2})$/) {
+			my $month = ucfirst($short_month_names[$2 - 1]);
+			Carp::carp("Changing date '$date' to '$3 $month $1'") unless($quiet);
+			$date = "$3 $month $1";
+		} elsif($date =~ /^(.+\d)\s+-\s+(.+\d)$/) {
+			Carp::carp("Changing date '$date' to 'bet $1 and $2'") unless($quiet);
+			$date = "bet $1 and $2";
 		}
 
 		# Date ranges return two DateTimes in list context; undef in scalar.
-		if($date =~ /^bet (.+) and (.+)/i) {
+		# Lazy .+? on the first group ensures we split at the FIRST "and"/"to"
+		# keyword, not the last, which matters when a sub-date contains the word.
+		if($date =~ /^bet (.+?) and (.+)/i) {
 			if(wantarray) {
 				return $self->parse_datetime($1), $self->parse_datetime($2);
 			}
 			return;
 		}
 
-		if((!$strict) && ($date =~ /^from (.+) to (.+)/i)) {
+		if((!$strict) && ($date =~ /^from (.+?) to (.+)/i)) {
 			if(wantarray) {
 				return $self->parse_datetime($1), $self->parse_datetime($2);
 			}
@@ -470,7 +477,7 @@ sub parse_datetime
 		if($date !~ /^\d{3,4}$/) {
 			# Strict mode: only 3-letter GEDCOM abbreviations are valid.
 			if($strict) {
-				if($date !~ /^(\d{1,2})\s+([A-Z]{3})\s+(\d{3,4})$/i) {
+				if($date !~ /^\d{1,2}\s+[A-Z]{3}\s+\d{3,4}$/i) {
 					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
 					return;
 				}
@@ -535,7 +542,7 @@ sub parse_datetime
 			# returned undef above; the pattern here guards against 'Abt'/'ca'
 			# leaking through when quiet is enabled (e.g. "Abt1Jan2000" has no
 			# space so it was not caught by the /^abt\s/i check above).
-			if(($date !~ /^(Abt|ca?)/i) && ($date =~ /^[\w\s,]+$/)) {
+			if(($date !~ /^(?:Abt|ca?)/i) && ($date =~ /^[\w\s,]+$/)) {
 				if(my $rc = $dfn->parse_datetime($date)) {
 					if($dfn->success()) {
 						return $rc;
@@ -640,7 +647,7 @@ sub _convert_calendar :Private
 		# optional module is unavailable rather than passing back the
 		# unconverted Gregorian DateTime.
 		return $result;
-	} elsif($calendar_type =~ /FRENCH R/) {
+	} elsif($calendar_type eq 'DFRENCH R') {
 		my $result;
 		eval {
 			require DateTime::Calendar::FrenchRevolutionary;
@@ -724,7 +731,7 @@ always takes precedence.
 
 =head1 AUTHOR
 
-Nigel Horne, C<< <njh at bandsman.co.uk> >>
+Nigel Horne, C<< <njh at nigelhorne.com> >>
 
 =head1 BUGS
 
