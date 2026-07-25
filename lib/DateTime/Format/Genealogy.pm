@@ -18,7 +18,7 @@ BEGIN { $Sub::Private::config{mode} = 'enforce' }
 use Sub::Private;
 use Sub::Protected;
 
-# Explicit () — we use Carp::carp / Carp::croak throughout; importing the
+# Explicit () -- we use Carp::carp / Carp::croak throughout; importing the
 # short names into the namespace only to have namespace::clean remove them
 # is unnecessary noise.
 use Carp ();
@@ -77,6 +77,13 @@ Readonly my @JULIAN_OFFSET_TIERS => ([1700, 10], [1800, 11], [1900, 12]);
 # Prevents adversarial callers from exhausting process memory by feeding an
 # unbounded stream of unique-but-invalid strings to parse_datetime.
 Readonly my $MAX_CACHE_SIZE => 10_000;
+
+# Legitimate recursion depth for parse_datetime is exactly 1: a range ("bet X
+# and Y") calls itself once for each half.  Anything deeper means either a
+# mutant or a malformed string that tricks the range regex into re-matching its
+# own output.  The limit is generous so valid edge cases never trip it.
+Readonly my $MAX_PARSE_DEPTH => 10;
+our $_parse_depth = 0;
 
 # Accepted parameter schema for parse_datetime, used by Params::Validate::Strict
 # to reject unknown keys (typos, stale callers) at runtime.
@@ -435,6 +442,14 @@ sub parse_datetime
 		my $quiet  = $params->{'quiet'}  // $self->{'quiet'};
 		my $strict = $params->{'strict'} // $self->{'strict'};
 
+		# Guard against unbounded recursion.  Legitimate calls bottom out at
+		# depth 1 (range split); anything deeper is a mutant or a bug.
+		local $_parse_depth = $_parse_depth + 1;
+		if($_parse_depth > $MAX_PARSE_DEPTH) {
+			Carp::carp('parse_datetime: maximum recursion depth exceeded') unless $quiet;
+			return;
+		}
+
 		# Detect and strip any GEDCOM calendar escape at the front of the string.
 		# Pattern: @#D<NAME>@ where NAME is uppercase letters/spaces (lazy match
 		# so it stops at the first closing '@' rather than a later one).
@@ -458,7 +473,7 @@ sub parse_datetime
 		}
 
 		# Rewrite dash-separated constructs.
-		# ISO "YYYY-MM-DD" is checked first — the pattern is fully anchored with
+		# ISO "YYYY-MM-DD" is checked first -- the pattern is fully anchored with
 		# fixed-width fields so there is zero backtracking.
 		# A spaced range "X - Y" (spaces required on both sides of the hyphen)
 		# is converted to "bet X and Y".  The \s+ discriminator ensures that a
@@ -607,7 +622,7 @@ sub parse_datetime
 
 sub _date_parser_cached :Protected
 {
-	# Accept the date as a plain positional arg — this is a hot-path internal
+	# Accept the date as a plain positional arg -- this is a hot-path internal
 	# method called only from parse_datetime.  Routing through Params::Get adds
 	# measurable dispatch overhead for no external-API benefit.
 	my ($self, $date) = @_;
@@ -643,7 +658,7 @@ sub _date_parser_cached :Protected
 		return $self->{'all_dates'}{$date} = $parsed_date->[0];
 	}
 
-	# Empty or unexpected result — also cache to prevent repeated GGD calls.
+	# Empty or unexpected result -- also cache to prevent repeated GGD calls.
 	return ($self->{'all_dates'}{$date} = undef);
 }
 
@@ -726,7 +741,6 @@ sub _convert_calendar :Private
 # Entry:        $s   - string to sanitise (may be undef)
 #               $max - optional maximum length (default 120)
 # Exit:         Sanitised, length-bounded string safe for embedding in messages.
-# Side Effects: None
 # ---------------------------------------------------------------------------
 
 sub _safe_str :Private
@@ -747,12 +761,11 @@ sub _safe_str :Private
 #               the Gregorian equivalent, based on the year.
 # Entry:        $year - integer calendar year
 # Exit:         Integer day offset (10, 11, 12, or 13)
-# Side Effects: None
 # ---------------------------------------------------------------------------
 
 sub _julian_to_gregorian_offset :Private
 {
-	my ($year) = @_;
+	my $year = $_[0];
 
 	# Iterate once with early exit; avoids the temporary list that grep would
 	# build before we discard all but the first match.

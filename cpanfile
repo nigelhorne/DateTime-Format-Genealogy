@@ -13,6 +13,7 @@ requires 'Readonly::Values::Months', '0.02';
 requires 'Scalar::Util';
 requires 'Sub::Private';
 requires 'Sub::Protected';
+requires 'namespace::clean';
 
 on 'test' => sub {
 	requires 'Data::Dumper';
@@ -32,6 +33,7 @@ on 'test' => sub {
 	requires 'Test::Returns';
 	requires 'Test::Warn';
 	requires 'Test::Without::Module';
+	requires 'Time::HiRes';
 	requires 'WWW::RT::CPAN';
 	requires 'strict';
 	requires 'warnings';

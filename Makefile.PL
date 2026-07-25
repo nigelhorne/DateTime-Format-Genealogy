@@ -18,7 +18,7 @@ WriteMakefile(
 	ABSTRACT_FROM	=> 'lib/DateTime/Format/Genealogy.pm',
 	((defined($ExtUtils::MakeMaker::VERSION) &&
 	 ($ExtUtils::MakeMaker::VERSION >= 6.3002))
-	  ? ('LICENSE'=> 'GPL')
+	  ? ('LICENSE'=> 'gpl_2')
 	  : ()),
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
@@ -36,6 +36,7 @@ WriteMakefile(
 		'Test::Needs' => 0,
 		'Test::Mockingbird' => 0,
 		'Test::NoWarnings' => 0,
+		'Time::HiRes' => 0,
 		'Test::Returns' => 0,
 		'Test::Warn' => 0,
 		'Test::Without::Module' => 0,
@@ -54,17 +55,15 @@ WriteMakefile(
 		'Scalar::Util' => 0,
 		'Sub::Private' => 0,
 		'Sub::Protected' => 0,
+		'namespace::clean' => 0,
 	}, dist => $dist,
 	clean		=> { FILES => 'DateTime-Format-Genealogy-*' },
-	# META_ADD => {
-		# provides => {}
-	# },
 	META_MERGE		=> {
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
 				type => 'git',
-				url => 'git://github.com/nigelhorne/DateTime-Format-Genealogy.git',
+				url => 'https://github.com/nigelhorne/DateTime-Format-Genealogy.git',
 				web => 'https://github.com/nigelhorne/DateTime-Format-Genealogy',
 			},
 			bugtracker => {
@@ -75,5 +74,5 @@ WriteMakefile(
 			}
 		},
 	},
-	MIN_PERL_VERSION	=> '5.10.0'	# Probably would work, but never tested on earlier versions than this
+	MIN_PERL_VERSION	=> '5.10.0'	# Hard requirement: // and //= operators require Perl 5.10.0
 );
