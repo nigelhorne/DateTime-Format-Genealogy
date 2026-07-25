@@ -24,8 +24,8 @@ use Sub::Protected;
 use Carp ();
 use DateTime::Format::Natural;
 use Genealogy::Gedcom::Date 2.01;
-use Object::Configure 0.19;
-use Params::Get 0.13;
+use Object::Configure 0.23;
+use Params::Get 0.15;
 use Params::Validate::Strict qw(validate_strict);
 use Readonly;
 use Readonly::Values::Months 0.02 qw(@short_month_names);
@@ -99,11 +99,11 @@ DateTime::Format::Genealogy - Create a DateTime object from a genealogy date str
 
 =head1 VERSION
 
-Version 0.12
+Version 0.13
 
 =cut
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 =head1 SYNOPSIS
 
