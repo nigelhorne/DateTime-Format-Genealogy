@@ -1,0 +1,1303 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+/* --------------------------------------------------
+   CSS Variables (Light Mode Default)
+-------------------------------------------------- */
+
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --table-header: #333;
+    --table-header-text: #ffffff;
+
+    --survived-1: #f8d7da;
+    --survived-2: #f5b7b1;
+    --survived-3: #ec7063;
+
+    --killed: #d4edda;
+    --border: #cccccc;
+}
+
+/* --------------------------------------------------
+   Dark Mode Overrides
+-------------------------------------------------- */
+
+html[data-theme='dark'] {
+    --bg: #1e1e1e;
+    --text: #dddddd;
+    --table-header: #222;
+    --table-header-text: #ffffff;
+
+    --survived-1: #5c2b2e;
+    --survived-2: #7b2c2f;
+    --survived-3: #a93226;
+
+    --killed: #1e4620;
+    --border: #555;
+}
+
+/* --------------------------------------------------
+   Global Styles
+-------------------------------------------------- */
+
+body {
+	font-family: sans-serif;
+	background: var(--bg);
+	color: var(--text);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background: var(--table-header);
+    color: var(--table-header-text);
+}
+
+.survived-1 { background-color: var(--survived-1); }
+.survived-2 { background-color: var(--survived-2); }
+.survived-3 { background-color: var(--survived-3); }
+
+.killed { background-color: var(--killed); }
+
+.legend {
+    border: 1px solid #ccc;
+    background: #fafafa;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+.legend pre {
+    background: #f4f4f4;
+    padding: 5px;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 6px 0 20px;
+    vertical-align: middle;
+    border: 1px solid var(--border);
+}
+
+/* White box for non-mutated lines */
+.legend-box.none {
+	background-color: var(--bg);
+}
+
+/* --------------------------------------------------
+   Suggested Test Box Styling
+   Theme-aware and readable in light & dark modes
+-------------------------------------------------- */
+
+.suggested-test {
+    margin-top: 6px;
+    margin-bottom: 12px;
+
+    /* Use theme variables instead of hardcoded colors */
+    background: var(--bg);
+    color: var(--text);
+
+    padding: 8px;
+    border-radius: 4px;
+
+    /* Subtle border for visual separation */
+    border: 1px solid var(--border);
+}
+
+/* Label styling */
+.suggest-label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* Ensure the test code block inherits readable colors */
+.suggested-test pre {
+    background: transparent;   /* Prevent nested dark blocks */
+    color: inherit;            /* Match theme text color */
+    margin: 0;
+    font-family: monospace;
+}
+
+pre { line-height: 1.4; }
+
+pre > details {
+    margin: 0.2em 0;
+}
+
+pre > details:first-child {
+    margin-top: 0;
+}
+
+pre > details:last-child {
+    margin-bottom: 0;
+}
+
+pre details,
+pre summary,
+pre ul,
+pre li {
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.nav { margin-bottom: 1em; }
+
+.toggle {
+    float: right;
+    cursor: pointer;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+/* Tooltip container */
+.tooltip {
+	position: relative;
+	cursor: help;
+}
+
+/* Tooltip bubble */
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: var(--table-header);
+    color: var(--table-header-text);
+    padding: 6px 10px;
+    white-space: normal;
+    max-width: 300px;
+    min-width: 30ch;
+    font-size: 12px;
+    border-radius: 6px;
+    z-index: 1000;
+    margin-left: 10ch;   /* move tooltip ~10 characters to the right */
+}
+
+.mutant-details {
+	margin-left: 2em;
+	font-size: 0.9em;
+}
+
+/* Indent the list of mutations that displays when expanding by 8 characters */
+pre details.mutant-details ul {
+	padding-left: 8ch;
+	margin: 0.2em 0;
+}
+
+.mutant-details summary {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.lcsaj-dot {
+    color: #5555ff;
+    font-size: 10px;
+    margin-right: 3px;
+}
+
+.lcsaj-dot-uncovered {
+    color: #cc4444;
+    font-size: 10px;
+    margin-right: 3px;
+}
+
+.lcsaj-tip {
+	position: relative;
+	display: inline-block;
+}
+
+.lcsaj-tip .lcsaj-tip-text {
+	visibility: hidden;
+	background-color: #333;
+	color: #fff;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 11px;
+	white-space: nowrap;
+	position: fixed;
+	z-index: 9999;
+	pointer-events: none;
+}
+
+.lcsaj-tip:hover .lcsaj-tip-text {
+	visibility: visible;
+}
+
+</style>
+</head>
+<body>
+<button class="toggle" onclick="toggleTheme()">🌙 Toggle Theme</button>
+<h1>lib/DateTime/Format/Genealogy.pm</h1>
+<div class="nav"><a href="../../../../index.html">Index</a>
+</div><div class='summary'>
+<strong>Structural Coverage (Approximate)</strong><p>
+TER1 (Statement): 98.64%<br>
+TER2 (Branch): 94.44%<br>
+TER3 (LCSAJ): 100.0% (8/8)<br>
+Approximate LCSAJ segments: 91<br>
+</div>
+
+    <div class="legend">
+        <h3>LCSAJ Legend</h3>
+
+        <p>
+        <span class="lcsaj-dot">●</span>
+        <b>Covered</b> — this LCSAJ path was executed during testing.
+        </p>
+
+        <p>
+        <span class="lcsaj-dot-uncovered">●</span>
+        <b>Not covered</b> — this LCSAJ path was never executed. These are the paths to focus on.
+        </p>
+
+        <p>
+        Multiple dots on a line indicate that multiple control-flow paths begin at that line.
+        Hovering over any dot shows:
+        </p>
+
+        <pre>
+        start → end → jump
+        </pre>
+
+        <ul>
+        <li><b>start</b> – first line of the linear sequence</li>
+        <li><b>end</b> – last line before control flow changes</li>
+        <li><b>jump</b> – line execution jumps to next</li>
+        </ul>
+
+        <p>
+        Uncovered paths show <b>[NOT COVERED]</b> in the tooltip.
+	</p>
+    </div>
+
+		<div class="legend">
+			<h3>Mutant Testing Legend</h3>
+			<span class="legend-box survived-1"></span> Survived (tests missed this)
+			<span class="legend-box killed"></span> Killed (tests detected this)
+			<span class="legend-box none"></span> No mutation
+		</div>
+	<pre>
+<span class="">    1: package DateTime::Format::Genealogy;
+</span><span class="">    2: 
+</span><span class="">    3: # Author Nigel Horne: njh@nigelhorne.com
+</span><span class="">    4: # Copyright (C) 2018-2026, Nigel Horne
+</span><span class="">    5: 
+</span><span class="">    6: # Usage is subject to licence terms.
+</span><span class="">    7: 
+</span><span class="">    8: use strict;
+</span><span class="">    9: use warnings;
+</span><span class="">   10: use autodie qw(:all);
+</span><span class="">   11: use 5.010;
+</span><span class="">   12: 
+</span><span class="">   13: # Sub::Private in &#39;enforce&#39; mode makes calling private subs from outside the
+</span><span class="">   14: # package a runtime error.  HARNESS_ACTIVE (set by prove/make test) or
+</span><span class="">   15: # $Sub::Private::BYPASS suppress enforcement so white-box tests can still
+</span><span class="">   16: # reach private helpers directly.
+</span><span class="">   17: BEGIN { $Sub::Private::config{mode} = &#39;enforce&#39; }
+</span><span class="">   18: use Sub::Private;
+</span><span class="">   19: use Sub::Protected;
+</span><span class="">   20: 
+</span><span class="">   21: # Explicit () -- we use Carp::carp / Carp::croak throughout; importing the
+</span><span class="">   22: # short names into the namespace only to have namespace::clean remove them
+</span><span class="">   23: # is unnecessary noise.
+</span><span class="">   24: use Carp ();
+</span><span class="">   25: use DateTime::Format::Natural;
+</span><span class="">   26: use Genealogy::Gedcom::Date 2.01;
+</span><span class="">   27: use Object::Configure 0.19;
+</span><span class="">   28: use Params::Get 0.13;
+</span><span class="">   29: use Params::Validate::Strict qw(validate_strict);
+</span><span class="">   30: use Readonly;
+</span><span class="">   31: use Readonly::Values::Months 0.02 qw(@short_month_names);
+</span><span class="">   32: use Scalar::Util ();
+</span><span class="">   33: 
+</span><span class="">   34: # namespace::clean placed last so the import list above is self-documenting:
+</span><span class="">   35: # every &#39;use&#39; that precedes it has its imported symbols removed from the
+</span><span class="">   36: # public namespace at the end of compilation.
+</span><span class="">   37: use namespace::clean;
+</span><span class="">   38: 
+</span><span class="">   39: # ---------------------------------------------------------------------------
+</span><span class="">   40: # Compile-time constants
+</span><span class="">   41: # ---------------------------------------------------------------------------
+</span><span class="">   42: 
+</span><span class="">   43: # Map non-standard (long, abbreviated, or French/German) month names to the
+</span><span class="">   44: # 3-letter GEDCOM abbreviation.  Not exported; callers must use parse_datetime.
+</span><span class="">   45: Readonly my %MONTH_ALIAS =&gt; (
+</span><span class="">   46: 	&#39;January&#39;   =&gt; &#39;Jan&#39;,
+</span><span class="">   47: 	&#39;February&#39;  =&gt; &#39;Feb&#39;,
+</span><span class="">   48: 	&#39;March&#39;     =&gt; &#39;Mar&#39;,
+</span><span class="">   49: 	&#39;April&#39;     =&gt; &#39;Apr&#39;,
+</span><span class="">   50: 	&#39;June&#39;      =&gt; &#39;Jun&#39;,
+</span><span class="">   51: 	&#39;July&#39;      =&gt; &#39;Jul&#39;,
+</span><span class="">   52: 	&#39;August&#39;    =&gt; &#39;Aug&#39;,
+</span><span class="">   53: 	&#39;September&#39; =&gt; &#39;Sep&#39;,
+</span><span class="">   54: 	&#39;October&#39;   =&gt; &#39;Oct&#39;,
+</span><span class="">   55: 	&#39;November&#39;  =&gt; &#39;Nov&#39;,
+</span><span class="">   56: 	&#39;December&#39;  =&gt; &#39;Dec&#39;,
+</span><span class="">   57: 	# Common non-standard abbreviations for September
+</span><span class="">   58: 	&#39;Sept&#39;      =&gt; &#39;Sep&#39;,
+</span><span class="">   59: 	# French and German month variants found in real genealogical trees.
+</span><span class="">   60: 	# &#39;Janv&#39; = French abbreviation for janvier (January).
+</span><span class="">   61: 	# &#39;Juli&#39; = German July / occasional French variant.
+</span><span class="">   62: 	# &#39;Mai&#39;  = French for May (3 letters, handled here to avoid a separate branch).
+</span><span class="">   63: 	&#39;Janv&#39;      =&gt; &#39;Jan&#39;,
+</span><span class="">   64: 	&#39;Juli&#39;      =&gt; &#39;Jul&#39;,
+</span><span class="">   65: 	&#39;Mai&#39;       =&gt; &#39;May&#39;,
+</span><span class="">   66: );
+</span><span class="">   67: 
+</span><span class="">   68: # Julian-to-Gregorian day offset tiers.  Each pair is [boundary_year, offset].
+</span><span class="">   69: # The gap widened by 1 day at each century mark after 1582:
+</span><span class="">   70: #   10 days: 5 Oct 1582 to 28 Feb 1700
+</span><span class="">   71: #   11 days: 1 Mar 1700 to 28 Feb 1800
+</span><span class="">   72: #   12 days: 1 Mar 1800 to 28 Feb 1900
+</span><span class="">   73: #   13 days: 1 Mar 1900 onwards (catch-all, coded as literal 13 in the helper)
+</span><span class="">   74: Readonly my @JULIAN_OFFSET_TIERS =&gt; ([1700, 10], [1800, 11], [1900, 12]);
+</span><span class="">   75: 
+</span><span class="">   76: # Maximum unique date strings cached per object before the cache is discarded.
+</span><span class="">   77: # Prevents adversarial callers from exhausting process memory by feeding an
+</span><span class="">   78: # unbounded stream of unique-but-invalid strings to parse_datetime.
+</span><span class="">   79: Readonly my $MAX_CACHE_SIZE =&gt; 10_000;
+</span><span class="">   80: 
+</span><span class="">   81: # Legitimate recursion depth for parse_datetime is exactly 1: a range (&quot;bet X
+</span><span class="">   82: # and Y&quot;) calls itself once for each half.  Anything deeper means either a
+</span><span class="">   83: # mutant or a malformed string that tricks the range regex into re-matching its
+</span><span class="">   84: # own output.  The limit is generous so valid edge cases never trip it.
+</span><span class="">   85: Readonly my $MAX_PARSE_DEPTH =&gt; 10;
+</span><span class="">   86: our $_parse_depth = 0;
+</span><span class="">   87: 
+</span><span class="">   88: # Accepted parameter schema for parse_datetime, used by Params::Validate::Strict
+</span><span class="">   89: # to reject unknown keys (typos, stale callers) at runtime.
+</span><span class="">   90: Readonly my %PARSE_DATETIME_SCHEMA =&gt; (
+</span><span class="">   91: 	date   =&gt; { type =&gt; &#39;scalar&#39;, optional =&gt; 1 },
+</span><span class="">   92: 	quiet  =&gt; { type =&gt; &#39;scalar&#39;, optional =&gt; 1 },
+</span><span class="">   93: 	strict =&gt; { type =&gt; &#39;scalar&#39;, optional =&gt; 1 },
+</span><span class="">   94: );
+</span><span class="">   95: 
+</span><span class="">   96: =head1 NAME
+</span><span class="">   97: 
+</span><span class="">   98: DateTime::Format::Genealogy - Create a DateTime object from a genealogy date string
+</span><span class="">   99: 
+</span><span class="">  100: =head1 VERSION
+</span><span class="">  101: 
+</span><span class="">  102: Version 0.12
+</span><span class="">  103: 
+</span><span class="">  104: =cut
+</span><span class="">  105: 
+</span><span class="">  106: our $VERSION = &#39;0.12&#39;;
+</span><span class="">  107: 
+</span><span class="">  108: =head1 SYNOPSIS
+</span><span class="">  109: 
+</span><span class="">  110: C&lt;DateTime::Format::Genealogy&gt; is a Perl module designed to parse genealogy-style
+</span><span class="">  111: date strings (primarily GEDCOM format) and convert them into L&lt;DateTime&gt; objects.
+</span><span class="">  112: It wraps L&lt;Genealogy::Gedcom::Date&gt; and L&lt;DateTime::Format::Natural&gt;, adds GEDCOM
+</span><span class="">  113: calendar-escape handling, and accepts common non-standard month names found in
+</span><span class="">  114: exported genealogical trees.
+</span><span class="">  115: 
+</span><span class="">  116:     use DateTime::Format::Genealogy;
+</span><span class="">  117:     my $dtg = DateTime::Format::Genealogy-&gt;new();
+</span><span class="">  118:     my $dt  = $dtg-&gt;parse_datetime(&#39;25 Dec 2022&#39;);
+</span><span class="">  119:     print $dt-&gt;dmy;  # 25-12-2022
+</span><span class="">  120: 
+</span><span class="">  121: =head1 SUBROUTINES/METHODS
+</span><span class="">  122: 
+</span><span class="">  123: =head2 new
+</span><span class="">  124: 
+</span><span class="">  125: Creates or clones a C&lt;DateTime::Format::Genealogy&gt; object.
+</span><span class="">  126: 
+</span><span class="">  127: =head3 EXAMPLE
+</span><span class="">  128: 
+</span><span class="">  129:     # Bare construction
+</span><span class="">  130:     my $dtg = DateTime::Format::Genealogy-&gt;new();
+</span><span class="">  131: 
+</span><span class="">  132:     # Construction with flags stored on the object
+</span><span class="">  133:     my $dtg_quiet = DateTime::Format::Genealogy-&gt;new(quiet =&gt; 1, strict =&gt; 1);
+</span><span class="">  134: 
+</span><span class="">  135:     # Clone with an override (inherits quiet =&gt; 1, overrides strict)
+</span><span class="">  136:     my $clone = $dtg_quiet-&gt;new(strict =&gt; 0);
+</span><span class="">  137: 
+</span><span class="">  138: =head3 API SPECIFICATION
+</span><span class="">  139: 
+</span><span class="">  140:     # Input (hash or hashref, all keys optional):
+</span><span class="">  141:     {
+</span><span class="">  142:         quiet  =&gt; $bool,  # suppress carp in internal helpers
+</span><span class="">  143:         strict =&gt; $bool,  # enforce 3-letter GEDCOM month abbreviations
+</span><span class="">  144:         # Any extra keys from Object::Configure are also accepted.
+</span><span class="">  145:     }
+</span><span class="">  146: 
+</span><span class="">  147:     # Output: blessed DateTime::Format::Genealogy object
+</span><span class="">  148: 
+</span><span class="">  149: =head3 MESSAGES
+</span><span class="">  150: 
+</span><span class="">  151: This method does not emit any diagnostics directly.
+</span><span class="">  152: 
+</span><span class="">  153: =head3 PSEUDOCODE
+</span><span class="">  154: 
+</span><span class="">  155:     FUNCTION new(class, *args):
+</span><span class="">  156:       params = get_params(undef, args)
+</span><span class="">  157:       IF class is not defined:
+</span><span class="">  158:         class = __PACKAGE__
+</span><span class="">  159:       ELSE IF class is already an object (blessed):
+</span><span class="">  160:         RETURN bless( merge(class.attrs, params), ref(class) )
+</span><span class="">  161:       params = configure(class, params)   # merge any config-file settings
+</span><span class="">  162:       RETURN bless(params, class)
+</span><span class="">  163:     END FUNCTION
+</span><span class="">  164: 
+</span><span class="">  165: =cut
+</span><span class="">  166: 
+</span><span class="">  167: sub new
+</span><span class="">  168: {
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">169 → 173 → 182</span></span>  169: 	my $class = shift;
+</span><span class="">  170: 
+</span><span class="">  171: 	my $params = Params::Get::get_params(undef, \@_);
+</span><span class="">  172: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  173: 	if(!defined($class)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  174: 		# Called as DateTime::Format::Genealogy::new() with no invocant;
+</span><span class="">  175: 		# default to the package name so bless still works.
+</span><span class="">  176: 		$class = __PACKAGE__;
+</span><span class="">  177: 	} elsif(Scalar::Util::blessed($class)) {
+</span><span class="">  178: 		# Invocant is an existing object: clone it and overlay any new params.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  179: 		return bless { %{$class}, ($params ? %{$params} : ()) }, ref($class);
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  180: 	}
+</span><span class="">  181: 
+</span><span class="">  182: 	$params = Object::Configure::configure($class, $params);
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  183: 	return bless $params, $class;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  184: }
+</span><span class="">  185: 
+</span><span class="">  186: =head2 parse_datetime
+</span><span class="">  187: 
+</span><span class="">  188: Parses a genealogy-style date string and returns a L&lt;DateTime&gt; object.
+</span><span class="">  189: 
+</span><span class="">  190: Recognises GEDCOM calendar escapes (C&lt;@#DJULIAN@&gt;, C&lt;@#DHEBREW@&gt;,
+</span><span class="">  191: C&lt;@#DFRENCH R@&gt;) and converts them via the appropriate calendar module when
+</span><span class="">  192: available.
+</span><span class="">  193: 
+</span><span class="">  194: Can be called as a class method, an object method, or a bare function.
+</span><span class="">  195: 
+</span><span class="">  196: Returns:
+</span><span class="">  197: 
+</span><span class="">  198: =over 4
+</span><span class="">  199: 
+</span><span class="">  200: =item *
+</span><span class="">  201: 
+</span><span class="">  202: A single L&lt;DateTime&gt; object for exact, parseable dates.
+</span><span class="">  203: 
+</span><span class="">  204: =item *
+</span><span class="">  205: 
+</span><span class="">  206: A two-element list of L&lt;DateTime&gt; objects in I&lt;list&gt; context when the date
+</span><span class="">  207: string is a range (C&lt;bet X and Y&gt; / C&lt;from X to Y&gt;).
+</span><span class="">  208: 
+</span><span class="">  209: =item *
+</span><span class="">  210: 
+</span><span class="">  211: C&lt;undef&gt; (scalar) or the empty list (list context) when the date cannot be
+</span><span class="">  212: parsed, is a year-only string, is prefixed with an approximation keyword
+</span><span class="">  213: (C&lt;bef&gt;, C&lt;aft&gt;, C&lt;abt&gt;), or represents a date before AD 100.
+</span><span class="">  214: 
+</span><span class="">  215: =back
+</span><span class="">  216: 
+</span><span class="">  217: Mandatory argument:
+</span><span class="">  218: 
+</span><span class="">  219: =over 4
+</span><span class="">  220: 
+</span><span class="">  221: =item * C&lt;date&gt;
+</span><span class="">  222: 
+</span><span class="">  223: The date string to parse.
+</span><span class="">  224: 
+</span><span class="">  225: =back
+</span><span class="">  226: 
+</span><span class="">  227: Optional arguments (may be set at construction time and/or overridden
+</span><span class="">  228: per-call; per-call values take precedence):
+</span><span class="">  229: 
+</span><span class="">  230: =over 4
+</span><span class="">  231: 
+</span><span class="">  232: =item * C&lt;quiet&gt;
+</span><span class="">  233: 
+</span><span class="">  234: Suppress L&lt;Carp&gt; warnings on unparseable or approximate dates.
+</span><span class="">  235: 
+</span><span class="">  236: =item * C&lt;strict&gt;
+</span><span class="">  237: 
+</span><span class="">  238: Enforce the GEDCOM standard: only 3-letter month abbreviations (C&lt;Jan&gt;,
+</span><span class="">  239: C&lt;Feb&gt;, ...) are accepted.  Long English names and French/German variants
+</span><span class="">  240: are rejected.
+</span><span class="">  241: 
+</span><span class="">  242: =back
+</span><span class="">  243: 
+</span><span class="">  244: =head3 EXAMPLE
+</span><span class="">  245: 
+</span><span class="">  246:     my $dtg = DateTime::Format::Genealogy-&gt;new();
+</span><span class="">  247: 
+</span><span class="">  248:     # Simple exact date
+</span><span class="">  249:     my $dt = $dtg-&gt;parse_datetime(&#39;25 Dec 2022&#39;);
+</span><span class="">  250:     print $dt-&gt;dmy;  # 25-12-2022
+</span><span class="">  251: 
+</span><span class="">  252:     # Date range (list context)
+</span><span class="">  253:     my ($start, $end) = $dtg-&gt;parse_datetime(&#39;bet 1 Sep 1939 and 2 Sep 1945&#39;);
+</span><span class="">  254: 
+</span><span class="">  255:     # GEDCOM calendar escape
+</span><span class="">  256:     my $julian = $dtg-&gt;parse_datetime(&#39;@#DJULIAN@ 15 Mar 1620&#39;);
+</span><span class="">  257: 
+</span><span class="">  258:     # Class-method form (no constructor required)
+</span><span class="">  259:     my $dt2 = DateTime::Format::Genealogy-&gt;parse_datetime(&#39;1 Jan 2000&#39;);
+</span><span class="">  260: 
+</span><span class="">  261:     # Long month name (non-strict only)
+</span><span class="">  262:     my $dt3 = $dtg-&gt;parse_datetime(&#39;12 June 2020&#39;);
+</span><span class="">  263: 
+</span><span class="">  264:     # French month variant (non-strict only)
+</span><span class="">  265:     my $dt4 = $dtg-&gt;parse_datetime(&#39;21 Mai 1681&#39;);
+</span><span class="">  266: 
+</span><span class="">  267: =head3 API SPECIFICATION
+</span><span class="">  268: 
+</span><span class="">  269:     # Input (hash or hashref):
+</span><span class="">  270:     {
+</span><span class="">  271:         date   =&gt; $string,         # required (non-ref, non-empty)
+</span><span class="">  272:         quiet  =&gt; $bool,           # optional; falls back to $self-&gt;{&#39;quiet&#39;}
+</span><span class="">  273:         strict =&gt; $bool,           # optional; falls back to $self-&gt;{&#39;strict&#39;}
+</span><span class="">  274:     }
+</span><span class="">  275: 
+</span><span class="">  276:     # Return values:
+</span><span class="">  277:     #   DateTime                   exact parseable date
+</span><span class="">  278:     #   (DateTime, DateTime)       date range (list context only)
+</span><span class="">  279:     #   undef / ()                 unparseable, approximate, or year-only
+</span><span class="">  280: 
+</span><span class="">  281: =head3 MESSAGES
+</span><span class="">  282: 
+</span><span class="">  283: =over 4
+</span><span class="">  284: 
+</span><span class="">  285: =item C&lt;&lt; Usage: DateTime::Format::Genealogy::parse_datetime(date =&gt; $date) &gt;&gt;
+</span><span class="">  286: 
+</span><span class="">  287: Thrown (croak) when no arguments are supplied or when the C&lt;date&gt; value is
+</span><span class="">  288: undef or a reference.
+</span><span class="">  289: 
+</span><span class="">  290: =item C&lt;&lt; Invalid parse_datetime parameters: ... &gt;&gt;
+</span><span class="">  291: 
+</span><span class="">  292: Thrown (croak) when an unknown parameter key is passed (e.g. a typo).
+</span><span class="">  293: 
+</span><span class="">  294: =item C&lt;&lt; $date is invalid, need an exact date to create a DateTime &gt;&gt;
+</span><span class="">  295: 
+</span><span class="">  296: Warned (carp) when the date begins with an approximation prefix (C&lt;bef&gt;,
+</span><span class="">  297: C&lt;aft&gt;, C&lt;abt&gt;).  Silenced by C&lt;quiet&gt;.
+</span><span class="">  298: 
+</span><span class="">  299: =item C&lt;&lt; $date is invalid, there are only 30 days in November &gt;&gt;
+</span><span class="">  300: 
+</span><span class="">  301: Warned (carp) for the impossible date C&lt;31 Nov&gt;.  Always emitted; not
+</span><span class="">  302: silenced by C&lt;quiet&gt;.
+</span><span class="">  303: 
+</span><span class="">  304: =item C&lt;&lt; Changing date &#39;$original&#39; to &#39;$new&#39; &gt;&gt;
+</span><span class="">  305: 
+</span><span class="">  306: Warned (carp) when a date is automatically rewritten (ISO dash format or
+</span><span class="">  307: dash-separated range).  Silenced by C&lt;quiet&gt;.
+</span><span class="">  308: 
+</span><span class="">  309: =item C&lt;&lt; Unparseable date $date - often because the month name isn&#39;t 3 letters &gt;&gt;
+</span><span class="">  310: 
+</span><span class="">  311: Warned (carp) in strict mode for non-3-letter months, or in non-strict mode
+</span><span class="">  312: for unrecognised long month names.  Silenced by C&lt;quiet&gt;.
+</span><span class="">  313: 
+</span><span class="">  314: =item C&lt;&lt; $dfn_error_string &gt;&gt;
+</span><span class="">  315: 
+</span><span class="">  316: Warned (carp) when L&lt;DateTime::Format::Natural&gt; rejects the date string.
+</span><span class="">  317: Silenced by C&lt;quiet&gt;.
+</span><span class="">  318: 
+</span><span class="">  319: =item C&lt;&lt; Hebrew calendar conversion failed: ... &gt;&gt;
+</span><span class="">  320: 
+</span><span class="">  321: Warned (carp) when L&lt;DateTime::Calendar::Hebrew&gt; is unavailable or throws.
+</span><span class="">  322: Silenced by C&lt;quiet&gt;.
+</span><span class="">  323: 
+</span><span class="">  324: =item C&lt;&lt; French Republican calendar conversion failed: ... &gt;&gt;
+</span><span class="">  325: 
+</span><span class="">  326: Warned (carp) when L&lt;DateTime::Calendar::FrenchRevolutionary&gt; is unavailable
+</span><span class="">  327: or throws.  Silenced by C&lt;quiet&gt;.
+</span><span class="">  328: 
+</span><span class="">  329: =item C&lt;&lt; Calendar type $type not supported &gt;&gt;
+</span><span class="">  330: 
+</span><span class="">  331: Warned (carp) for GEDCOM calendar escapes other than GREGORIAN, JULIAN,
+</span><span class="">  332: HEBREW, and FRENCH R.  Silenced by C&lt;quiet&gt;.
+</span><span class="">  333: 
+</span><span class="">  334: =back
+</span><span class="">  335: 
+</span><span class="">  336: =head3 PSEUDOCODE
+</span><span class="">  337: 
+</span><span class="">  338:     FUNCTION parse_datetime(self, *args):
+</span><span class="">  339:       -- Dispatch class/function/hash-invocant calls to an object instance
+</span><span class="">  340:       IF self is not a reference:
+</span><span class="">  341:         RETURN new()-&gt;parse_datetime(args or self)
+</span><span class="">  342:       IF ref(self) == &#39;HASH&#39;:
+</span><span class="">  343:         RETURN new()-&gt;parse_datetime(self)
+</span><span class="">  344: 
+</span><span class="">  345:       ABORT unless args non-empty
+</span><span class="">  346:       params = get_params(&#39;date&#39;, args)
+</span><span class="">  347:       ABORT on unknown keys (validate_strict)
+</span><span class="">  348: 
+</span><span class="">  349:       date   = params.date
+</span><span class="">  350:       quiet  = params.quiet  // self.quiet
+</span><span class="">  351:       strict = params.strict // self.strict
+</span><span class="">  352: 
+</span><span class="">  353:       ABORT unless date is defined, non-empty, and not a reference
+</span><span class="">  354: 
+</span><span class="">  355:       -- Strip GEDCOM calendar escape if present
+</span><span class="">  356:       IF date =~ s/^@#D([A-Z ]+?)@\s*//: calendar_type = &#39;D&#39; + uc(match)
+</span><span class="">  357: 
+</span><span class="">  358:       -- Reject approximate/relative dates
+</span><span class="">  359:       IF date =~ /^(bef|aft|abt)\s/i: CARP and RETURN undef
+</span><span class="">  360: 
+</span><span class="">  361:       -- Reject calendar impossibilities
+</span><span class="">  362:       IF date =~ /^31\s+Nov/: CARP and RETURN undef
+</span><span class="">  363: 
+</span><span class="">  364:       -- Rewrite dash-separated ranges and ISO dates
+</span><span class="">  365:       IF date =~ /X - Y/:
+</span><span class="">  366:         IF date =~ /YYYY-MM-DD/: REFORMAT to &quot;DD Mon YYYY&quot; (carp)
+</span><span class="">  367:         ELSE: REFORMAT to &quot;bet X and Y&quot; (carp)
+</span><span class="">  368: 
+</span><span class="">  369:       -- Dispatch ranges to recursive calls
+</span><span class="">  370:       IF date =~ /^bet X and Y/i:
+</span><span class="">  371:         RETURN (parse_datetime(X), parse_datetime(Y)) IF wantarray
+</span><span class="">  372:         RETURN undef
+</span><span class="">  373: 
+</span><span class="">  374:       IF !strict AND date =~ /^from X to Y/i:
+</span><span class="">  375:         RETURN (parse_datetime(X), parse_datetime(Y)) IF wantarray
+</span><span class="">  376:         RETURN undef
+</span><span class="">  377: 
+</span><span class="">  378:       -- Normalise non-standard month names (non-strict mode only)
+</span><span class="">  379:       IF !strict:
+</span><span class="">  380:         IF date =~ DD + Aout + YYYY (French non-ASCII August):
+</span><span class="">  381:           REWRITE month to &#39;Aug&#39;
+</span><span class="">  382:         ELSE IF date =~ /DD LONG_OR_VARIANT YYYY/:
+</span><span class="">  383:           lookup = MONTH_ALIAS{ucfirst(lc(month))}
+</span><span class="">  384:           IF lookup: REWRITE month to lookup
+</span><span class="">  385:           ELSE IF month is more than 3 letters: CARP and RETURN undef
+</span><span class="">  386:           -- 3-letter unknown months fall through unchanged to the parser
+</span><span class="">  387: 
+</span><span class="">  388:       -- Parse with Genealogy::Gedcom::Date (cached) then DateTime::Format::Natural
+</span><span class="">  389:       IF date starts with digit:
+</span><span class="">  390:         d = _date_parser_cached(date)
+</span><span class="">  391:         IF d defined:
+</span><span class="">  392:           RETURN undef if date ends with year-only (&lt; AD100 guard)
+</span><span class="">  393:           rc = DateTime::Format::Natural-&gt;parse_datetime(d.canonical)
+</span><span class="">  394:           IF calendar_type != DGREGORIAN:
+</span><span class="">  395:             rc = _convert_calendar(rc, calendar_type, quiet)
+</span><span class="">  396:           RETURN rc
+</span><span class="">  397: 
+</span><span class="">  398:       -- Fallback: try DateTime::Format::Natural directly on the raw string
+</span><span class="">  399:       IF date not ~= /^(Abt|ca?)/i AND date =~ /^[\w\s,]+$/:
+</span><span class="">  400:         rc = DateTime::Format::Natural-&gt;parse_datetime(date)
+</span><span class="">  401:         IF rc AND success: RETURN rc
+</span><span class="">  402:         ELSE: CARP error
+</span><span class="">  403: 
+</span><span class="">  404:       RETURN undef
+</span><span class="">  405:     END FUNCTION
+</span><span class="">  406: 
+</span><span class="">  407: =cut
+</span><span class="">  408: 
+</span><span class="">  409: sub parse_datetime
+</span><span class="">  410: {
+</span><span class="">  411: 	# Guard against unbounded recursion at every entry point, including the
+</span><span class="">  412: 	# class-method normalisation branches below.  &#39;local&#39; restores the counter
+</span><span class="">  413: 	# automatically on any return path.  Legitimate use bottoms out at depth 1
+</span><span class="">  414: 	# (range-split recursive call); anything deeper is a mutant or a bug.
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">415 → 421 → 431</span></span>  415: 	local $_parse_depth = $_parse_depth + 1;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  416: 	return if $_parse_depth &gt; $MAX_PARSE_DEPTH;
+</span><p> <b> Mutants (Total: 3, Killed: 3, Survived: 0)</b><p><span class="">  417: 
+</span><span class="">  418: 	my $self = shift;
+</span><span class="">  419: 
+</span><span class="">  420: 	# Normalise class-method and bare-function call styles into an object call.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  421: 	if(!ref($self)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  422: 		if(@_) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  423: 			return(__PACKAGE__-&gt;new()-&gt;parse_datetime(@_));
+</span><span class="">  424: 		}
+</span><span class="">  425: 		return(__PACKAGE__-&gt;new()-&gt;parse_datetime($self));
+</span><span class="">  426: 	} elsif(ref($self) eq &#39;HASH&#39;) {
+</span><span class="">  427: 		return(__PACKAGE__-&gt;new()-&gt;parse_datetime($self));
+</span><span class="">  428: 	}
+</span><span class="">  429: 
+</span><span class="">  430: 	# Guard before Params::Get so *our* croak message is what Test::Carp sees.
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">431 → 446 → 604</span></span>  431: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;::parse_datetime(date =&gt; $date)&#39;) unless @_;
+</span><span class="">  432: 
+</span><span class="">  433: 	my $params = Params::Get::get_params(&#39;date&#39;, @_);
+</span><span class="">  434: 
+</span><span class="">  435: 	# Catch unknown parameter keys early so callers get a clear error rather
+</span><span class="">  436: 	# than silent misbehaviour from a typo like &#39;quet&#39; instead of &#39;quiet&#39;.
+</span><span class="">  437: 	# validate_strict uses a compile-time-imported croak, so we wrap in eval
+</span><span class="">  438: 	# and re-throw via Carp::croak (which IS interceptable by Test::Carp).
+</span><span class="">  439: 	# Capture $@ into a lexical immediately: a DESTROY method firing between
+</span><span class="">  440: 	# the eval and the check would otherwise silently clear the global $@.
+</span><span class="">  441: 	my $validate_err;
+</span><span class="">  442: 	eval { validate_strict(schema =&gt; \%PARSE_DATETIME_SCHEMA, input =&gt; $params); 1 }
+</span><span class="">  443: 		or $validate_err = $@;
+</span><span class="">  444: 	Carp::croak(&quot;Invalid parse_datetime parameters: $validate_err&quot;) if $validate_err;
+</span><span class="">  445: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  446: 	if((!ref($params-&gt;{&#39;date&#39;})) &amp;&amp; (my $date = $params-&gt;{&#39;date&#39;})) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  447: 		# Per-call flags shadow object-level defaults, enabling per-call overrides
+</span><span class="">  448: 		# without losing the convenience of constructor-level configuration.
+</span><span class="">  449: 		my $quiet  = $params-&gt;{&#39;quiet&#39;}  // $self-&gt;{&#39;quiet&#39;};
+</span><span class="">  450: 		my $strict = $params-&gt;{&#39;strict&#39;} // $self-&gt;{&#39;strict&#39;};
+</span><span class="">  451: 
+</span><span class="">  452: 		# Detect and strip any GEDCOM calendar escape at the front of the string.
+</span><span class="">  453: 		# Pattern: @#D&lt;NAME&gt;@ where NAME is uppercase letters/spaces (lazy match
+</span><span class="">  454: 		# so it stops at the first closing &#39;@&#39; rather than a later one).
+</span><span class="">  455: 		my $calendar_type = &#39;DGREGORIAN&#39;;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  456: 		if($date =~ s/^@#D([A-Z ]+?)@\s*//) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  457: 			$calendar_type = &#39;D&#39; . uc($1);
+</span><span class="">  458: 		}
+</span><span class="">  459: 
+</span><span class="">  460: 		# Approximate-date prefixes (bef/aft/abt) signal &quot;no exact date known&quot;,
+</span><span class="">  461: 		# so a DateTime object would be misleading.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  462: 		if($date =~ /^(?:bef|aft|abt)\s/i) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  463: 			Carp::carp(_safe_str($date) . &#39; is invalid, need an exact date to create a DateTime&#39;)
+</span><span class="">  464: 				unless($quiet);
+</span><span class="">  465: 			return;
+</span><span class="">  466: 		}
+</span><span class="">  467: 
+</span><span class="">  468: 		# 31 November does not exist; catch it before any parser attempt.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  469: 		if($date =~ /^31\s+Nov/) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  470: 			Carp::carp(_safe_str($date) . &#39; is invalid, there are only 30 days in November&#39;);
+</span><span class="">  471: 			return;
+</span><span class="">  472: 		}
+</span><span class="">  473: 
+</span><span class="">  474: 		# Rewrite dash-separated constructs.
+</span><span class="">  475: 		# ISO &quot;YYYY-MM-DD&quot; is checked first -- the pattern is fully anchored with
+</span><span class="">  476: 		# fixed-width fields so there is zero backtracking.
+</span><span class="">  477: 		# A spaced range &quot;X - Y&quot; (spaces required on both sides of the hyphen)
+</span><span class="">  478: 		# is converted to &quot;bet X and Y&quot;.  The \s+ discriminator ensures that a
+</span><span class="">  479: 		# bare ISO date (no spaces around the hyphen) never matches this branch,
+</span><span class="">  480: 		# eliminating the need for a combined pre-filter.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  481: 		if($date =~ /^(\d{4})-(\d{2})-(\d{2})$/) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  482: 			my ($y, $m, $d) = ($1, $2, $3);
+</span><span class="">  483: 			my $month_idx = $m - 1;
+</span><span class="">  484: 			# @short_month_names is a 12-element array (indices 0-11).
+</span><span class="">  485: 			# Month 00 would yield index -1 (wrapping silently to Dec in Perl).
+</span><span class="">  486: 			# Month 13-99 yields undef and a runtime warning.  Reject both.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  487: 			if($month_idx &lt; 0 || $month_idx &gt; 11) {
+</span><p> <b> Mutants (Total: 7, Killed: 7, Survived: 0)</b><p><span class="">  488: 				Carp::carp(&quot;Invalid month &#39;$m&#39; in date &#39;$date&#39;&quot;) unless $quiet;
+</span><span class="">  489: 				return;
+</span><span class="">  490: 			}
+</span><span class="">  491: 			my $month = ucfirst($short_month_names[$month_idx]);
+</span><span class="">  492: 			my $rewritten = &quot;$d $month $y&quot;;
+</span><span class="">  493: 			Carp::carp(&quot;Changing date &#39;&quot; . _safe_str($date) . &quot;&#39; to &#39;$rewritten&#39;&quot;) unless($quiet);
+</span><span class="">  494: 			$date = $rewritten;
+</span><span class="">  495: 		} elsif($date =~ /^(.+\d)\s+-\s+(.+\d)$/) {
+</span><span class="">  496: 			my ($lhs, $rhs) = ($1, $2);
+</span><span class="">  497: 			Carp::carp(&quot;Changing date &#39;&quot; . _safe_str($date) . &quot;&#39; to &#39;bet $lhs and $rhs&#39;&quot;) unless($quiet);
+</span><span class="">  498: 			$date = &quot;bet $lhs and $rhs&quot;;
+</span><span class="">  499: 		}
+</span><span class="">  500: 
+</span><span class="">  501: 		# Date ranges return two DateTimes in list context; undef in scalar.
+</span><span class="">  502: 		# Lazy .+? on the first group ensures we split at the FIRST &quot;and&quot;/&quot;to&quot;
+</span><span class="">  503: 		# keyword, not the last, which matters when a sub-date contains the word.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  504: 		if($date =~ /^bet (.+?) and (.+)/i) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  505: 			if(wantarray) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  506: 				return $self-&gt;parse_datetime($1), $self-&gt;parse_datetime($2);
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  507: 			}
+</span><span class="">  508: 			return;
+</span><span class="">  509: 		}
+</span><span class="">  510: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  511: 		if((!$strict) &amp;&amp; ($date =~ /^from (.+?) to (.+)/i)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  512: 			if(wantarray) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  513: 				return $self-&gt;parse_datetime($1), $self-&gt;parse_datetime($2);
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  514: 			}
+</span><span class="">  515: 			return;
+</span><span class="">  516: 		}
+</span><span class="">  517: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  518: 		if($date !~ /^\d{3,4}$/) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  519: 			# Strict mode: only 3-letter GEDCOM abbreviations are valid.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  520: 			if($strict) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  521: 				if($date !~ /^\d{1,2}\s+[A-Z]{3}\s+\d{3,4}$/i) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  522: 					Carp::carp(&#39;Unparseable date &#39; . _safe_str($date) . &quot; - often because the month name isn&#39;t 3 letters&quot;) unless($quiet);
+</span><span class="">  523: 					return;
+</span><span class="">  524: 				}
+</span><span class="">  525: 			} else {
+</span><span class="">  526: 				# Aout with circumflex-u (Ao\x{FB}t) must be matched explicitly
+</span><span class="">  527: 				# because the standard \w character class is ASCII-only and will
+</span><span class="">  528: 				# not match the non-ASCII &#39;u with circumflex&#39;.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  529: 				if($date =~ /^(\d{1,2})\s+Ao\x{FB}t\s+(\d{3,4})$/i) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  530: 					$date = &quot;$1 Aug $2&quot;;
+</span><span class="">  531: 				} elsif($date =~ /^(\d{1,2})\s+([A-Z]{3,}+)\.?\s+(\d{3,4})$/i) {
+</span><span class="">  532: 					# Look up the month in the alias table.
+</span><span class="">  533: 					# Unknown 3-letter tokens are passed through unchanged so that
+</span><span class="">  534: 					# standard GEDCOM abbreviations (Sep, Dec, ...) that did not
+</span><span class="">  535: 					# trigger the earlier cache path still reach the parser.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  536: 					if(my $abbrev = $MONTH_ALIAS{ucfirst(lc($2))}) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  537: 						$date = &quot;$1 $abbrev $3&quot;;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  538: 					} elsif(length($2) &gt; 3) {
+</span><p> <b> Mutants (Total: 3, Killed: 3, Survived: 0)</b><p><span class="">  539: 						# Longer-than-3-letter names not in the alias table are
+</span><span class="">  540: 						# truly unrecognised; there is nothing useful we can do.
+</span><span class="">  541: 						Carp::carp(&#39;Unparseable date &#39; . _safe_str($date) . &quot; - often because the month name isn&#39;t 3 letters&quot;) unless($quiet);
+</span><span class="">  542: 						return;
+</span><span class="">  543: 					}
+</span><span class="">  544: 				} elsif($date =~ /^(\d{1,2})\-([A-Z]{3})\-(\d{3,4})$/i) {
+</span><span class="">  545: 					# Accept the 29-Aug-1938 dash-separated single-date format.
+</span><span class="">  546: 					$date = &quot;$1 $2 $3&quot;;
+</span><span class="">  547: 				}
+</span><span class="">  548: 			}
+</span><span class="">  549: 
+</span><span class="">  550: 			# Lazily initialise DateTime::Format::Natural on first use.
+</span><span class="">  551: 			my $dfn = $self-&gt;{&#39;dfn&#39;} //= DateTime::Format::Natural-&gt;new();
+</span><span class="">  552: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  553: 			if(($date =~ /^\d/) &amp;&amp; (my $d = $self-&gt;_date_parser_cached($date))) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  554: 				# DateTime::Format::Natural cannot handle dates before AD 100;
+</span><span class="">  555: 				# a date ending in a 1-or-2-digit year is that old.
+</span><span class="">  556: 				return if($date =~ /\s\d{1,2}$/);
+</span><span class="">  557: 
+</span><span class="">  558: 				# Guard against a malformed GGD result with an undef canonical
+</span><span class="">  559: 				# field; passing undef to DFN causes a Params::Validate croak.
+</span><span class="">  560: 				return unless defined $d-&gt;{&#39;canonical&#39;};
+</span><span class="">  561: 
+</span><span class="">  562: 				my $rc = $dfn-&gt;parse_datetime($d-&gt;{&#39;canonical&#39;});
+</span><span class="">  563: 
+</span><span class="">  564: 				# DFN silently returns today&#39;s date when it cannot parse the
+</span><span class="">  565: 				# canonical string (e.g. 3-digit years 100-999, very large
+</span><span class="">  566: 				# years).  We must check success() here just as we do in the
+</span><span class="">  567: 				# DFN fallback path below, otherwise the caller receives a
+</span><span class="">  568: 				# completely wrong DateTime.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  569: 				unless($dfn-&gt;success) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  570: 					Carp::carp($dfn-&gt;error) unless $quiet;
+</span><span class="">  571: 					return;
+</span><span class="">  572: 				}
+</span><span class="">  573: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  574: 				if($rc &amp;&amp; $calendar_type ne &#39;DGREGORIAN&#39;) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  575: 					return _convert_calendar($rc, $calendar_type, $quiet);
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  576: 				}
+</span><span class="">  577: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  578: 				return $rc;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  579: 			}
+</span><span class="">  580: 
+</span><span class="">  581: 			# Last resort: try DateTime::Format::Natural on the raw string.
+</span><span class="">  582: 			# Approximate-prefix forms are excluded here because they already
+</span><span class="">  583: 			# returned undef above; the pattern here guards against &#39;Abt&#39;/&#39;ca&#39;
+</span><span class="">  584: 			# leaking through when quiet is enabled (e.g. &quot;Abt1Jan2000&quot; has no
+</span><span class="">  585: 			# space so it was not caught by the /^abt\s/i check above).
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  586: 			if(($date !~ /^(?:Abt|ca?)/i) &amp;&amp; ($date =~ /^[\w\s,]+$/)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  587: 				if(my $rc = $dfn-&gt;parse_datetime($date)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  588: 					if($dfn-&gt;success()) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  589: 						return $rc;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  590: 					}
+</span><span class="">  591: 					Carp::carp($dfn-&gt;error()) unless($quiet);
+</span><span class="">  592: 				}
+</span><span class="">  593: 				# NOTE: DateTime::Format::Natural-&gt;parse_datetime always returns
+</span><span class="">  594: 				# a DateTime object (today&#39;s date on failure), never undef.  The
+</span><span class="">  595: 				# else branch that would carp &quot;Can&#39;t parse date&quot; is therefore
+</span><span class="">  596: 				# dead code and has been removed.  If a future DFN version can
+</span><span class="">  597: 				# return undef, this else must be reinstated:
+</span><span class="">  598: 				#   else { Carp::carp(&quot;Can&#39;t parse date &#39;$date&#39;&quot;) unless $quiet }
+</span><span class="">  599: 			}
+</span><span class="">  600: 		}
+</span><span class="">  601: 		return;
+</span><span class="">  602: 	}
+</span><span class="">  603: 
+</span><span class="">  604: 	Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;::parse_datetime(date =&gt; $date)&#39;);
+</span><span class="">  605: }
+</span><span class="">  606: 
+</span><span class="">  607: # ---------------------------------------------------------------------------
+</span><span class="">  608: # _date_parser_cached
+</span><span class="">  609: #
+</span><span class="">  610: # Purpose:      Wrap Genealogy::Gedcom::Date-&gt;parse() with a per-object
+</span><span class="">  611: #               memoisation layer to avoid re-parsing identical strings.
+</span><span class="">  612: # Entry:        $self  - blessed object (must carry -&gt;{&#39;date_parser&#39;} slot)
+</span><span class="">  613: #               $date  - non-empty, non-undef date string (positional)
+</span><span class="">  614: # Exit:         Hashref on success ({canonical, day, month, year, ...}),
+</span><span class="">  615: #               undef on parse failure or error.
+</span><span class="">  616: # Side Effects: Populates $self-&gt;{&#39;all_dates&#39;}{$date} on BOTH success and
+</span><span class="">  617: #               failure.  Failure is stored as undef so repeated lookups of
+</span><span class="">  618: #               the same invalid string are O(1) and carp fires only once.
+</span><span class="">  619: #               Carps on parser error unless $self-&gt;{&#39;quiet&#39;} is set.
+</span><span class="">  620: # ---------------------------------------------------------------------------
+</span><span class="">  621: 
+</span><span class="">  622: sub _date_parser_cached :Protected
+</span><span class="">  623: {
+</span><span class="">  624: 	# Accept the date as a plain positional arg -- this is a hot-path internal
+</span><span class="">  625: 	# method called only from parse_datetime.  Routing through Params::Get adds
+</span><span class="">  626: 	# measurable dispatch overhead for no external-API benefit.
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">627 → 634 → 640</span></span>  627: 	my ($self, $date) = @_;
+</span><span class="">  628: 
+</span><span class="">  629: 	Carp::croak(&#39;Usage: _date_parser_cached($date)&#39;) unless defined $date;
+</span><span class="">  630: 
+</span><span class="">  631: 	# Evict the whole cache when it reaches the size limit.  A full clear is
+</span><span class="">  632: 	# used instead of LRU because genealogy datasets have bounded unique-date
+</span><span class="">  633: 	# counts in normal use; LRU overhead is not justified.
+</span><span class="survived-3 tooltip" data-tooltip="Boundary mutation survived. Add tests around edge values (e.g. min, max, off-by-one).">  634: 	if(defined($self-&gt;{&#39;all_dates&#39;}) &amp;&amp; scalar(keys %{$self-&gt;{&#39;all_dates&#39;}}) &gt;= $MAX_CACHE_SIZE) {
+</span>
+					<details class="mutant-details">
+					<summary>Mutants (Total: 4, Killed: 1, Survived: 3)</summary>
+					<ul>
+				<li><b>NUM_BOUNDARY_634_75_>: Numeric boundary flip >= to ></b><br>HIGH: Likely missing edge-case test (boundary value)
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boundary test suggestion
+is( func(VALUE_AT_BOUNDARY), EXPECTED, &#39;Test boundary behaviour&#39; );
+</pre>
+								</div>
+							</li><li><b>NUM_BOUNDARY_634_75_<: Numeric boundary flip >= to <</b><br>HIGH: Likely missing edge-case test (boundary value)
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boundary test suggestion
+is( func(VALUE_AT_BOUNDARY), EXPECTED, &#39;Test boundary behaviour&#39; );
+</pre>
+								</div>
+							</li><li><b>NUM_BOUNDARY_634_75_<=: Numeric boundary flip >= to <=</b><br>HIGH: Likely missing edge-case test (boundary value)
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boundary test suggestion
+is( func(VALUE_AT_BOUNDARY), EXPECTED, &#39;Test boundary behaviour&#39; );
+</pre>
+								</div>
+							</li></ul></details>
+<span class="">  635: 		$self-&gt;{&#39;all_dates&#39;} = {};
+</span><span class="">  636: 	}
+</span><span class="">  637: 
+</span><span class="">  638: 	# Short-circuit on any prior result (success OR cached failure).
+</span><span class="">  639: 	# &#39;exists&#39; correctly handles undef values stored for invalid dates.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">640 → 649 → 656</span></span>  640: 	return $self-&gt;{&#39;all_dates&#39;}{$date} if exists $self-&gt;{&#39;all_dates&#39;}{$date};
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  641: 
+</span><span class="">  642: 	my $date_parser = $self-&gt;{&#39;date_parser&#39;} //= Genealogy::Gedcom::Date-&gt;new();
+</span><span class="">  643: 
+</span><span class="">  644: 	my $parsed_date;
+</span><span class="">  645: 	eval {
+</span><span class="">  646: 		$parsed_date = $date_parser-&gt;parse(date =&gt; $date);
+</span><span class="">  647: 	};
+</span><span class="">  648: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  649: 	if(my $error = $date_parser-&gt;error()) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  650: 		Carp::carp(_safe_str($date) . &quot;: &#39;$error&#39;&quot;) unless $self-&gt;{&#39;quiet&#39;};
+</span><span class="">  651: 		# Cache the failure so subsequent calls for the same string skip GGD
+</span><span class="">  652: 		# entirely and do not carp again.
+</span><span class="">  653: 		return ($self-&gt;{&#39;all_dates&#39;}{$date} = undef);
+</span><span class="">  654: 	}
+</span><span class="">  655: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic."><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">656 → 656 → 661</span></span>  656: 	if((ref($parsed_date) eq &#39;ARRAY&#39;) &amp;&amp; @{$parsed_date}) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  657: 		return $self-&gt;{&#39;all_dates&#39;}{$date} = $parsed_date-&gt;[0];
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  658: 	}
+</span><span class="">  659: 
+</span><span class="">  660: 	# Empty or unexpected result -- also cache to prevent repeated GGD calls.
+</span><span class="">  661: 	return ($self-&gt;{&#39;all_dates&#39;}{$date} = undef);
+</span><span class="">  662: }
+</span><span class="">  663: 
+</span><span class="">  664: # ---------------------------------------------------------------------------
+</span><span class="">  665: # _convert_calendar
+</span><span class="">  666: #
+</span><span class="">  667: # Purpose:      Convert a Gregorian DateTime produced by
+</span><span class="">  668: #               Genealogy::Gedcom::Date/DateTime::Format::Natural to the
+</span><span class="">  669: #               calendar indicated by the GEDCOM escape that preceded the date.
+</span><span class="">  670: # Entry:        $dt            - DateTime object in Gregorian coordinates
+</span><span class="">  671: #               $calendar_type - normalised escape string (e.g. &#39;DJULIAN&#39;)
+</span><span class="">  672: #               $quiet         - truthy to suppress carp on failure
+</span><span class="">  673: # Exit:         Converted DateTime, or the original $dt for unknown types.
+</span><span class="">  674: # Side Effects: May carp on conversion failure (unless $quiet).
+</span><span class="">  675: # ---------------------------------------------------------------------------
+</span><span class="">  676: 
+</span><span class="">  677: sub _convert_calendar :Private
+</span><span class="">  678: {
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">679 → 681 → 730</span></span>  679: 	my ($dt, $calendar_type, $quiet) = @_;
+</span><span class="">  680: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  681: 	if($calendar_type eq &#39;DJULIAN&#39;) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  682: 		# Add the historical Julian-to-Gregorian day offset.
+</span><span class="">  683: 		my $offset_days = _julian_to_gregorian_offset($dt-&gt;year);
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  684: 		return $dt-&gt;clone-&gt;add(days =&gt; $offset_days);
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  685: 	} elsif($calendar_type eq &#39;DHEBREW&#39;) {
+</span><span class="">  686: 		# &quot;return&quot; inside eval{} exits the eval block, NOT the enclosing sub,
+</span><span class="">  687: 		# so we capture the result in $result and return it afterwards.
+</span><span class="">  688: 		# $@ is captured into a lexical immediately after the eval to prevent
+</span><span class="">  689: 		# a DESTROY method from clearing the global before we can read it.
+</span><span class="">  690: 		my $result;
+</span><span class="">  691: 		my $convert_err;
+</span><span class="">  692: 		eval {
+</span><span class="">  693: 			require DateTime::Calendar::Hebrew;
+</span><span class="">  694: 			my $h = DateTime::Calendar::Hebrew-&gt;new(
+</span><span class="">  695: 				year  =&gt; $dt-&gt;year,
+</span><span class="">  696: 				month =&gt; $dt-&gt;month,
+</span><span class="">  697: 				day   =&gt; $dt-&gt;day
+</span><span class="">  698: 			);
+</span><span class="">  699: 			$result = DateTime-&gt;from_object(object =&gt; $h);
+</span><span class="">  700: 			1;
+</span><span class="">  701: 		} or $convert_err = $@;
+</span><span class="">  702: 		Carp::carp(&quot;Hebrew calendar conversion failed: $convert_err&quot;)
+</span><span class="">  703: 			if $convert_err &amp;&amp; !$quiet;
+</span><span class="">  704: 		# Return the converted DateTime on success, undef on failure.
+</span><span class="">  705: 		# The POD (LIMITATIONS) documents that undef is returned when the
+</span><span class="">  706: 		# optional module is unavailable rather than passing back the
+</span><span class="">  707: 		# unconverted Gregorian DateTime.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  708: 		return $result;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  709: 	} elsif($calendar_type eq &#39;DFRENCH R&#39;) {
+</span><span class="">  710: 		my $result;
+</span><span class="">  711: 		my $convert_err;
+</span><span class="">  712: 		eval {
+</span><span class="">  713: 			require DateTime::Calendar::FrenchRevolutionary;
+</span><span class="">  714: 			my $f = DateTime::Calendar::FrenchRevolutionary-&gt;new(
+</span><span class="">  715: 				year  =&gt; $dt-&gt;year,
+</span><span class="">  716: 				month =&gt; $dt-&gt;month,
+</span><span class="">  717: 				day   =&gt; $dt-&gt;day
+</span><span class="">  718: 			);
+</span><span class="">  719: 			$result = DateTime-&gt;from_object(object =&gt; $f);
+</span><span class="">  720: 			1;
+</span><span class="">  721: 		} or $convert_err = $@;
+</span><span class="">  722: 		Carp::carp(&quot;French Republican calendar conversion failed: $convert_err&quot;)
+</span><span class="">  723: 			if $convert_err &amp;&amp; !$quiet;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  724: 		return $result;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  725: 	} else {
+</span><span class="">  726: 		# DROMAN and any other future escape types are not yet supported.
+</span><span class="">  727: 		Carp::carp(&quot;Calendar type $calendar_type not supported&quot;) unless $quiet;
+</span><span class="">  728: 	}
+</span><span class="">  729: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  730: 	return $dt;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  731: }
+</span><span class="">  732: 
+</span><span class="">  733: # ---------------------------------------------------------------------------
+</span><span class="">  734: # _safe_str
+</span><span class="">  735: #
+</span><span class="">  736: # Purpose:      Sanitise a user-supplied string for inclusion in diagnostic
+</span><span class="">  737: #               messages (Carp::carp/croak).  Removes ASCII control characters
+</span><span class="">  738: #               that could be used for log injection (fake log lines, ANSI
+</span><span class="">  739: #               escape sequences) and truncates to a safe display length.
+</span><span class="">  740: # Entry:        $s   - string to sanitise (may be undef)
+</span><span class="">  741: #               $max - optional maximum length (default 120)
+</span><span class="">  742: # Exit:         Sanitised, length-bounded string safe for embedding in messages.
+</span><span class="">  743: # ---------------------------------------------------------------------------
+</span><span class="">  744: 
+</span><span class="">  745: sub _safe_str :Private
+</span><span class="">  746: {
+</span><span class="">  747: 	my ($s, $max) = @_;
+</span><span class="survived-2 tooltip" data-tooltip="Boolean logic mutation survived. Add tests covering both true and false paths. Return value mutation survived. Add tests asserting exact return values.">  748: 	return &#39;(undef)&#39; unless defined $s;
+</span>
+					<details class="mutant-details">
+					<summary>Mutants (Total: 2, Killed: 0, Survived: 2)</summary>
+					<ul>
+				<li><b>BOOL_NEGATE_748_2: Negate boolean return expression</b><br>MEDIUM: Add tests asserting both true and false outcomes
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boolean branch test suggestion
+ok( !func(INPUT), &#39;Verify boolean branch behaviour&#39; );
+</pre>
+								</div>
+							</li><li><b>RETURN_UNDEF_748_2: Replace return expression with undef</b><br>LOW: Mutation survived, but impact may be minor
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Return value assertion
+is( func(INPUT), EXPECTED, &#39;Verify correct return value&#39; );
+</pre>
+								</div>
+							</li></ul></details>
+<span class="">  749: 	$max //= 120;
+</span><span class="">  750: 	# Replace every ASCII control character (0x00-0x1F, 0x7F) with &#39;?&#39;.
+</span><span class="">  751: 	# This neutralises CR/LF log injection and ANSI escape sequences.
+</span><span class="">  752: 	(my $clean = $s) =~ s/[[:cntrl:]]/?/g;
+</span><span class="survived-3 tooltip" data-tooltip="Boundary mutation survived. Add tests around edge values (e.g. min, max, off-by-one).">  753: 	return length($clean) &lt;= $max ? $clean : substr($clean, 0, $max - 3) . &#39;...&#39;;
+</span>
+					<details class="mutant-details">
+					<summary>Mutants (Total: 5, Killed: 2, Survived: 3)</summary>
+					<ul>
+				<li><b>NUM_BOUNDARY_753_24_<: Numeric boundary flip <= to <</b><br>HIGH: Likely missing edge-case test (boundary value)
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boundary test suggestion
+is( func(VALUE_AT_BOUNDARY), EXPECTED, &#39;Test boundary behaviour&#39; );
+</pre>
+								</div>
+							</li><li><b>NUM_BOUNDARY_753_24_>: Numeric boundary flip <= to ></b><br>HIGH: Likely missing edge-case test (boundary value)
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boundary test suggestion
+is( func(VALUE_AT_BOUNDARY), EXPECTED, &#39;Test boundary behaviour&#39; );
+</pre>
+								</div>
+							</li><li><b>NUM_BOUNDARY_753_24_>=: Numeric boundary flip <= to >=</b><br>HIGH: Likely missing edge-case test (boundary value)
+
+								<div class="suggested-test">
+								<div class="suggest-label">🧪 Suggested Test</div>
+								<pre># Boundary test suggestion
+is( func(VALUE_AT_BOUNDARY), EXPECTED, &#39;Test boundary behaviour&#39; );
+</pre>
+								</div>
+							</li></ul></details>
+<span class="">  754: }
+</span><span class="">  755: 
+</span><span class="">  756: # ---------------------------------------------------------------------------
+</span><span class="">  757: # _julian_to_gregorian_offset
+</span><span class="">  758: #
+</span><span class="">  759: # Purpose:      Return the number of days to add to a Julian date to obtain
+</span><span class="">  760: #               the Gregorian equivalent, based on the year.
+</span><span class="">  761: # Entry:        $year - integer calendar year
+</span><span class="">  762: # Exit:         Integer day offset (10, 11, 12, or 13)
+</span><span class="">  763: # ---------------------------------------------------------------------------
+</span><span class="">  764: 
+</span><span class="">  765: sub _julian_to_gregorian_offset :Private
+</span><span class="">  766: {
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">767 → 772 → 775</span></span>  767: 	my $year = $_[0];
+</span><span class="">  768: 
+</span><span class="">  769: 	# Iterate once with early exit; avoids the temporary list that grep would
+</span><span class="">  770: 	# build before we discard all but the first match.
+</span><span class="">  771: 	# @JULIAN_OFFSET_TIERS is ordered ascending, so the first hit is correct.
+</span><span class="">  772: 	for my $tier (@JULIAN_OFFSET_TIERS) {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  773: 		return $tier-&gt;[1] if $year &lt; $tier-&gt;[0];
+</span><p> <b> Mutants (Total: 5, Killed: 5, Survived: 0)</b><p><span class="">  774: 	}
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  775: 	return 13;	# catch-all: 1 Mar 1900 onwards
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  776: }
+</span><span class="">  777: 
+</span><span class="">  778: =head1 LIMITATIONS
+</span><span class="">  779: 
+</span><span class="">  780: =over 4
+</span><span class="">  781: 
+</span><span class="">  782: =item *
+</span><span class="">  783: 
+</span><span class="">  784: Dates before AD 100 are rejected because L&lt;DateTime::Format::Natural&gt; cannot
+</span><span class="">  785: parse them reliably (it returns today&#39;s date instead of an error).
+</span><span class="">  786: 
+</span><span class="">  787: =item *
+</span><span class="">  788: 
+</span><span class="">  789: The C&lt;Aout&gt; (French August with circumflex-u) entry in the month-alias table
+</span><span class="">  790: uses a non-ASCII Unicode escape (C&lt;\x{FB}&gt;).  The module file must be read as
+</span><span class="">  791: UTF-8; this is satisfied by the standard C&lt;perl -Ilib&gt; invocation but may
+</span><span class="">  792: require C&lt;use utf8&gt; or C&lt;open &#39;:encoding(UTF-8)&#39;&gt; in unusual environments.
+</span><span class="">  793: 
+</span><span class="">  794: =item *
+</span><span class="">  795: 
+</span><span class="">  796: Hebrew and French Republican calendar conversions require
+</span><span class="">  797: L&lt;DateTime::Calendar::Hebrew&gt; and L&lt;DateTime::Calendar::FrenchRevolutionary&gt;
+</span><span class="">  798: respectively.  These are optional and not listed as hard dependencies.  When
+</span><span class="">  799: absent, the GEDCOM escape is silently discarded and undef is returned unless
+</span><span class="">  800: the C&lt;quiet&gt; flag is off, in which case a carp is emitted.
+</span><span class="">  801: 
+</span><span class="">  802: =item *
+</span><span class="">  803: 
+</span><span class="">  804: L&lt;Genealogy::Gedcom::Date&gt; cannot parse native Hebrew or French Revolutionary
+</span><span class="">  805: month names (e.g. C&lt;Tishri&gt;, C&lt;Vendemiaire&gt;).  Only dates written in
+</span><span class="">  806: Gregorian form with the C&lt;@#DHEBREW@&gt; escape are converted.
+</span><span class="">  807: 
+</span><span class="">  808: =item *
+</span><span class="">  809: 
+</span><span class="">  810: The C&lt;quiet&gt; and C&lt;strict&gt; flags may be set at construction time
+</span><span class="">  811: (C&lt;&lt; -&gt;new(quiet =&gt; 1) &gt;&gt;) and will be respected by all subsequent calls to
+</span><span class="">  812: C&lt;parse_datetime&gt; unless overridden on a per-call basis.  The per-call value
+</span><span class="">  813: always takes precedence.
+</span><span class="">  814: 
+</span><span class="">  815: =back
+</span><span class="">  816: 
+</span><span class="">  817: =head1 AUTHOR
+</span><span class="">  818: 
+</span><span class="">  819: Nigel Horne, C&lt;&lt; &lt;njh at nigelhorne.com&gt; &gt;&gt;
+</span><span class="">  820: 
+</span><span class="">  821: =head1 BUGS
+</span><span class="">  822: 
+</span><span class="">  823: Please report any bugs or feature requests to the author.
+</span><span class="">  824: This module is provided as-is without any warranty.
+</span><span class="">  825: 
+</span><span class="">  826: =head1 SEE ALSO
+</span><span class="">  827: 
+</span><span class="">  828: =over 4
+</span><span class="">  829: 
+</span><span class="">  830: =item * L&lt;Genealogy::Gedcom::Date&gt;
+</span><span class="">  831: 
+</span><span class="">  832: =item * L&lt;DateTime&gt;
+</span><span class="">  833: 
+</span><span class="">  834: =item * L&lt;DateTime::Format::Natural&gt;
+</span><span class="">  835: 
+</span><span class="">  836: =item * L&lt;Configure an Object at Runtime|Object::Configure&gt;
+</span><span class="">  837: 
+</span><span class="">  838: =item * L&lt;Test Dashboard|https://nigelhorne.github.io/DateTime-Format-Genealogy/coverage/&gt;
+</span><span class="">  839: 
+</span><span class="">  840: =back
+</span><span class="">  841: 
+</span><span class="">  842: =head1 SUPPORT
+</span><span class="">  843: 
+</span><span class="">  844: You can find documentation for this module with the perldoc command.
+</span><span class="">  845: 
+</span><span class="">  846:     perldoc DateTime::Format::Genealogy
+</span><span class="">  847: 
+</span><span class="">  848: =over 4
+</span><span class="">  849: 
+</span><span class="">  850: =item * RT: CPAN&#39;s request tracker
+</span><span class="">  851: 
+</span><span class="">  852: L&lt;http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy&gt;
+</span><span class="">  853: 
+</span><span class="">  854: =item * GitHub Issues
+</span><span class="">  855: 
+</span><span class="">  856: L&lt;https://github.com/nigelhorne/DateTime-Format-Genealogy/issues&gt;
+</span><span class="">  857: 
+</span><span class="">  858: =back
+</span><span class="">  859: 
+</span><span class="">  860: =head1 FORMAL SPECIFICATION
+</span><span class="">  861: 
+</span><span class="">  862: =head2 new
+</span><span class="">  863: 
+</span><span class="">  864:     State S ::= [ attrs : Name -&gt; Value ]
+</span><span class="">  865: 
+</span><span class="">  866:     new(class, params) = bless(params U configure(class))   when !blessed(class)
+</span><span class="">  867:     new(obj,   params) = bless(obj.attrs (+) params)         when  blessed(obj)
+</span><span class="">  868: 
+</span><span class="">  869:     where (+) denotes right-biased union (params values take precedence).
+</span><span class="">  870: 
+</span><span class="">  871: =head2 parse_datetime
+</span><span class="">  872: 
+</span><span class="">  873: Let D be the set of genealogical date strings and DT the co-domain of
+</span><span class="">  874: L&lt;DateTime&gt; objects.
+</span><span class="">  875: 
+</span><span class="">  876:     parse_datetime : D -&gt; DT | bot | (DT x DT)
+</span><span class="">  877: 
+</span><span class="">  878:     YearOnly ::= { s in D | s ~ /^\d{3,4}$/ }
+</span><span class="">  879:     Approx   ::= { s in D | s ~ /^(bef|aft|abt)\s/i }
+</span><span class="">  880:     Ranges   ::= { s in D | s ~ /^bet\s.+\sand\s.+/i
+</span><span class="">  881:                            | s ~ /^from\s.+\sto\s.+/i }
+</span><span class="">  882: 
+</span><span class="">  883:     Pre:  date != bot
+</span><span class="">  884: 
+</span><span class="">  885:     Post:
+</span><span class="">  886:       date in YearOnly              =&gt; result = bot
+</span><span class="">  887:       date in Approx                =&gt; result = bot  (carp unless quiet)
+</span><span class="">  888:       date in Ranges /\ wantarray   =&gt; result in DT x DT
+</span><span class="">  889:       date in Ranges /\ !wantarray  =&gt; result = bot
+</span><span class="">  890:       date in Parseable \
+</span><span class="">  891:         (YearOnly u Approx u Ranges) =&gt; result in DT
+</span><span class="">  892:       date not in Parseable         =&gt; result = bot  (carp unless quiet)
+</span><span class="">  893: 
+</span><span class="">  894: =head1 LICENSE AND COPYRIGHT
+</span><span class="">  895: 
+</span><span class="">  896: Copyright 2018-2026 Nigel Horne.
+</span><span class="">  897: 
+</span><span class="">  898: Usage is subject to the GPL2 licence terms.
+</span><span class="">  899: If you use it,
+</span><span class="">  900: please let me know.
+</span><span class="">  901: 
+</span><span class="">  902: =cut
+</span><span class="">  903: 
+</span><span class="">  904: 1;
+</span></pre>
+
+<script>
+function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+}
+
+(function() {
+    const saved = localStorage.getItem('theme');
+    if(saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+    }
+})();
+
+document.addEventListener("mousemove", function(e) {
+	document.querySelectorAll(".lcsaj-tip-text").forEach(function(tip) {
+		tip.style.left = (e.clientX + 12) + "px";
+		tip.style.top  = (e.clientY + 12) + "px";
+	});
+});
+</script>
+</body>
+</html>
+	
