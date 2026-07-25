@@ -20,333 +20,678 @@ https://pjcj.net
 <h1>File Coverage</h1>
 <table>
 <tr><td class="h" align="right">File:</td><td align="left">blib/lib/DateTime/Format/Genealogy.pm</td></tr>
-<tr><td class="h" align="right">Coverage:</td><td align="left" class="c1">75.0%</td></tr>
+<tr><td class="h" align="right">Coverage:</td><td align="left" class="c2">98.5%</td></tr>
 </table>
 <div><br/></div>
 <table>
 <tr><th>line</th><th>stmt</th><th>bran</th><th>cond</th><th>sub</th><th>time</th><th>code</th></tr>
 <tr><td class="h">1</td><td></td><td></td><td></td><td></td><td></td><td class="s">package DateTime::Format::Genealogy;</td></tr>
 <tr><td class="h">2</td><td colspan="6"></td></tr><tr><td class="h">3</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Author Nigel Horne: njh@bandsman.co.uk</td></tr>
-<tr><td class="h">4</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Copyright (C) 2018-2025, Nigel Horne</td></tr>
+<tr><td class="h">4</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Copyright (C) 2018-2026, Nigel Horne</td></tr>
 <tr><td class="h">5</td><td colspan="6"></td></tr><tr><td class="h">6</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Usage is subject to licence terms.</td></tr>
-<tr><td class="h">7</td><td></td><td></td><td></td><td></td><td></td><td class="s"># The licence terms of this software are as follows:</td></tr>
-<tr><td class="h">8</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Personal single user, single computer use: GPL2</td></tr>
-<tr><td class="h">9</td><td></td><td></td><td></td><td></td><td></td><td class="s"># All other users (including Commercial, Charity, Educational, Government)</td></tr>
-<tr><td class="h">10</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;must apply in writing for a licence for use from Nigel Horne at the</td></tr>
-<tr><td class="h">11</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;above e-mail.</td></tr>
-<tr><td class="h">12</td><td colspan="6"></td></tr><tr><td class="h">13</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L13">5</a></div></td><td><div>320308</div><div>5</div><div>57</div></td><td class="s">use strict;</td></tr>
-<tr><td class="h">14</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L14">5</a></div></td><td><div>8</div><div>3</div><div>84</div></td><td class="s">use warnings;</td></tr>
-<tr><td class="h">15</td><td></td><td></td><td></td><td></td><td></td><td class="s"># use diagnostics;</td></tr>
-<tr><td class="h">16</td><td></td><td></td><td></td><td></td><td></td><td class="s"># use warnings::unused;</td></tr>
-<tr><td class="h">17</td><td><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L17">5</a></div></td><td><div>44</div><div>5</div></td><td class="s">use 5.006_001;</td></tr>
-<tr><td class="h">18</td><td colspan="6"></td></tr><tr><td class="h">19</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L19">5</a></div></td><td><div>960</div><div>33430</div><div>15</div></td><td class="s">use namespace::clean;</td></tr>
-<tr><td class="h">20</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L20">5</a></div></td><td><div>500</div><div>6</div><div>110</div></td><td class="s">use Carp;</td></tr>
-<tr><td class="h">21</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L21">5</a></div></td><td><div>1226</div><div>1004692</div><div>167</div></td><td class="s">use DateTime::Format::Natural;</td></tr>
-<tr><td class="h">22</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L22">5</a></div></td><td><div>1363</div><div>607649</div><div>103</div></td><td class="s">use Genealogy::Gedcom::Date 2.01;</td></tr>
-<tr><td class="h">23</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L23">5</a></div></td><td><div>1175</div><div>76189</div><div>138</div></td><td class="s">use Params::Get 0.13;</td></tr>
-<tr><td class="h">24</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L24">5</a></div></td><td><div>1001</div><div>7179</div><div>371</div></td><td class="s">use Readonly::Values::Months 0.02 qw(@short_month_names);</td></tr>
-<tr><td class="h">25</td><td><div class="c3">5</div><div class="c3">5</div><div class="c3">5</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L25">5</a></div></td><td><div>14</div><div>4</div><div>4898</div></td><td class="s">use Scalar::Util;</td></tr>
-<tr><td class="h">26</td><td colspan="6"></td></tr><tr><td class="h">27</td><td></td><td></td><td></td><td></td><td></td><td class="s">our %months = (</td></tr>
-<tr><td class="h">28</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;January&#39; =&gt; &#39;Jan&#39;,</td></tr>
-<tr><td class="h">29</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;February&#39; =&gt; &#39;Feb&#39;,</td></tr>
-<tr><td class="h">30</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;March&#39; =&gt; &#39;Mar&#39;,</td></tr>
-<tr><td class="h">31</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;April&#39; =&gt; &#39;Apr&#39;,</td></tr>
-<tr><td class="h">32</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# &#39;May&#39; =&gt; &#39;May&#39;,</td></tr>
-<tr><td class="h">33</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;June&#39; =&gt; &#39;Jun&#39;,</td></tr>
-<tr><td class="h">34</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;July&#39; =&gt; &#39;Jul&#39;,</td></tr>
-<tr><td class="h">35</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;August&#39; =&gt; &#39;Aug&#39;,</td></tr>
-<tr><td class="h">36</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;September&#39; =&gt; &#39;Sep&#39;,</td></tr>
-<tr><td class="h">37</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Sept&#39; =&gt; &#39;Sep&#39;,</td></tr>
-<tr><td class="h">38</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Sept.&#39; =&gt; &#39;Sep&#39;,</td></tr>
-<tr><td class="h">39</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;October&#39; =&gt; &#39;Oct&#39;,</td></tr>
-<tr><td class="h">40</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;November&#39; =&gt; &#39;Nov&#39;,</td></tr>
-<tr><td class="h">41</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;December&#39; =&gt; &#39;Dec&#39;</td></tr>
-<tr><td class="h">42</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
-<tr><td class="h">43</td><td colspan="6"></td></tr><tr><td class="h">44 - 52</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
+<tr><td class="h">7</td><td colspan="6"></td></tr><tr><td class="h">8</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L8">11</a></div></td><td><div>897600</div><div>11</div><div>136</div></td><td class="s">use strict;</td></tr>
+<tr><td class="h">9</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L9">11</a></div></td><td><div>17</div><div>9</div><div>194</div></td><td class="s">use warnings;</td></tr>
+<tr><td class="h">10</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L10">11</a></div></td><td><div>1156</div><div>35864</div><div>22</div></td><td class="s">use autodie qw(:all);</td></tr>
+<tr><td class="h">11</td><td><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L11">11</a></div></td><td><div>53379</div><div>37</div></td><td class="s">use 5.006_001;</td></tr>
+<tr><td class="h">12</td><td colspan="6"></td></tr><tr><td class="h">13</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Sub::Private in &#39;enforce&#39; mode makes calling private subs from outside the</td></tr>
+<tr><td class="h">14</td><td></td><td></td><td></td><td></td><td></td><td class="s"># package a runtime error.&nbsp;&nbsp;HARNESS_ACTIVE (set by prove/make test) or</td></tr>
+<tr><td class="h">15</td><td></td><td></td><td></td><td></td><td></td><td class="s"># $Sub::Private::BYPASS suppress enforcement so white-box tests can still</td></tr>
+<tr><td class="h">16</td><td></td><td></td><td></td><td></td><td></td><td class="s"># reach private helpers directly.</td></tr>
+<tr><td class="h">17</td><td><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L17">11</a></div></td><td><div>106</div></td><td class="s">BEGIN { $Sub::Private::config{mode} = &#39;enforce&#39; }</td></tr>
+<tr><td class="h">18</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L18">11</a></div></td><td><div>2307</div><div>286546</div><div>29</div></td><td class="s">use Sub::Private;</td></tr>
+<tr><td class="h">19</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L19">11</a></div></td><td><div>3164</div><div>39272</div><div>32</div></td><td class="s">use Sub::Protected;</td></tr>
+<tr><td class="h">20</td><td colspan="6"></td></tr><tr><td class="h">21</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L21">11</a></div></td><td><div>942</div><div>11</div><div>30</div></td><td class="s">use namespace::clean;</td></tr>
+<tr><td class="h">22</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L22">11</a></div></td><td><div>3234</div><div>11</div><div>243</div></td><td class="s">use Carp;</td></tr>
+<tr><td class="h">23</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L23">11</a></div></td><td><div>2577</div><div>2188939</div><div>375</div></td><td class="s">use DateTime::Format::Natural;</td></tr>
+<tr><td class="h">24</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L24">11</a></div></td><td><div>2639</div><div>1362642</div><div>217</div></td><td class="s">use Genealogy::Gedcom::Date 2.01;</td></tr>
+<tr><td class="h">25</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L25">11</a></div></td><td><div>3002</div><div>346502</div><div>239</div></td><td class="s">use Object::Configure 0.19;</td></tr>
+<tr><td class="h">26</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L26">11</a></div></td><td><div>41</div><div>71</div><div>225</div></td><td class="s">use Params::Get 0.13;</td></tr>
+<tr><td class="h">27</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L27">11</a></div></td><td><div>25</div><div>9</div><div>226</div></td><td class="s">use Params::Validate::Strict qw(validate_strict);</td></tr>
+<tr><td class="h">28</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L28">11</a></div></td><td><div>17</div><div>12</div><div>197</div></td><td class="s">use Readonly;</td></tr>
+<tr><td class="h">29</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L29">11</a></div></td><td><div>2028</div><div>6372</div><div>588</div></td><td class="s">use Readonly::Values::Months 0.02 qw(@short_month_names);</td></tr>
+<tr><td class="h">30</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L30">11</a></div></td><td><div>26</div><div>12</div><div>10431</div></td><td class="s">use Scalar::Util;</td></tr>
+<tr><td class="h">31</td><td colspan="6"></td></tr><tr><td class="h">32</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">33</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Compile-time constants</td></tr>
+<tr><td class="h">34</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">35</td><td colspan="6"></td></tr><tr><td class="h">36</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Map non-standard (long, abbreviated, or French/German) month names to the</td></tr>
+<tr><td class="h">37</td><td></td><td></td><td></td><td></td><td></td><td class="s"># 3-letter GEDCOM abbreviation.&nbsp;&nbsp;Not exported; callers must use parse_datetime.</td></tr>
+<tr><td class="h">38</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly my %MONTH_ALIAS =&gt; (</td></tr>
+<tr><td class="h">39</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;January&#39;&nbsp;&nbsp;&nbsp;=&gt; &#39;Jan&#39;,</td></tr>
+<tr><td class="h">40</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;February&#39;&nbsp;&nbsp;=&gt; &#39;Feb&#39;,</td></tr>
+<tr><td class="h">41</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;March&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Mar&#39;,</td></tr>
+<tr><td class="h">42</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;April&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Apr&#39;,</td></tr>
+<tr><td class="h">43</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;June&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Jun&#39;,</td></tr>
+<tr><td class="h">44</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;July&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Jul&#39;,</td></tr>
+<tr><td class="h">45</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;August&#39;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Aug&#39;,</td></tr>
+<tr><td class="h">46</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;September&#39; =&gt; &#39;Sep&#39;,</td></tr>
+<tr><td class="h">47</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;October&#39;&nbsp;&nbsp;&nbsp;=&gt; &#39;Oct&#39;,</td></tr>
+<tr><td class="h">48</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;November&#39;&nbsp;&nbsp;=&gt; &#39;Nov&#39;,</td></tr>
+<tr><td class="h">49</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;December&#39;&nbsp;&nbsp;=&gt; &#39;Dec&#39;,</td></tr>
+<tr><td class="h">50</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Common non-standard abbreviations for September</td></tr>
+<tr><td class="h">51</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Sept&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Sep&#39;,</td></tr>
+<tr><td class="h">52</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# French and German month variants found in real genealogical trees.</td></tr>
+<tr><td class="h">53</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# &#39;Janv&#39; = French abbreviation for janvier (January).</td></tr>
+<tr><td class="h">54</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# &#39;Juli&#39; = German July / occasional French variant.</td></tr>
+<tr><td class="h">55</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# &#39;Mai&#39;&nbsp;&nbsp;= French for May (3 letters, handled here to avoid a separate branch).</td></tr>
+<tr><td class="h">56</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Janv&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Jan&#39;,</td></tr>
+<tr><td class="h">57</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Juli&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Jul&#39;,</td></tr>
+<tr><td class="h">58</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Mai&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;May&#39;,</td></tr>
+<tr><td class="h">59</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
+<tr><td class="h">60</td><td colspan="6"></td></tr><tr><td class="h">61</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Julian-to-Gregorian day offset tiers.&nbsp;&nbsp;Each pair is [boundary_year, offset].</td></tr>
+<tr><td class="h">62</td><td></td><td></td><td></td><td></td><td></td><td class="s"># The gap widened by 1 day at each century mark after 1582:</td></tr>
+<tr><td class="h">63</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;10 days: 5 Oct 1582 to 28 Feb 1700</td></tr>
+<tr><td class="h">64</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;11 days: 1 Mar 1700 to 28 Feb 1800</td></tr>
+<tr><td class="h">65</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;12 days: 1 Mar 1800 to 28 Feb 1900</td></tr>
+<tr><td class="h">66</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;13 days: 1 Mar 1900 onwards (catch-all, coded as literal 13 in the helper)</td></tr>
+<tr><td class="h">67</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly my @JULIAN_OFFSET_TIERS =&gt; ([1700, 10], [1800, 11], [1900, 12]);</td></tr>
+<tr><td class="h">68</td><td colspan="6"></td></tr><tr><td class="h">69</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Accepted parameter schema for parse_datetime, used by Params::Validate::Strict</td></tr>
+<tr><td class="h">70</td><td></td><td></td><td></td><td></td><td></td><td class="s"># to reject unknown keys (typos, stale callers) at runtime.</td></tr>
+<tr><td class="h">71</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly my %PARSE_DATETIME_SCHEMA =&gt; (</td></tr>
+<tr><td class="h">72</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;=&gt; { type =&gt; &#39;scalar&#39;, optional =&gt; 1 },</td></tr>
+<tr><td class="h">73</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quiet&nbsp;&nbsp;=&gt; { type =&gt; &#39;scalar&#39;, optional =&gt; 1 },</td></tr>
+<tr><td class="h">74</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strict =&gt; { type =&gt; &#39;scalar&#39;, optional =&gt; 1 },</td></tr>
+<tr><td class="h">75</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
+<tr><td class="h">76</td><td colspan="6"></td></tr><tr><td class="h">77 - 85</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
 
-DateTime::Format::Genealogy - Create a DateTime object from a Genealogy Date
+DateTime::Format::Genealogy - Create a DateTime object from a genealogy date string
 
 =head1 VERSION
 
 Version 0.12
 
 =cut</pre></td></tr>
-<tr><td class="h">53</td><td colspan="6"></td></tr><tr><td class="h">54</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $VERSION = &#39;0.12&#39;;</td></tr>
-<tr><td class="h">55</td><td colspan="6"></td></tr><tr><td class="h">56 - 71</td><td colspan="5"></td><td class="s"><pre>=head1 SYNOPSIS
+<tr><td class="h">86</td><td colspan="6"></td></tr><tr><td class="h">87</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $VERSION = &#39;0.12&#39;;</td></tr>
+<tr><td class="h">88</td><td colspan="6"></td></tr><tr><td class="h">89 - 146</td><td colspan="5"></td><td class="s"><pre>=head1 SYNOPSIS
 
-C&lt;DateTime::Format::Genealogy&gt; is a Perl module designed to parse genealogy-style date formats and convert them into L&lt;DateTime&gt; objects.
-It uses L&lt;Genealogy::Gedcom::Date&gt; to parse dates commonly found in genealogical records while also handling date ranges and approximate dates.
+C&lt;DateTime::Format::Genealogy&gt; is a Perl module designed to parse genealogy-style
+date strings (primarily GEDCOM format) and convert them into L&lt;DateTime&gt; objects.
+It wraps L&lt;Genealogy::Gedcom::Date&gt; and L&lt;DateTime::Format::Natural&gt;, adds GEDCOM
+calendar-escape handling, and accepts common non-standard month names found in
+exported genealogical trees.
 
 &nbsp;&nbsp;&nbsp;&nbsp;use DateTime::Format::Genealogy;
 &nbsp;&nbsp;&nbsp;&nbsp;my $dtg = DateTime::Format::Genealogy-&gt;new();
-&nbsp;&nbsp;&nbsp;&nbsp;# ...
+&nbsp;&nbsp;&nbsp;&nbsp;my $dt&nbsp;&nbsp;= $dtg-&gt;parse_datetime(&#39;25 Dec 2022&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;print $dt-&gt;dmy;&nbsp;&nbsp;# 25-12-2022
 
 =head1 SUBROUTINES/METHODS
 
 =head2 new
 
-Creates a DateTime::Format::Genealogy object.
+Creates or clones a C&lt;DateTime::Format::Genealogy&gt; object.
+
+=head3 EXAMPLE
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Bare construction
+&nbsp;&nbsp;&nbsp;&nbsp;my $dtg = DateTime::Format::Genealogy-&gt;new();
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Construction with flags stored on the object
+&nbsp;&nbsp;&nbsp;&nbsp;my $dtg_quiet = DateTime::Format::Genealogy-&gt;new(quiet =&gt; 1, strict =&gt; 1);
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Clone with an override (inherits quiet =&gt; 1, overrides strict)
+&nbsp;&nbsp;&nbsp;&nbsp;my $clone = $dtg_quiet-&gt;new(strict =&gt; 0);
+
+=head3 API SPECIFICATION
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Input (hash or hashref, all keys optional):
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quiet&nbsp;&nbsp;=&gt; $bool,&nbsp;&nbsp;# suppress carp in internal helpers
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strict =&gt; $bool,&nbsp;&nbsp;# enforce 3-letter GEDCOM month abbreviations
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Any extra keys from Object::Configure are also accepted.
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Output: blessed DateTime::Format::Genealogy object
+
+=head3 MESSAGES
+
+This method does not emit any diagnostics directly.
+
+=head3 PSEUDOCODE
+
+&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION new(class, *args):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params = get_params(undef, args)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF class is not defined:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class = __PACKAGE__
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE IF class is already an object (blessed):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN bless( merge(class.attrs, params), ref(class) )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params = configure(class, params)&nbsp;&nbsp;&nbsp;# merge any config-file settings
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN bless(params, class)
+&nbsp;&nbsp;&nbsp;&nbsp;END FUNCTION
 
 =cut</pre></td></tr>
-<tr><td class="h">72</td><td colspan="6"></td></tr><tr><td class="h">73</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub new</td></tr>
-<tr><td class="h">74</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">75</td><td><div class="c3">23</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L75">23</a></div></td><td><div>432654</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = shift;</td></tr>
-<tr><td class="h">76</td><td colspan="6"></td></tr><tr><td class="h">77</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Handle hash or hashref arguments</td></tr>
-<tr><td class="h">78</td><td><div class="c3">23</div></td><td></td><td></td><td></td><td><div>24</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my %args;</td></tr>
-<tr><td class="h">79</td><td><div class="c3">23</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L79">100</a></div><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L79">50</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L79">67</a></div></td><td></td><td><div>76</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((@_ == 1) &amp;&amp; (ref $_[0] eq &#39;HASH&#39;)) {</td></tr>
-<tr><td class="h">80</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# If the first argument is a hash reference, dereference it</td></tr>
-<tr><td class="h">81</td><td><div class="c3">1</div><div class="c3">1</div></td><td></td><td></td><td></td><td><div>1</div><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%args = %{$_[0]};</td></tr>
-<tr><td class="h">82</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif((@_ % 2) == 0) {</td></tr>
-<tr><td class="h">83</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# If there is an even number of arguments, treat them as key-value pairs</td></tr>
-<tr><td class="h">84</td><td><div class="c3">22</div></td><td></td><td></td><td></td><td><div>35</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%args = @_;</td></tr>
-<tr><td class="h">85</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
-<tr><td class="h">86</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# If there is an odd number of arguments, treat it as an error</td></tr>
-<tr><td class="h">87</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carp(__PACKAGE__, &#39;: Invalid arguments passed to new()&#39;);</td></tr>
-<tr><td class="h">88</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">89</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">90</td><td colspan="6"></td></tr><tr><td class="h">91</td><td><div class="c3">23</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L91">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L91">100</a></div></td><td></td><td></td><td><div>54</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($class)) {</td></tr>
-<tr><td class="h">92</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# FIXME: this only works when no arguments are given</td></tr>
-<tr><td class="h">93</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$class = __PACKAGE__;</td></tr>
-<tr><td class="h">94</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(Scalar::Util::blessed($class)) {</td></tr>
-<tr><td class="h">95</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# If $class is an object, clone it with new arguments</td></tr>
-<tr><td class="h">96</td><td><div class="c3">2</div><div class="c3">2</div></td><td></td><td></td><td></td><td><div>2</div><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { %{$class}, %args }, ref($class);</td></tr>
-<tr><td class="h">97</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">98</td><td colspan="6"></td></tr><tr><td class="h">99</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Return the blessed object</td></tr>
-<tr><td class="h">100</td><td><div class="c3">21</div></td><td></td><td></td><td></td><td><div>54</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { %args }, $class;</td></tr>
-<tr><td class="h">101</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">102</td><td colspan="6"></td></tr><tr><td class="h">103 - 146</td><td colspan="5"></td><td class="s"><pre>=head2 parse_datetime($string)
+<tr><td class="h">147</td><td colspan="6"></td></tr><tr><td class="h">148</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub new</td></tr>
+<tr><td class="h">149</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">150</td><td><div class="c3">193</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L150">193</a></div></td><td><div>1500386</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = shift;</td></tr>
+<tr><td class="h">151</td><td colspan="6"></td></tr><tr><td class="h">152</td><td><div class="c3">193</div></td><td></td><td></td><td></td><td><div>639</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = Params::Get::get_params(undef, \@_);</td></tr>
+<tr><td class="h">153</td><td colspan="6"></td></tr><tr><td class="h">154</td><td><div class="c3">193</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L154">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L154">100</a></div></td><td></td><td></td><td><div>2545</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($class)) {</td></tr>
+<tr><td class="h">155</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Called as DateTime::Format::Genealogy::new() with no invocant;</td></tr>
+<tr><td class="h">156</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# default to the package name so bless still works.</td></tr>
+<tr><td class="h">157</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>3</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$class = __PACKAGE__;</td></tr>
+<tr><td class="h">158</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(Scalar::Util::blessed($class)) {</td></tr>
+<tr><td class="h">159</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Invocant is an existing object: clone it and overlay any new params.</td></tr>
+<tr><td class="h">160</td><td><div class="c3">9</div><div class="c3">9</div><div class="c3">5</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L160">100</a></div></td><td></td><td></td><td><div>10</div><div>20</div><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { %{$class}, ($params ? %{$params} : ()) }, ref($class);</td></tr>
+<tr><td class="h">161</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">162</td><td colspan="6"></td></tr><tr><td class="h">163</td><td><div class="c3">184</div></td><td></td><td></td><td></td><td><div>483</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$params = Object::Configure::configure($class, $params);</td></tr>
+<tr><td class="h">164</td><td><div class="c3">184</div></td><td></td><td></td><td></td><td><div>514680</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless $params, $class;</td></tr>
+<tr><td class="h">165</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">166</td><td colspan="6"></td></tr><tr><td class="h">167 - 388</td><td colspan="5"></td><td class="s"><pre>=head2 parse_datetime
 
-Given a date,
-runs it through L&lt;Genealogy::Gedcom::Date&gt; to create a L&lt;DateTime&gt; object.
-If a date range is given, return a two-element array in array context, or undef in scalar context
+Parses a genealogy-style date string and returns a L&lt;DateTime&gt; object.
 
-Returns undef if the date can&#39;t be parsed,
-is before AD100,
-is just a year or,
-if it is an approximate date starting with &quot;c&quot;, &quot;ca&quot; or &quot;abt&quot;.
-Can be called as a class or object method.
+Recognises GEDCOM calendar escapes (C&lt;@#DJULIAN@&gt;, C&lt;@#DHEBREW@&gt;,
+C&lt;@#DFRENCH R@&gt;) and converts them via the appropriate calendar module when
+available.
 
-&nbsp;&nbsp;&nbsp;&nbsp;my $dt = DateTime::Format::Genealogy-&gt;new()-&gt;parse_datetime(&#39;25 Dec 2022&#39;);
+Can be called as a class method, an object method, or a bare function.
 
-Recognizes GEDCOM calendar escapes such as @#DJULIAN@, @#DHEBREW@, and @#DFRENCH R@,
-converting them to DateTime objects when the appropriate calendar modules are installed.
+Returns:
 
-Mandatory arguments:
+=over 4
+
+=item *
+
+A single L&lt;DateTime&gt; object for exact, parseable dates.
+
+=item *
+
+A two-element list of L&lt;DateTime&gt; objects in I&lt;list&gt; context when the date
+string is a range (C&lt;bet X and Y&gt; / C&lt;from X to Y&gt;).
+
+=item *
+
+C&lt;undef&gt; (scalar) or the empty list (list context) when the date cannot be
+parsed, is a year-only string, is prefixed with an approximation keyword
+(C&lt;bef&gt;, C&lt;aft&gt;, C&lt;abt&gt;), or represents a date before AD 100.
+
+=back
+
+Mandatory argument:
 
 =over 4
 
 =item * C&lt;date&gt;
 
-The date to be parsed.
+The date string to parse.
 
 =back
 
-Optional arguments:
+Optional arguments (may be set at construction time and/or overridden
+per-call; per-call values take precedence):
 
 =over 4
 
 =item * C&lt;quiet&gt;
 
-Set to fail silently if there is an error with the date.
+Suppress L&lt;Carp&gt; warnings on unparseable or approximate dates.
 
 =item * C&lt;strict&gt;
 
-More strictly enforce the Gedcom standard,
-for example,
-don&#39;t allow long month names.
+Enforce the GEDCOM standard: only 3-letter month abbreviations (C&lt;Jan&gt;,
+C&lt;Feb&gt;, ...) are accepted.&nbsp;&nbsp;Long English names and French/German variants
+are rejected.
 
 =back
 
+=head3 EXAMPLE
+
+&nbsp;&nbsp;&nbsp;&nbsp;my $dtg = DateTime::Format::Genealogy-&gt;new();
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Simple exact date
+&nbsp;&nbsp;&nbsp;&nbsp;my $dt = $dtg-&gt;parse_datetime(&#39;25 Dec 2022&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;print $dt-&gt;dmy;&nbsp;&nbsp;# 25-12-2022
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Date range (list context)
+&nbsp;&nbsp;&nbsp;&nbsp;my ($start, $end) = $dtg-&gt;parse_datetime(&#39;bet 1 Sep 1939 and 2 Sep 1945&#39;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;# GEDCOM calendar escape
+&nbsp;&nbsp;&nbsp;&nbsp;my $julian = $dtg-&gt;parse_datetime(&#39;@#DJULIAN@ 15 Mar 1620&#39;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Class-method form (no constructor required)
+&nbsp;&nbsp;&nbsp;&nbsp;my $dt2 = DateTime::Format::Genealogy-&gt;parse_datetime(&#39;1 Jan 2000&#39;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Long month name (non-strict only)
+&nbsp;&nbsp;&nbsp;&nbsp;my $dt3 = $dtg-&gt;parse_datetime(&#39;12 June 2020&#39;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;# French month variant (non-strict only)
+&nbsp;&nbsp;&nbsp;&nbsp;my $dt4 = $dtg-&gt;parse_datetime(&#39;21 Mai 1681&#39;);
+
+=head3 API SPECIFICATION
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Input (hash or hashref):
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;=&gt; $string,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# required (non-ref, non-empty)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quiet&nbsp;&nbsp;=&gt; $bool,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# optional; falls back to $self-&gt;{&#39;quiet&#39;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strict =&gt; $bool,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# optional; falls back to $self-&gt;{&#39;strict&#39;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;# Return values:
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;DateTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exact parseable date
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;(DateTime, DateTime)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date range (list context only)
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;undef / ()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unparseable, approximate, or year-only
+
+=head3 MESSAGES
+
+=over 4
+
+=item C&lt;&lt; Usage: DateTime::Format::Genealogy::parse_datetime(date =&gt; $date) &gt;&gt;
+
+Thrown (croak) when no arguments are supplied or when the C&lt;date&gt; value is
+undef or a reference.
+
+=item C&lt;&lt; Invalid parse_datetime parameters: ... &gt;&gt;
+
+Thrown (croak) when an unknown parameter key is passed (e.g. a typo).
+
+=item C&lt;&lt; $date is invalid, need an exact date to create a DateTime &gt;&gt;
+
+Warned (carp) when the date begins with an approximation prefix (C&lt;bef&gt;,
+C&lt;aft&gt;, C&lt;abt&gt;).&nbsp;&nbsp;Silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; $date is invalid, there are only 30 days in November &gt;&gt;
+
+Warned (carp) for the impossible date C&lt;31 Nov&gt;.&nbsp;&nbsp;Always emitted; not
+silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; Changing date &#39;$original&#39; to &#39;$new&#39; &gt;&gt;
+
+Warned (carp) when a date is automatically rewritten (ISO dash format or
+dash-separated range).&nbsp;&nbsp;Silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; Unparseable date $date - often because the month name isn&#39;t 3 letters &gt;&gt;
+
+Warned (carp) in strict mode for non-3-letter months, or in non-strict mode
+for unrecognised long month names.&nbsp;&nbsp;Silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; $dfn_error_string &gt;&gt;
+
+Warned (carp) when L&lt;DateTime::Format::Natural&gt; rejects the date string.
+Silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; Hebrew calendar conversion failed: ... &gt;&gt;
+
+Warned (carp) when L&lt;DateTime::Calendar::Hebrew&gt; is unavailable or throws.
+Silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; French Republican calendar conversion failed: ... &gt;&gt;
+
+Warned (carp) when L&lt;DateTime::Calendar::FrenchRevolutionary&gt; is unavailable
+or throws.&nbsp;&nbsp;Silenced by C&lt;quiet&gt;.
+
+=item C&lt;&lt; Calendar type $type not supported &gt;&gt;
+
+Warned (carp) for GEDCOM calendar escapes other than GREGORIAN, JULIAN,
+HEBREW, and FRENCH R.&nbsp;&nbsp;Silenced by C&lt;quiet&gt;.
+
+=back
+
+=head3 PSEUDOCODE
+
+&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION parse_datetime(self, *args):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Dispatch class/function/hash-invocant calls to an object instance
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF self is not a reference:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN new()-&gt;parse_datetime(args or self)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF ref(self) == &#39;HASH&#39;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN new()-&gt;parse_datetime(self)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABORT unless args non-empty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params = get_params(&#39;date&#39;, args)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABORT on unknown keys (validate_strict)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;= params.date
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quiet&nbsp;&nbsp;= params.quiet&nbsp;&nbsp;// self.quiet
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strict = params.strict // self.strict
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABORT unless date is defined, non-empty, and not a reference
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Strip GEDCOM calendar escape if present
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ s/^@#D([A-Z ]+?)@\s*//: calendar_type = &#39;D&#39; + uc(match)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Reject approximate/relative dates
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ /^(bef|aft|abt)\s/i: CARP and RETURN undef
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Reject calendar impossibilities
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ /^31\s+Nov/: CARP and RETURN undef
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Rewrite dash-separated ranges and ISO dates
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ /X - Y/:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ /YYYY-MM-DD/: REFORMAT to &quot;DD Mon YYYY&quot; (carp)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE: REFORMAT to &quot;bet X and Y&quot; (carp)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Dispatch ranges to recursive calls
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ /^bet X and Y/i:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN (parse_datetime(X), parse_datetime(Y)) IF wantarray
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN undef
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF !strict AND date =~ /^from X to Y/i:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN (parse_datetime(X), parse_datetime(Y)) IF wantarray
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN undef
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Normalise non-standard month names (non-strict mode only)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF !strict:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date =~ DD + Aout + YYYY (French non-ASCII August):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REWRITE month to &#39;Aug&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE IF date =~ /DD LONG_OR_VARIANT YYYY/:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lookup = MONTH_ALIAS{ucfirst(lc(month))}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF lookup: REWRITE month to lookup
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE IF month is more than 3 letters: CARP and RETURN undef
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- 3-letter unknown months fall through unchanged to the parser
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Parse with Genealogy::Gedcom::Date (cached) then DateTime::Format::Natural
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date starts with digit:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d = _date_parser_cached(date)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF d defined:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN undef if date ends with year-only (&lt; AD100 guard)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc = DateTime::Format::Natural-&gt;parse_datetime(d.canonical)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF calendar_type != DGREGORIAN:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc = _convert_calendar(rc, calendar_type, quiet)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN rc
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Fallback: try DateTime::Format::Natural directly on the raw string
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF date not ~= /^(Abt|ca?)/i AND date =~ /^[\w\s,]+$/:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc = DateTime::Format::Natural-&gt;parse_datetime(date)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF rc AND success: RETURN rc
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE: CARP error
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN undef
+&nbsp;&nbsp;&nbsp;&nbsp;END FUNCTION
+
 =cut</pre></td></tr>
-<tr><td class="h">147</td><td colspan="6"></td></tr><tr><td class="h">148</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub parse_datetime {</td></tr>
-<tr><td class="h">149</td><td><div class="c3">68</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L149">68</a></div></td><td><div>17393</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
-<tr><td class="h">150</td><td colspan="6"></td></tr><tr><td class="h">151</td><td><div class="c3">68</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L151">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L151">100</a></div></td><td></td><td></td><td><div>166</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!ref($self)) {</td></tr>
-<tr><td class="h">152</td><td><div class="c3">11</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L152">100</a></div></td><td></td><td></td><td><div>21</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(scalar(@_)) {</td></tr>
-<tr><td class="h">153</td><td><div class="c3">7</div></td><td></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(__PACKAGE__-&gt;new()-&gt;parse_datetime(@_));</td></tr>
-<tr><td class="h">154</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">155</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>14</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(__PACKAGE__-&gt;new()-&gt;parse_datetime($self));</td></tr>
-<tr><td class="h">156</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(ref($self) eq &#39;HASH&#39;) {</td></tr>
-<tr><td class="h">157</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>11</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(__PACKAGE__-&gt;new()-&gt;parse_datetime($self));</td></tr>
-<tr><td class="h">158</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">159</td><td colspan="6"></td></tr><tr><td class="h">160</td><td><div class="c3">56</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L160">100</a></div></td><td></td><td></td><td><div>101</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;::parse_datetime(date =&gt; $date)&#39;) unless scalar(@_);</td></tr>
-<tr><td class="h">161</td><td colspan="6"></td></tr><tr><td class="h">162</td><td><div class="c3">54</div></td><td></td><td></td><td></td><td><div>126</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = Params::Get::get_params(&#39;date&#39;, @_);</td></tr>
-<tr><td class="h">163</td><td colspan="6"></td></tr><tr><td class="h">164</td><td><div class="c3">54</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L164">100</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L164">67</a></div></td><td></td><td><div>1142</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((!ref($params-&gt;{&#39;date&#39;})) &amp;&amp; (my $date = $params-&gt;{&#39;date&#39;})) {</td></tr>
-<tr><td class="h">165</td><td><div class="c3">52</div></td><td></td><td></td><td></td><td><div>70</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $quiet = $params-&gt;{&#39;quiet&#39;};</td></tr>
-<tr><td class="h">166</td><td colspan="6"></td></tr><tr><td class="h">167</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Detect GEDCOM calendar escape</td></tr>
-<tr><td class="h">168</td><td><div class="c3">52</div></td><td></td><td></td><td></td><td><div>52</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $calendar_type = &#39;DGREGORIAN&#39;;</td></tr>
-<tr><td class="h">169</td><td><div class="c3">52</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L169">100</a></div></td><td></td><td></td><td><div>100</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($date =~ s/^@#D([A-Z ]+?)@\s*//) {</td></tr>
-<tr><td class="h">170</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$calendar_type = &#39;D&#39; . uc($1);&nbsp;&nbsp;# normalise</td></tr>
-<tr><td class="h">171</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">172</td><td colspan="6"></td></tr><tr><td class="h">173</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# TODO: Needs much more sanity checking</td></tr>
-<tr><td class="h">174</td><td><div class="c3">52</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L174">100</a></div></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L174">100</a></div></td><td></td><td><div>240</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i) || ($date =~ /^abt\s/i)) {</td></tr>
-<tr><td class="h">175</td><td><div class="c3">6</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L175">100</a></div></td><td></td><td></td><td><div>30</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;$date is invalid, need an exact date to create a DateTime&quot;)</td></tr>
-<tr><td class="h">176</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless($quiet);</td></tr>
-<tr><td class="h">177</td><td><div class="c3">6</div></td><td></td><td></td><td></td><td><div>906</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">178</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">179</td><td><div class="c3">46</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L179">100</a></div></td><td></td><td></td><td><div>92</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^31\s+Nov/) {</td></tr>
-<tr><td class="h">180</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;$date is invalid, there are only 30 days in November&quot;);</td></tr>
-<tr><td class="h">181</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>338</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">182</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">183</td><td><div class="c3">44</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L183">100</a></div></td><td></td><td></td><td><div>80</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {</td></tr>
-<tr><td class="h">184</td><td><div class="c3">5</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L184">100</a></div></td><td></td><td></td><td><div>14</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) {</td></tr>
-<tr><td class="h">185</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $month = ucfirst($short_month_names[$2 - 1]);</td></tr>
-<tr><td class="h">186</td><td><div class="c3">3</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L186">50</a></div></td><td></td><td></td><td><div>39</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Changing date &#39;$date&#39; to &#39;$3 $month $1&#39;&quot;) unless($quiet);</td></tr>
-<tr><td class="h">187</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>462</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$3 $month $1&quot;;</td></tr>
-<tr><td class="h">188</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
-<tr><td class="h">189</td><td><div class="c3">2</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L189">50</a></div></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Changing date &#39;$date&#39; to &#39;bet $1 and $2&#39;&quot;) unless($quiet);</td></tr>
-<tr><td class="h">190</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>290</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;bet $1 and $2&quot;;</td></tr>
-<tr><td class="h">191</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">192</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">193</td><td><div class="c3">44</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L193">100</a></div></td><td></td><td></td><td><div>84</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^bet (.+) and (.+)/i) {</td></tr>
-<tr><td class="h">194</td><td><div class="c3">4</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L194">100</a></div></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(wantarray) {</td></tr>
-<tr><td class="h">195</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;parse_datetime($1), $self-&gt;parse_datetime($2);</td></tr>
-<tr><td class="h">196</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">197</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">198</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">199</td><td colspan="6"></td></tr><tr><td class="h">200</td><td><div class="c3">40</div></td><td></td><td></td><td></td><td><div>43</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $strict = $params-&gt;{&#39;strict&#39;};</td></tr>
-<tr><td class="h">201</td><td><div class="c3">40</div></td><td><div class="c0" title="-/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L201">50</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L201">67</a></div></td><td></td><td><div>117</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((!$strict) &amp;&amp; ($date =~ /^from (.+) to (.+)/i)) {</td></tr>
-<tr><td class="h">202</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L202">0</a></div></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(wantarray) {</td></tr>
-<tr><td class="h">203</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;parse_datetime($1), $self-&gt;parse_datetime($2);</td></tr>
-<tr><td class="h">204</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">205</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">206</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">207</td><td colspan="6"></td></tr><tr><td class="h">208</td><td><div class="c3">40</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L208">100</a></div></td><td></td><td></td><td><div>95</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date !~ /^\d{3,4}$/) {</td></tr>
-<tr><td class="h">209</td><td><div class="c3">39</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L209">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L209">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L209">100</a></div><div class="c0" title="-/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L209">50</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L209">100</a></div></td><td></td><td></td><td><div>223</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($strict) {</td></tr>
-<tr><td class="h">210</td><td><div class="c3">4</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L210">50</a></div></td><td></td><td></td><td><div>14</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date !~ /^(\d{1,2})\s+([A-Z]{3})\s+(\d{3,4})$/i) {</td></tr>
-<tr><td class="h">211</td><td><div class="c3">4</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L211">50</a></div></td><td></td><td></td><td><div>13</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Unparseable date $date - often because the month name isn&#39;t 3 letters&quot;) unless($quiet);</td></tr>
-<tr><td class="h">212</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>706</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">213</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">214</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\.?\s+(\d{3,4})$/i) {</td></tr>
-<tr><td class="h">215</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# FIXME: Doesn&#39;t include sept</td></tr>
-<tr><td class="h">216</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# if(my $abbrev = $month_names_to_short{lc($2)}) {</td></tr>
-<tr><td class="h">217</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# $abbrev = ucfirst($abbrev);</td></tr>
-<tr><td class="h">218</td><td><div class="c3">6</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L218">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L218">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L218">100</a></div></td><td></td><td></td><td><div>31</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(my $abbrev = $months{ucfirst(lc($2))}) {</td></tr>
-<tr><td class="h">219</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 $abbrev $3&quot;;</td></tr>
-<tr><td class="h">220</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($2 eq &#39;Janv&#39;) {</td></tr>
-<tr><td class="h">221</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# I&#39;ve seen a tree that uses some French months</td></tr>
-<tr><td class="h">222</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 Jan $3&quot;;</td></tr>
-<tr><td class="h">223</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($2 eq &#39;Juli&#39;) {</td></tr>
-<tr><td class="h">224</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 Jul $3&quot;;</td></tr>
-<tr><td class="h">225</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
-<tr><td class="h">226</td><td><div class="c3">1</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L226">50</a></div></td><td></td><td></td><td><div>5</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Unparseable date $date - often because the month name isn&#39;t 3 letters&quot;) unless($quiet);</td></tr>
-<tr><td class="h">227</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>213</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">228</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">229</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($date =~ /^(\d{1,2})\s+Mai\s+(\d{3,4})$/i) {</td></tr>
-<tr><td class="h">230</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# I&#39;ve seen a tree that uses some French months</td></tr>
-<tr><td class="h">231</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>3</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 May $2&quot;;</td></tr>
-<tr><td class="h">232</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($date =~ /^(\d{1,2})\s+Ao&Atilde;&raquo;t\s+(\d{3,4})$/i) {</td></tr>
-<tr><td class="h">233</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# I&#39;ve seen a tree that uses some French months</td></tr>
-<tr><td class="h">234</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 Aug $2&quot;;</td></tr>
-<tr><td class="h">235</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($date =~ /^(\d{1,2})\-([A-Z]{3})\-(\d{3,4})$/i) {</td></tr>
-<tr><td class="h">236</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 29-Aug-1938</td></tr>
-<tr><td class="h">237</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 $2 $3&quot;;</td></tr>
-<tr><td class="h">238</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">239</td><td colspan="6"></td></tr><tr><td class="h">240</td><td><div class="c3">34</div></td><td></td><td></td><td></td><td><div>39</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $dfn = $self-&gt;{&#39;dfn&#39;};</td></tr>
-<tr><td class="h">241</td><td><div class="c3">34</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L241">100</a></div></td><td></td><td></td><td><div>44</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($dfn)) {</td></tr>
-<tr><td class="h">242</td><td><div class="c3">15</div></td><td></td><td></td><td></td><td><div>60</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{&#39;dfn&#39;} = $dfn = DateTime::Format::Natural-&gt;new();</td></tr>
-<tr><td class="h">243</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">244</td><td><div class="c3">34</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L244">100</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L244">67</a></div></td><td></td><td><div>37286</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($date =~ /^\d/) &amp;&amp; (my $d = $self-&gt;_date_parser_cached($date))) {</td></tr>
-<tr><td class="h">245</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# D:T:Natural doesn&#39;t seem to work before AD100</td></tr>
-<tr><td class="h">246</td><td><div class="c3">30</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L246">100</a></div></td><td></td><td></td><td><div>68</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return if($date =~ /\s\d{1,2}$/);</td></tr>
-<tr><td class="h">247</td><td><div class="c3">29</div></td><td></td><td></td><td></td><td><div>98</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $rc = $dfn-&gt;parse_datetime($d-&gt;{&#39;canonical&#39;});</td></tr>
-<tr><td class="h">248</td><td colspan="6"></td></tr><tr><td class="h">249</td><td><div class="c3">29</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L249">100</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L249">67</a></div></td><td></td><td><div>210493</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($rc &amp;&amp; $calendar_type ne &#39;DGREGORIAN&#39;) {</td></tr>
-<tr><td class="h">250</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return _convert_calendar($rc, $calendar_type, $quiet);</td></tr>
-<tr><td class="h">251</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">252</td><td colspan="6"></td></tr><tr><td class="h">253</td><td><div class="c3">28</div></td><td></td><td></td><td></td><td><div>508</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $rc;</td></tr>
-<tr><td class="h">254</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">255</td><td><div class="c3">4</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L255">50</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L255">33</a></div></td><td></td><td><div>17</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($date !~ /^(Abt|ca?)/i) &amp;&amp; ($date =~ /^[\w\s,]+$/)) {</td></tr>
-<tr><td class="h">256</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ACOM exports full month names and non-standard format dates e.g. U.S. format MMM, DD YYYY</td></tr>
-<tr><td class="h">257</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# TODO: allow that when not in strict mode</td></tr>
-<tr><td class="h">258</td><td><div class="c3">4</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L258">50</a></div></td><td></td><td></td><td><div>9</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(my $rc = $dfn-&gt;parse_datetime($date)) {</td></tr>
-<tr><td class="h">259</td><td><div class="c3">4</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L259">100</a></div></td><td></td><td></td><td><div>7838</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($dfn-&gt;success()) {</td></tr>
-<tr><td class="h">260</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>17</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $rc;</td></tr>
-<tr><td class="h">261</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">262</td><td><div class="c3">3</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L262">50</a></div></td><td></td><td></td><td><div>35</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp($dfn-&gt;error()) unless($quiet);</td></tr>
-<tr><td class="h">263</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
-<tr><td class="h">264</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L264">0</a></div></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Can&#39;t parse date &#39;$date&#39;&quot;) unless($quiet);</td></tr>
-<tr><td class="h">265</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">266</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">267</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">268</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>564</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return; # undef</td></tr>
-<tr><td class="h">269</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">270</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;::parse_datetime(date =&gt; $date)&#39;);</td></tr>
-<tr><td class="h">271</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">272</td><td colspan="6"></td></tr><tr><td class="h">273</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Parse Gedcom format dates</td></tr>
-<tr><td class="h">274</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Genealogy::Gedcom::Date is expensive, so cache results</td></tr>
-<tr><td class="h">275</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _date_parser_cached</td></tr>
-<tr><td class="h">276</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">277</td><td><div class="c3">30</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L277">30</a></div></td><td><div>32</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
-<tr><td class="h">278</td><td><div class="c3">30</div></td><td></td><td></td><td></td><td><div>44</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = Params::Get::get_params(&#39;date&#39;, @_);</td></tr>
-<tr><td class="h">279</td><td><div class="c3">30</div></td><td></td><td></td><td></td><td><div>371</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $date = $params-&gt;{&#39;date&#39;};</td></tr>
-<tr><td class="h">280</td><td colspan="6"></td></tr><tr><td class="h">281</td><td><div class="c3">30</div></td><td><div class="c0" title="-/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L281">50</a></div></td><td></td><td></td><td><div>43</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: _date_parser_cached(date =&gt; $date)&#39;) unless defined $date;</td></tr>
-<tr><td class="h">282</td><td colspan="6"></td></tr><tr><td class="h">283</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Check and return if the date has already been parsed and cached</td></tr>
-<tr><td class="h">284</td><td><div class="c3">30</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L284">100</a></div></td><td></td><td></td><td><div>58</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;{&#39;all_dates&#39;}{$date} if exists $self-&gt;{&#39;all_dates&#39;}{$date};</td></tr>
-<tr><td class="h">285</td><td colspan="6"></td></tr><tr><td class="h">286</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Initialize the date parser if not already set</td></tr>
-<tr><td class="h">287</td><td><div class="c3">28</div></td><td></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L287">67</a></div></td><td></td><td><div>214</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $date_parser = $self-&gt;{&#39;date_parser&#39;} ||= Genealogy::Gedcom::Date-&gt;new();</td></tr>
-<tr><td class="h">288</td><td colspan="6"></td></tr><tr><td class="h">289</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Parse the date</td></tr>
-<tr><td class="h">290</td><td><div class="c3">28</div></td><td></td><td></td><td></td><td><div>1498118</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $parsed_date;</td></tr>
-<tr><td class="h">291</td><td><div class="c3">28</div></td><td></td><td></td><td></td><td><div>31</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval {</td></tr>
-<tr><td class="h">292</td><td><div class="c3">28</div></td><td></td><td></td><td></td><td><div>103</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$parsed_date = $date_parser-&gt;parse(date =&gt; $date);</td></tr>
-<tr><td class="h">293</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">294</td><td colspan="6"></td></tr><tr><td class="h">295</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Check for errors</td></tr>
-<tr><td class="h">296</td><td><div class="c3">28</div></td><td><div class="c0" title="-/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L296">50</a></div></td><td></td><td></td><td><div>291490</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(my $error = $date_parser-&gt;error()) {</td></tr>
-<tr><td class="h">297</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L297">0</a></div></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;$date: &#39;$error&#39;&quot;) unless $self-&gt;{&#39;quiet&#39;};</td></tr>
-<tr><td class="h">298</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">299</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">300</td><td colspan="6"></td></tr><tr><td class="h">301</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Cache and return the first parsed date if it&#39;s an array reference</td></tr>
-<tr><td class="h">302</td><td><div class="c3">28</div><div class="c3">28</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L302">50</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L302">33</a></div></td><td></td><td><div>158</div><div>69</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((ref($parsed_date) eq &#39;ARRAY&#39;) &amp;&amp; @{$parsed_date}) {</td></tr>
-<tr><td class="h">303</td><td><div class="c3">28</div></td><td></td><td></td><td></td><td><div>154</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;{&#39;all_dates&#39;}{$date} = $parsed_date-&gt;[0];</td></tr>
-<tr><td class="h">304</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">305</td><td colspan="6"></td></tr><tr><td class="h">306</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">307</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">308</td><td colspan="6"></td></tr><tr><td class="h">309</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _convert_calendar {</td></tr>
-<tr><td class="h">310</td><td><div class="c3">1</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L310">1</a></div></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($dt, $calendar_type, $quiet) = @_;</td></tr>
-<tr><td class="h">311</td><td colspan="6"></td></tr><tr><td class="h">312</td><td><div class="c3">1</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L312">50</a></div><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L312">0</a></div><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L312">0</a></div></td><td></td><td></td><td><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($calendar_type eq &#39;DJULIAN&#39;) {</td></tr>
-<tr><td class="h">313</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# In a Gedcom, DJULIAN refers to a date in the Julian calendar format, using the @#DJULIAN@ escape to indicate it</td></tr>
-<tr><td class="h">314</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Approximate historical offset</td></tr>
-<tr><td class="h">315</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $offset_days = _julian_to_gregorian_offset($dt-&gt;year);</td></tr>
-<tr><td class="h">316</td><td><div class="c3">1</div></td><td></td><td></td><td></td><td><div>2</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $dt-&gt;clone-&gt;add(days =&gt; $offset_days);</td></tr>
-<tr><td class="h">317</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif ($calendar_type eq &#39;DHEBREW&#39;) {</td></tr>
-<tr><td class="h">318</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval {</td></tr>
-<tr><td class="h">319</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require DateTime::Calendar::Hebrew;</td></tr>
-<tr><td class="h">320</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $h = DateTime::Calendar::Hebrew-&gt;new(</td></tr>
-<tr><td class="h">321</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year&nbsp;&nbsp;=&gt; $dt-&gt;year,</td></tr>
-<tr><td class="h">322</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month =&gt; $dt-&gt;month,</td></tr>
-<tr><td class="h">323</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;day&nbsp;&nbsp;&nbsp;=&gt; $dt-&gt;day</td></tr>
-<tr><td class="h">324</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
-<tr><td class="h">325</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return DateTime-&gt;from_object(object =&gt; $h);</td></tr>
-<tr><td class="h">326</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">327</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L327">0</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L327">0</a></div></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Hebrew calendar conversion failed: $@&quot;) if $@ &amp;&amp; !$quiet;</td></tr>
-<tr><td class="h">328</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif ($calendar_type =~ /FRENCH R/) {</td></tr>
-<tr><td class="h">329</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval {</td></tr>
-<tr><td class="h">330</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require DateTime::Calendar::FrenchRevolutionary;</td></tr>
-<tr><td class="h">331</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $f = DateTime::Calendar::FrenchRevolutionary-&gt;new(</td></tr>
-<tr><td class="h">332</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year&nbsp;&nbsp;=&gt; $dt-&gt;year,</td></tr>
-<tr><td class="h">333</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month =&gt; $dt-&gt;month,</td></tr>
-<tr><td class="h">334</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;day&nbsp;&nbsp;&nbsp;=&gt; $dt-&gt;day</td></tr>
-<tr><td class="h">335</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
-<tr><td class="h">336</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return DateTime-&gt;from_object(object =&gt; $f);</td></tr>
-<tr><td class="h">337</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">338</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L338">0</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L338">0</a></div></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;French Republican calendar conversion failed: $@&quot;) if $@ &amp;&amp; !$quiet;</td></tr>
-<tr><td class="h">339</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# e.g DROMAN</td></tr>
-<tr><td class="h">340</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L340">0</a></div></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Calendar type $calendar_type not supported&quot;) unless $quiet;</td></tr>
-<tr><td class="h">341</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">342</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td><div>0</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $dt;</td></tr>
-<tr><td class="h">343</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">344</td><td colspan="6"></td></tr><tr><td class="h">345</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _julian_to_gregorian_offset {</td></tr>
-<tr><td class="h">346</td><td><div class="c3">1</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L346">1</a></div></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $year = $_[0];</td></tr>
-<tr><td class="h">347</td><td colspan="6"></td></tr><tr><td class="h">348</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The gap widened over centuries:</td></tr>
-<tr><td class="h">349</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 10 days from 5 Oct 1582 to 28 Feb 1700</td></tr>
-<tr><td class="h">350</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 11 days from 1 Mar 1700 to 28 Feb 1800</td></tr>
-<tr><td class="h">351</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 12 days from 1 Mar 1800 to 28 Feb 1900</td></tr>
-<tr><td class="h">352</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 13 days from 1 Mar 1900 onwards</td></tr>
-<tr><td class="h">353</td><td colspan="6"></td></tr><tr><td class="h">354</td><td><div class="c3">1</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L354">50</a></div></td><td></td><td></td><td><div>1</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 10 if $year &lt; 1700;</td></tr>
-<tr><td class="h">355</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L355">0</a></div></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 11 if $year &lt; 1800;</td></tr>
-<tr><td class="h">356</td><td><div class="c0">0</div></td><td><div class="c0" title="-/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L356">0</a></div></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 12 if $year &lt; 1900;</td></tr>
-<tr><td class="h">357</td><td><div class="c0">0</div></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 13;</td></tr>
-<tr><td class="h">358</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">359</td><td colspan="6"></td></tr><tr><td class="h">360</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
-<tr><td class="h">361</td><td colspan="6"></td></tr><tr><td class="h">362 - 401</td><td colspan="5"></td><td class="s"><pre>=head1 AUTHOR
+<tr><td class="h">389</td><td colspan="6"></td></tr><tr><td class="h">390</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub parse_datetime</td></tr>
+<tr><td class="h">391</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">392</td><td><div class="c3">493</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L392">493</a></div></td><td><div>128898</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
+<tr><td class="h">393</td><td colspan="6"></td></tr><tr><td class="h">394</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Normalise class-method and bare-function call styles into an object call.</td></tr>
+<tr><td class="h">395</td><td><div class="c3">493</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L395">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L395">100</a></div></td><td></td><td></td><td><div>1149</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!ref($self)) {</td></tr>
+<tr><td class="h">396</td><td><div class="c3">22</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L396">100</a></div></td><td></td><td></td><td><div>50</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(scalar(@_)) {</td></tr>
+<tr><td class="h">397</td><td><div class="c3">14</div></td><td></td><td></td><td></td><td><div>47</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(__PACKAGE__-&gt;new()-&gt;parse_datetime(@_));</td></tr>
+<tr><td class="h">398</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">399</td><td><div class="c3">8</div></td><td></td><td></td><td></td><td><div>25</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(__PACKAGE__-&gt;new()-&gt;parse_datetime($self));</td></tr>
+<tr><td class="h">400</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(ref($self) eq &#39;HASH&#39;) {</td></tr>
+<tr><td class="h">401</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>5</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(__PACKAGE__-&gt;new()-&gt;parse_datetime($self));</td></tr>
+<tr><td class="h">402</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">403</td><td colspan="6"></td></tr><tr><td class="h">404</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Guard before Params::Get so *our* croak message is what Test::Carp sees.</td></tr>
+<tr><td class="h">405</td><td><div class="c3">469</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L405">100</a></div></td><td></td><td></td><td><div>634</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;::parse_datetime(date =&gt; $date)&#39;) unless scalar(@_);</td></tr>
+<tr><td class="h">406</td><td colspan="6"></td></tr><tr><td class="h">407</td><td><div class="c3">465</div></td><td></td><td></td><td></td><td><div>782</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = Params::Get::get_params(&#39;date&#39;, @_);</td></tr>
+<tr><td class="h">408</td><td colspan="6"></td></tr><tr><td class="h">409</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Catch unknown parameter keys early so callers get a clear error rather</td></tr>
+<tr><td class="h">410</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# than silent misbehaviour from a typo like &#39;quet&#39; instead of &#39;quiet&#39;.</td></tr>
+<tr><td class="h">411</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# validate_strict uses a compile-time-imported croak, so we wrap in eval</td></tr>
+<tr><td class="h">412</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# and re-throw via Carp::croak (which IS interceptable by Test::Carp).</td></tr>
+<tr><td class="h">413</td><td><div class="c3">465</div><div class="c3">465</div></td><td></td><td></td><td></td><td><div>5861</div><div>804</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval { validate_strict(schema =&gt; \%PARSE_DATETIME_SCHEMA, input =&gt; $params) };</td></tr>
+<tr><td class="h">414</td><td><div class="c3">465</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L414">100</a></div></td><td></td><td></td><td><div>97384</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&quot;Invalid parse_datetime parameters: $@&quot;) if $@;</td></tr>
+<tr><td class="h">415</td><td colspan="6"></td></tr><tr><td class="h">416</td><td><div class="c3">450</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L416">100</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L416">67</a></div></td><td></td><td><div>1129</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((!ref($params-&gt;{&#39;date&#39;})) &amp;&amp; (my $date = $params-&gt;{&#39;date&#39;})) {</td></tr>
+<tr><td class="h">417</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Per-call flags shadow object-level defaults, enabling per-call overrides</td></tr>
+<tr><td class="h">418</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# without losing the convenience of constructor-level configuration.</td></tr>
+<tr><td class="h">419</td><td><div class="c3">444</div></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L419">100</a></div></td><td></td><td><div>900</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $quiet&nbsp;&nbsp;= $params-&gt;{&#39;quiet&#39;}&nbsp;&nbsp;// $self-&gt;{&#39;quiet&#39;};</td></tr>
+<tr><td class="h">420</td><td><div class="c3">444</div></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L420">100</a></div></td><td></td><td><div>776</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $strict = $params-&gt;{&#39;strict&#39;} // $self-&gt;{&#39;strict&#39;};</td></tr>
+<tr><td class="h">421</td><td colspan="6"></td></tr><tr><td class="h">422</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Detect and strip any GEDCOM calendar escape at the front of the string.</td></tr>
+<tr><td class="h">423</td><td><div class="c3">444</div></td><td></td><td></td><td></td><td><div>356</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $calendar_type = &#39;DGREGORIAN&#39;;</td></tr>
+<tr><td class="h">424</td><td><div class="c3">444</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L424">100</a></div></td><td></td><td></td><td><div>719</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ s/^@#D([A-Z ]+?)@\s*//) {</td></tr>
+<tr><td class="h">425</td><td><div class="c3">33</div></td><td></td><td></td><td></td><td><div>58</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$calendar_type = &#39;D&#39; . uc($1);</td></tr>
+<tr><td class="h">426</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">427</td><td colspan="6"></td></tr><tr><td class="h">428</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Approximate-date prefixes (bef/aft/abt) signal &quot;no exact date known&quot;,</td></tr>
+<tr><td class="h">429</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# so a DateTime object would be misleading.</td></tr>
+<tr><td class="h">430</td><td><div class="c3">444</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L430">100</a></div></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L430">100</a></div></td><td></td><td><div>1534</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($date =~ /^bef\s/i) || ($date =~ /^aft\s/i) || ($date =~ /^abt\s/i)) {</td></tr>
+<tr><td class="h">431</td><td><div class="c3">59</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L431">100</a></div></td><td></td><td></td><td><div>242</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;$date is invalid, need an exact date to create a DateTime&quot;)</td></tr>
+<tr><td class="h">432</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless($quiet);</td></tr>
+<tr><td class="h">433</td><td><div class="c3">59</div></td><td></td><td></td><td></td><td><div>3569</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">434</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">435</td><td colspan="6"></td></tr><tr><td class="h">436</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 31 November does not exist; catch it before any parser attempt.</td></tr>
+<tr><td class="h">437</td><td><div class="c3">385</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L437">100</a></div></td><td></td><td></td><td><div>603</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^31\s+Nov/) {</td></tr>
+<tr><td class="h">438</td><td><div class="c3">11</div></td><td></td><td></td><td></td><td><div>148</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;$date is invalid, there are only 30 days in November&quot;);</td></tr>
+<tr><td class="h">439</td><td><div class="c3">11</div></td><td></td><td></td><td></td><td><div>1810</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">440</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">441</td><td colspan="6"></td></tr><tr><td class="h">442</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Rewrite dash-separated constructs.&nbsp;&nbsp;ISO &quot;YYYY-MM-DD&quot; is reformatted to</td></tr>
+<tr><td class="h">443</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# &quot;DD Mon YYYY&quot;.&nbsp;&nbsp;Any other &quot;X - Y&quot; is treated as a date range.</td></tr>
+<tr><td class="h">444</td><td><div class="c3">374</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L444">100</a></div></td><td></td><td></td><td><div>585</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/) {</td></tr>
+<tr><td class="h">445</td><td><div class="c3">36</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L445">100</a></div></td><td></td><td></td><td><div>86</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) {</td></tr>
+<tr><td class="h">446</td><td><div class="c3">26</div></td><td></td><td></td><td></td><td><div>82</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $month = ucfirst($short_month_names[$2 - 1]);</td></tr>
+<tr><td class="h">447</td><td><div class="c3">26</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L447">100</a></div></td><td></td><td></td><td><div>164</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Changing date &#39;$date&#39; to &#39;$3 $month $1&#39;&quot;) unless($quiet);</td></tr>
+<tr><td class="h">448</td><td><div class="c3">26</div></td><td></td><td></td><td></td><td><div>911</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$3 $month $1&quot;;</td></tr>
+<tr><td class="h">449</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
+<tr><td class="h">450</td><td><div class="c3">10</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L450">100</a></div></td><td></td><td></td><td><div>68</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Changing date &#39;$date&#39; to &#39;bet $1 and $2&#39;&quot;) unless($quiet);</td></tr>
+<tr><td class="h">451</td><td><div class="c3">10</div></td><td></td><td></td><td></td><td><div>624</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;bet $1 and $2&quot;;</td></tr>
+<tr><td class="h">452</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">453</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">454</td><td colspan="6"></td></tr><tr><td class="h">455</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Date ranges return two DateTimes in list context; undef in scalar.</td></tr>
+<tr><td class="h">456</td><td><div class="c3">374</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L456">100</a></div></td><td></td><td></td><td><div>571</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^bet (.+) and (.+)/i) {</td></tr>
+<tr><td class="h">457</td><td><div class="c3">27</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L457">100</a></div></td><td></td><td></td><td><div>40</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(wantarray) {</td></tr>
+<tr><td class="h">458</td><td><div class="c3">12</div></td><td></td><td></td><td></td><td><div>41</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;parse_datetime($1), $self-&gt;parse_datetime($2);</td></tr>
+<tr><td class="h">459</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">460</td><td><div class="c3">15</div></td><td></td><td></td><td></td><td><div>34</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">461</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">462</td><td colspan="6"></td></tr><tr><td class="h">463</td><td><div class="c3">347</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L463">100</a></div></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L463">100</a></div></td><td></td><td><div>747</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((!$strict) &amp;&amp; ($date =~ /^from (.+) to (.+)/i)) {</td></tr>
+<tr><td class="h">464</td><td><div class="c3">7</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L464">100</a></div></td><td></td><td></td><td><div>15</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(wantarray) {</td></tr>
+<tr><td class="h">465</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;parse_datetime($1), $self-&gt;parse_datetime($2);</td></tr>
+<tr><td class="h">466</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">467</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">468</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">469</td><td colspan="6"></td></tr><tr><td class="h">470</td><td><div class="c3">340</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L470">100</a></div></td><td></td><td></td><td><div>656</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date !~ /^\d{3,4}$/) {</td></tr>
+<tr><td class="h">471</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Strict mode: only 3-letter GEDCOM abbreviations are valid.</td></tr>
+<tr><td class="h">472</td><td><div class="c3">333</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L472">100</a></div></td><td></td><td></td><td><div>351</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($strict) {</td></tr>
+<tr><td class="h">473</td><td><div class="c3">30</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L473">100</a></div></td><td></td><td></td><td><div>75</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date !~ /^(\d{1,2})\s+([A-Z]{3})\s+(\d{3,4})$/i) {</td></tr>
+<tr><td class="h">474</td><td><div class="c3">24</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L474">100</a></div></td><td></td><td></td><td><div>75</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Unparseable date $date - often because the month name isn&#39;t 3 letters&quot;) unless($quiet);</td></tr>
+<tr><td class="h">475</td><td><div class="c3">24</div></td><td></td><td></td><td></td><td><div>1356</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">476</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">477</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
+<tr><td class="h">478</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Aout with circumflex-u (Ao\x{FB}t) must be matched explicitly</td></tr>
+<tr><td class="h">479</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# because the standard \w character class is ASCII-only and will</td></tr>
+<tr><td class="h">480</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# not match the non-ASCII &#39;u with circumflex&#39;.</td></tr>
+<tr><td class="h">481</td><td><div class="c3">303</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L481">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L481">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L481">100</a></div></td><td></td><td></td><td><div>1411</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($date =~ /^(\d{1,2})\s+Ao\x{FB}t\s+(\d{3,4})$/i) {</td></tr>
+<tr><td class="h">482</td><td><div class="c3">7</div></td><td></td><td></td><td></td><td><div>18</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 Aug $2&quot;;</td></tr>
+<tr><td class="h">483</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($date =~ /^(\d{1,2})\s+([A-Z]{3,}+)\.?\s+(\d{3,4})$/i) {</td></tr>
+<tr><td class="h">484</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Look up the month in the alias table.</td></tr>
+<tr><td class="h">485</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Unknown 3-letter tokens are passed through unchanged so that</td></tr>
+<tr><td class="h">486</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# standard GEDCOM abbreviations (Sep, Dec, ...) that did not</td></tr>
+<tr><td class="h">487</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# trigger the earlier cache path still reach the parser.</td></tr>
+<tr><td class="h">488</td><td><div class="c3">221</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L488">100</a></div><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L488">100</a></div></td><td></td><td></td><td><div>555</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(my $abbrev = $MONTH_ALIAS{ucfirst(lc($2))}) {</td></tr>
+<tr><td class="h">489</td><td><div class="c3">49</div></td><td></td><td></td><td></td><td><div>248</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 $abbrev $3&quot;;</td></tr>
+<tr><td class="h">490</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(length($2) &gt; 3) {</td></tr>
+<tr><td class="h">491</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Longer-than-3-letter names not in the alias table are</td></tr>
+<tr><td class="h">492</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# truly unrecognised; there is nothing useful we can do.</td></tr>
+<tr><td class="h">493</td><td><div class="c3">3</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L493">100</a></div></td><td></td><td></td><td><div>30</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Unparseable date $date - often because the month name isn&#39;t 3 letters&quot;) unless($quiet);</td></tr>
+<tr><td class="h">494</td><td><div class="c3">3</div></td><td></td><td></td><td></td><td><div>357</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">495</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">496</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($date =~ /^(\d{1,2})\-([A-Z]{3})\-(\d{3,4})$/i) {</td></tr>
+<tr><td class="h">497</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accept the 29-Aug-1938 dash-separated single-date format.</td></tr>
+<tr><td class="h">498</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>19</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date = &quot;$1 $2 $3&quot;;</td></tr>
+<tr><td class="h">499</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">500</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">501</td><td colspan="6"></td></tr><tr><td class="h">502</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Lazily initialise DateTime::Format::Natural on first use.</td></tr>
+<tr><td class="h">503</td><td><div class="c3">306</div></td><td></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L503">67</a></div></td><td></td><td><div>1326</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $dfn = $self-&gt;{&#39;dfn&#39;} //= DateTime::Format::Natural-&gt;new();</td></tr>
+<tr><td class="h">504</td><td colspan="6"></td></tr><tr><td class="h">505</td><td><div class="c3">306</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L505">100</a></div></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L505">100</a></div></td><td></td><td><div>125607</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($date =~ /^\d/) &amp;&amp; (my $d = $self-&gt;_date_parser_cached($date))) {</td></tr>
+<tr><td class="h">506</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# DateTime::Format::Natural cannot handle dates before AD 100;</td></tr>
+<tr><td class="h">507</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# a date ending in a 1-or-2-digit year is that old.</td></tr>
+<tr><td class="h">508</td><td><div class="c3">237</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L508">100</a></div></td><td></td><td></td><td><div>470</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return if($date =~ /\s\d{1,2}$/);</td></tr>
+<tr><td class="h">509</td><td colspan="6"></td></tr><tr><td class="h">510</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Guard against a malformed GGD result with an undef canonical</td></tr>
+<tr><td class="h">511</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# field; passing undef to DFN causes a Params::Validate croak.</td></tr>
+<tr><td class="h">512</td><td><div class="c3">234</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L512">100</a></div></td><td></td><td></td><td><div>356</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return unless defined $d-&gt;{&#39;canonical&#39;};</td></tr>
+<tr><td class="h">513</td><td colspan="6"></td></tr><tr><td class="h">514</td><td><div class="c3">233</div></td><td></td><td></td><td></td><td><div>600</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $rc = $dfn-&gt;parse_datetime($d-&gt;{&#39;canonical&#39;});</td></tr>
+<tr><td class="h">515</td><td colspan="6"></td></tr><tr><td class="h">516</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# DFN silently returns today&#39;s date when it cannot parse the</td></tr>
+<tr><td class="h">517</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# canonical string (e.g. 3-digit years 100-999, very large</td></tr>
+<tr><td class="h">518</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# years).&nbsp;&nbsp;We must check success() here just as we do in the</td></tr>
+<tr><td class="h">519</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# DFN fallback path below, otherwise the caller receives a</td></tr>
+<tr><td class="h">520</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# completely wrong DateTime.</td></tr>
+<tr><td class="h">521</td><td><div class="c3">232</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L521">100</a></div></td><td></td><td></td><td><div>1732293</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless($dfn-&gt;success) {</td></tr>
+<tr><td class="h">522</td><td><div class="c3">15</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L522">100</a></div></td><td></td><td></td><td><div>157</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp($dfn-&gt;error) unless $quiet;</td></tr>
+<tr><td class="h">523</td><td><div class="c3">15</div></td><td></td><td></td><td></td><td><div>354</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">524</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">525</td><td colspan="6"></td></tr><tr><td class="h">526</td><td><div class="c3">217</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L526">100</a></div></td><td><div class="c0"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L526">67</a></div></td><td></td><td><div>3383</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($rc &amp;&amp; $calendar_type ne &#39;DGREGORIAN&#39;) {</td></tr>
+<tr><td class="h">527</td><td><div class="c3">31</div></td><td></td><td></td><td></td><td><div>191</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return _convert_calendar($rc, $calendar_type, $quiet);</td></tr>
+<tr><td class="h">528</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">529</td><td colspan="6"></td></tr><tr><td class="h">530</td><td><div class="c3">186</div></td><td></td><td></td><td></td><td><div>3322</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $rc;</td></tr>
+<tr><td class="h">531</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">532</td><td colspan="6"></td></tr><tr><td class="h">533</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Last resort: try DateTime::Format::Natural on the raw string.</td></tr>
+<tr><td class="h">534</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Approximate-prefix forms are excluded here because they already</td></tr>
+<tr><td class="h">535</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# returned undef above; the pattern here guards against &#39;Abt&#39;/&#39;ca&#39;</td></tr>
+<tr><td class="h">536</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# leaking through when quiet is enabled (e.g. &quot;Abt1Jan2000&quot; has no</td></tr>
+<tr><td class="h">537</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# space so it was not caught by the /^abt\s/i check above).</td></tr>
+<tr><td class="h">538</td><td><div class="c3">69</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L538">100</a></div></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--condition.html#L538">100</a></div></td><td></td><td><div>305</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(($date !~ /^(Abt|ca?)/i) &amp;&amp; ($date =~ /^[\w\s,]+$/)) {</td></tr>
+<tr><td class="h">539</td><td><div class="c3">33</div></td><td><div class="c0" title="T/-"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L539">50</a></div></td><td></td><td></td><td><div>71</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(my $rc = $dfn-&gt;parse_datetime($date)) {</td></tr>
+<tr><td class="h">540</td><td><div class="c3">33</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L540">100</a></div></td><td></td><td></td><td><div>4233002</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($dfn-&gt;success()) {</td></tr>
+<tr><td class="h">541</td><td><div class="c3">8</div></td><td></td><td></td><td></td><td><div>132</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $rc;</td></tr>
+<tr><td class="h">542</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">543</td><td><div class="c3">25</div></td><td><div class="c3" title="T/F"><a href="blib-lib-DateTime-Format-Genealogy-pm--branch.html#L543">100</a></div></td><td></td><td></td><td><div>290</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp($dfn-&gt;error()) unless($quiet);</td></tr>
+<tr><td class="h">544</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">545</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# NOTE: DateTime::Format::Natural-&gt;parse_datetime always returns</td></tr>
+<tr><td class="h">546</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# a DateTime object (today&#39;s date on failure), never undef.&nbsp;&nbsp;The</td></tr>
+<tr><td class="h">547</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# else branch that would carp &quot;Can&#39;t parse date&quot; is therefore</td></tr>
+<tr><td class="h">548</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# dead code and has been removed.&nbsp;&nbsp;If a future DFN version can</td></tr>
+<tr><td class="h">549</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# return undef, this else must be reinstated:</td></tr>
+<tr><td class="h">550</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;else { Carp::carp(&quot;Can&#39;t parse date &#39;$date&#39;&quot;) unless $quiet }</td></tr>
+<tr><td class="h">551</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">552</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">553</td><td><div class="c3">68</div></td><td></td><td></td><td></td><td><div>1423</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">554</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">555</td><td colspan="6"></td></tr><tr><td class="h">556</td><td><div class="c3">6</div></td><td></td><td></td><td></td><td><div>51</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: &#39;, __PACKAGE__, &#39;::parse_datetime(date =&gt; $date)&#39;);</td></tr>
+<tr><td class="h">557</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">558</td><td colspan="6"></td></tr><tr><td class="h">559</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">560</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _date_parser_cached</td></tr>
+<tr><td class="h">561</td><td></td><td></td><td></td><td></td><td></td><td class="s">#</td></tr>
+<tr><td class="h">562</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wrap Genealogy::Gedcom::Date-&gt;parse() with a per-object</td></tr>
+<tr><td class="h">563</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;memoisation layer to avoid re-parsing identical strings.</td></tr>
+<tr><td class="h">564</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self&nbsp;&nbsp;- blessed object (must carry -&gt;{&#39;date_parser&#39;} slot)</td></tr>
+<tr><td class="h">565</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;- non-empty, non-undef date string</td></tr>
+<tr><td class="h">566</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hashref on success ({canonical, day, month, year, ...}),</td></tr>
+<tr><td class="h">567</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undef on parse failure or error.</td></tr>
+<tr><td class="h">568</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side Effects: Populates $self-&gt;{&#39;all_dates&#39;}{$date} on first successful</td></tr>
+<tr><td class="h">569</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parse.&nbsp;&nbsp;Carps on parser error unless $self-&gt;{&#39;quiet&#39;} is set.</td></tr>
+<tr><td class="h">570</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">571</td><td colspan="6"></td></tr><tr><td class="h">572</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _date_parser_cached :Protected</td></tr>
+<tr><td class="h">573</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">574</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
+<tr><td class="h">575</td><td colspan="6"></td></tr><tr><td class="h">576</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $params = Params::Get::get_params(&#39;date&#39;, @_);</td></tr>
+<tr><td class="h">577</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $date = $params-&gt;{&#39;date&#39;};</td></tr>
+<tr><td class="h">578</td><td colspan="6"></td></tr><tr><td class="h">579</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::croak(&#39;Usage: _date_parser_cached(date =&gt; $date)&#39;) unless defined $date;</td></tr>
+<tr><td class="h">580</td><td colspan="6"></td></tr><tr><td class="h">581</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Short-circuit if we have already parsed this string in this session.</td></tr>
+<tr><td class="h">582</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;{&#39;all_dates&#39;}{$date} if exists $self-&gt;{&#39;all_dates&#39;}{$date};</td></tr>
+<tr><td class="h">583</td><td colspan="6"></td></tr><tr><td class="h">584</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $date_parser = $self-&gt;{&#39;date_parser&#39;} //= Genealogy::Gedcom::Date-&gt;new();</td></tr>
+<tr><td class="h">585</td><td colspan="6"></td></tr><tr><td class="h">586</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $parsed_date;</td></tr>
+<tr><td class="h">587</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval {</td></tr>
+<tr><td class="h">588</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$parsed_date = $date_parser-&gt;parse(date =&gt; $date);</td></tr>
+<tr><td class="h">589</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
+<tr><td class="h">590</td><td colspan="6"></td></tr><tr><td class="h">591</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(my $error = $date_parser-&gt;error()) {</td></tr>
+<tr><td class="h">592</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;$date: &#39;$error&#39;&quot;) unless $self-&gt;{&#39;quiet&#39;};</td></tr>
+<tr><td class="h">593</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">594</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">595</td><td colspan="6"></td></tr><tr><td class="h">596</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if((ref($parsed_date) eq &#39;ARRAY&#39;) &amp;&amp; @{$parsed_date}) {</td></tr>
+<tr><td class="h">597</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self-&gt;{&#39;all_dates&#39;}{$date} = $parsed_date-&gt;[0];</td></tr>
+<tr><td class="h">598</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">599</td><td colspan="6"></td></tr><tr><td class="h">600</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">601</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L601">11</a></div></td><td><div>38</div><div>10</div><div>156</div></td><td class="s">}</td></tr>
+<tr><td class="h">602</td><td colspan="6"></td></tr><tr><td class="h">603</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">604</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _convert_calendar</td></tr>
+<tr><td class="h">605</td><td></td><td></td><td></td><td></td><td></td><td class="s">#</td></tr>
+<tr><td class="h">606</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convert a Gregorian DateTime produced by</td></tr>
+<tr><td class="h">607</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Genealogy::Gedcom::Date/DateTime::Format::Natural to the</td></tr>
+<tr><td class="h">608</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calendar indicated by the GEDCOM escape that preceded the date.</td></tr>
+<tr><td class="h">609</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DateTime object in Gregorian coordinates</td></tr>
+<tr><td class="h">610</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$calendar_type - normalised escape string (e.g. &#39;DJULIAN&#39;)</td></tr>
+<tr><td class="h">611</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$quiet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- truthy to suppress carp on failure</td></tr>
+<tr><td class="h">612</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converted DateTime, or the original $dt for unknown types.</td></tr>
+<tr><td class="h">613</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side Effects: May carp on conversion failure (unless $quiet).</td></tr>
+<tr><td class="h">614</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">615</td><td colspan="6"></td></tr><tr><td class="h">616</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _convert_calendar :Private</td></tr>
+<tr><td class="h">617</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">618</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($dt, $calendar_type, $quiet) = @_;</td></tr>
+<tr><td class="h">619</td><td colspan="6"></td></tr><tr><td class="h">620</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($calendar_type eq &#39;DJULIAN&#39;) {</td></tr>
+<tr><td class="h">621</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Add the historical Julian-to-Gregorian day offset.</td></tr>
+<tr><td class="h">622</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $offset_days = _julian_to_gregorian_offset($dt-&gt;year);</td></tr>
+<tr><td class="h">623</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $dt-&gt;clone-&gt;add(days =&gt; $offset_days);</td></tr>
+<tr><td class="h">624</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($calendar_type eq &#39;DHEBREW&#39;) {</td></tr>
+<tr><td class="h">625</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# &quot;return&quot; inside eval{} exits the eval block, NOT the enclosing sub,</td></tr>
+<tr><td class="h">626</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# so we capture the result in $result and return it afterwards.</td></tr>
+<tr><td class="h">627</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $result;</td></tr>
+<tr><td class="h">628</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval {</td></tr>
+<tr><td class="h">629</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require DateTime::Calendar::Hebrew;</td></tr>
+<tr><td class="h">630</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $h = DateTime::Calendar::Hebrew-&gt;new(</td></tr>
+<tr><td class="h">631</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year&nbsp;&nbsp;=&gt; $dt-&gt;year,</td></tr>
+<tr><td class="h">632</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month =&gt; $dt-&gt;month,</td></tr>
+<tr><td class="h">633</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;day&nbsp;&nbsp;&nbsp;=&gt; $dt-&gt;day</td></tr>
+<tr><td class="h">634</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
+<tr><td class="h">635</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result = DateTime-&gt;from_object(object =&gt; $h);</td></tr>
+<tr><td class="h">636</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
+<tr><td class="h">637</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Hebrew calendar conversion failed: $@&quot;) if $@ &amp;&amp; !$quiet;</td></tr>
+<tr><td class="h">638</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Return the converted DateTime on success, undef on failure.</td></tr>
+<tr><td class="h">639</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The POD (LIMITATIONS) documents that undef is returned when the</td></tr>
+<tr><td class="h">640</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# optional module is unavailable rather than passing back the</td></tr>
+<tr><td class="h">641</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# unconverted Gregorian DateTime.</td></tr>
+<tr><td class="h">642</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $result;</td></tr>
+<tr><td class="h">643</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif($calendar_type =~ /FRENCH R/) {</td></tr>
+<tr><td class="h">644</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $result;</td></tr>
+<tr><td class="h">645</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval {</td></tr>
+<tr><td class="h">646</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require DateTime::Calendar::FrenchRevolutionary;</td></tr>
+<tr><td class="h">647</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $f = DateTime::Calendar::FrenchRevolutionary-&gt;new(</td></tr>
+<tr><td class="h">648</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year&nbsp;&nbsp;=&gt; $dt-&gt;year,</td></tr>
+<tr><td class="h">649</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;month =&gt; $dt-&gt;month,</td></tr>
+<tr><td class="h">650</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;day&nbsp;&nbsp;&nbsp;=&gt; $dt-&gt;day</td></tr>
+<tr><td class="h">651</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
+<tr><td class="h">652</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result = DateTime-&gt;from_object(object =&gt; $f);</td></tr>
+<tr><td class="h">653</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
+<tr><td class="h">654</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;French Republican calendar conversion failed: $@&quot;) if $@ &amp;&amp; !$quiet;</td></tr>
+<tr><td class="h">655</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $result;</td></tr>
+<tr><td class="h">656</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
+<tr><td class="h">657</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# DROMAN and any other future escape types are not yet supported.</td></tr>
+<tr><td class="h">658</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carp::carp(&quot;Calendar type $calendar_type not supported&quot;) unless $quiet;</td></tr>
+<tr><td class="h">659</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">660</td><td colspan="6"></td></tr><tr><td class="h">661</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $dt;</td></tr>
+<tr><td class="h">662</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L662">11</a></div></td><td><div>2667</div><div>9</div><div>93</div></td><td class="s">}</td></tr>
+<tr><td class="h">663</td><td colspan="6"></td></tr><tr><td class="h">664</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">665</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _julian_to_gregorian_offset</td></tr>
+<tr><td class="h">666</td><td></td><td></td><td></td><td></td><td></td><td class="s">#</td></tr>
+<tr><td class="h">667</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the number of days to add to a Julian date to obtain</td></tr>
+<tr><td class="h">668</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the Gregorian equivalent, based on the year.</td></tr>
+<tr><td class="h">669</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$year - integer calendar year</td></tr>
+<tr><td class="h">670</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer day offset (10, 11, 12, or 13)</td></tr>
+<tr><td class="h">671</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side Effects: None</td></tr>
+<tr><td class="h">672</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">673</td><td colspan="6"></td></tr><tr><td class="h">674</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _julian_to_gregorian_offset :Private</td></tr>
+<tr><td class="h">675</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">676</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($year) = @_;</td></tr>
+<tr><td class="h">677</td><td colspan="6"></td></tr><tr><td class="h">678</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Select the offset for the first tier whose boundary exceeds the year.</td></tr>
+<tr><td class="h">679</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The final catch-all (1900 onwards = 13 days) is coded as the fallback.</td></tr>
+<tr><td class="h">680</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($pair) = grep { $year &lt; $_-&gt;[0] } @JULIAN_OFFSET_TIERS;</td></tr>
+<tr><td class="h">681</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $pair ? $pair-&gt;[1] : 13;</td></tr>
+<tr><td class="h">682</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-DateTime-Format-Genealogy-pm--subroutine.html#L682">11</a></div></td><td><div>1288</div><div>11</div><div>110</div></td><td class="s">}</td></tr>
+<tr><td class="h">683</td><td colspan="6"></td></tr><tr><td class="h">684</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
+<tr><td class="h">685</td><td colspan="6"></td></tr><tr><td class="h">686 - 810</td><td colspan="5"></td><td class="s"><pre>=head1 LIMITATIONS
+
+=over 4
+
+=item *
+
+Dates before AD 100 are rejected because L&lt;DateTime::Format::Natural&gt; cannot
+parse them reliably (it returns today&#39;s date instead of an error).
+
+=item *
+
+The C&lt;Aout&gt; (French August with circumflex-u) entry in the month-alias table
+uses a non-ASCII Unicode escape (C&lt;\x{FB}&gt;).&nbsp;&nbsp;The module file must be read as
+UTF-8; this is satisfied by the standard C&lt;perl -Ilib&gt; invocation but may
+require C&lt;use utf8&gt; or C&lt;open &#39;:encoding(UTF-8)&#39;&gt; in unusual environments.
+
+=item *
+
+Hebrew and French Republican calendar conversions require
+L&lt;DateTime::Calendar::Hebrew&gt; and L&lt;DateTime::Calendar::FrenchRevolutionary&gt;
+respectively.&nbsp;&nbsp;These are optional and not listed as hard dependencies.&nbsp;&nbsp;When
+absent, the GEDCOM escape is silently discarded and undef is returned unless
+the C&lt;quiet&gt; flag is off, in which case a carp is emitted.
+
+=item *
+
+L&lt;Genealogy::Gedcom::Date&gt; cannot parse native Hebrew or French Revolutionary
+month names (e.g. C&lt;Tishri&gt;, C&lt;Vendemiaire&gt;).&nbsp;&nbsp;Only dates written in
+Gregorian form with the C&lt;@#DHEBREW@&gt; escape are converted.
+
+=item *
+
+The C&lt;quiet&gt; and C&lt;strict&gt; flags may be set at construction time
+(C&lt;&lt; -&gt;new(quiet =&gt; 1) &gt;&gt;) and will be respected by all subsequent calls to
+C&lt;parse_datetime&gt; unless overridden on a per-call basis.&nbsp;&nbsp;The per-call value
+always takes precedence.
+
+=back
+
+=head1 AUTHOR
 
 Nigel Horne, C&lt;&lt; &lt;njh at bandsman.co.uk&gt; &gt;&gt;
 
@@ -355,13 +700,21 @@ Nigel Horne, C&lt;&lt; &lt;njh at bandsman.co.uk&gt; &gt;&gt;
 Please report any bugs or feature requests to the author.
 This module is provided as-is without any warranty.
 
-I can&#39;t get L&lt;DateTime::Format::Natural&gt; to work on dates before AD100,
-so this module rejects dates that are that old.
-
 =head1 SEE ALSO
 
-L&lt;Genealogy::Gedcom::Date&gt; and
-L&lt;DateTime&gt;
+=over 4
+
+=item * L&lt;Genealogy::Gedcom::Date&gt;
+
+=item * L&lt;DateTime&gt;
+
+=item * L&lt;DateTime::Format::Natural&gt;
+
+=item * L&lt;Configure an Object at Runtime|Object::Configure&gt;
+
+=item * L&lt;Test Dashboard|https://nigelhorne.github.io/DateTime-Format-Genealogy/coverage/&gt;
+
+=back
 
 =head1 SUPPORT
 
@@ -369,24 +722,62 @@ You can find documentation for this module with the perldoc command.
 
 &nbsp;&nbsp;&nbsp;&nbsp;perldoc DateTime::Format::Genealogy
 
-You can also look for information at:
-
 =over 4
 
 =item * RT: CPAN&#39;s request tracker
 
 L&lt;http://rt.cpan.org/NoAuth/Bugs.html?Dist=DateTime-Format-Genealogy&gt;
 
+=item * GitHub Issues
+
+L&lt;https://github.com/nigelhorne/DateTime-Format-Genealogy/issues&gt;
+
 =back
+
+=head1 FORMAL SPECIFICATION
+
+=head2 new
+
+&nbsp;&nbsp;&nbsp;&nbsp;State S ::= [ attrs : Name -&gt; Value ]
+
+&nbsp;&nbsp;&nbsp;&nbsp;new(class, params) = bless(params U configure(class))&nbsp;&nbsp;&nbsp;when !blessed(class)
+&nbsp;&nbsp;&nbsp;&nbsp;new(obj,&nbsp;&nbsp;&nbsp;params) = bless(obj.attrs (+) params)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;&nbsp;blessed(obj)
+
+&nbsp;&nbsp;&nbsp;&nbsp;where (+) denotes right-biased union (params values take precedence).
+
+=head2 parse_datetime
+
+Let D be the set of genealogical date strings and DT the co-domain of
+L&lt;DateTime&gt; objects.
+
+&nbsp;&nbsp;&nbsp;&nbsp;parse_datetime : D -&gt; DT | bot | (DT x DT)
+
+&nbsp;&nbsp;&nbsp;&nbsp;YearOnly ::= { s in D | s ~ /^\d{3,4}$/ }
+&nbsp;&nbsp;&nbsp;&nbsp;Approx&nbsp;&nbsp;&nbsp;::= { s in D | s ~ /^(bef|aft|abt)\s/i }
+&nbsp;&nbsp;&nbsp;&nbsp;Ranges&nbsp;&nbsp;&nbsp;::= { s in D | s ~ /^bet\s.+\sand\s.+/i
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| s ~ /^from\s.+\sto\s.+/i }
+
+&nbsp;&nbsp;&nbsp;&nbsp;Pre:&nbsp;&nbsp;date != bot
+
+&nbsp;&nbsp;&nbsp;&nbsp;Post:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date in YearOnly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; result = bot
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date in Approx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; result = bot&nbsp;&nbsp;(carp unless quiet)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date in Ranges /\ wantarray&nbsp;&nbsp;&nbsp;=&gt; result in DT x DT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date in Ranges /\ !wantarray&nbsp;&nbsp;=&gt; result = bot
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date in Parseable \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(YearOnly u Approx u Ranges) =&gt; result in DT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date not in Parseable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; result = bot&nbsp;&nbsp;(carp unless quiet)
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2018-2025 Nigel Horne.
+Copyright 2018-2026 Nigel Horne.
 
-This program is released under the following licence: GPL2
+Usage is subject to the GPL2 licence terms.
+If you use it,
+please let me know.
 
 =cut</pre></td></tr>
-<tr><td class="h">402</td><td colspan="6"></td></tr><tr><td class="h">403</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
+<tr><td class="h">811</td><td colspan="6"></td></tr><tr><td class="h">812</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
 </table>
 </body>
 </html>

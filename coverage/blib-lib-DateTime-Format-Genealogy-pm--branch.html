@@ -20,67 +20,52 @@ https://pjcj.net
 <h1>Branch Coverage</h1>
 <table>
 <tr><td class="h" align="right">File:</td><td align="left">blib/lib/DateTime/Format/Genealogy.pm</td></tr>
-<tr><td class="h" align="right">Coverage:</td><td align="left" class="c0">67.9%</td></tr>
+<tr><td class="h" align="right">Coverage:</td><td align="left" class="c2">98.8%</td></tr>
 </table>
 <div><br/></div>
 <table>
 <tr><th>line</th><th>%</th><th colspan="2">coverage</th><th>branch</th></tr>
-<tr><td class="h"><a id="L79">79</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (@_ == 1 and ref $_[0] eq &#39;HASH&#39;) { }</td></tr>
-<tr><td class="h"></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">elsif (@_ % 2 == 0) { }</td></tr>
-<tr><td class="h"><a id="L91">91</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not defined $class) { }</td></tr>
+<tr><td class="h"><a id="L154">154</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not defined $class) { }</td></tr>
 <tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif (&amp;Scalar::Util::blessed($class)) { }</td></tr>
-<tr><td class="h"><a id="L151">151</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not ref $self) { }</td></tr>
+<tr><td class="h"><a id="L160">160</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">$params ? :</td></tr>
+<tr><td class="h"><a id="L395">395</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not ref $self) { }</td></tr>
 <tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif (ref $self eq &#39;HASH&#39;) { }</td></tr>
-<tr><td class="h"><a id="L152">152</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (scalar @_)</td></tr>
-<tr><td class="h"><a id="L160">160</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless scalar @_</td></tr>
-<tr><td class="h"><a id="L164">164</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not ref $params-&gt;{&#39;date&#39;} and my $date = $params-&gt;{&#39;date&#39;})</td></tr>
-<tr><td class="h"><a id="L169">169</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ s/^\@#D([A-Z ]+?)@\s*//)</td></tr>
-<tr><td class="h"><a id="L174">174</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^bef\s/i or $date =~ /^aft\s/i or $date =~ /^abt\s/i)</td></tr>
-<tr><td class="h"><a id="L175">175</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L179">179</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^31\s+Nov/)</td></tr>
-<tr><td class="h"><a id="L183">183</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/)</td></tr>
-<tr><td class="h"><a id="L184">184</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) { }</td></tr>
-<tr><td class="h"><a id="L186">186</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L189">189</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L193">193</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^bet (.+) and (.+)/i)</td></tr>
-<tr><td class="h"><a id="L194">194</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (wantarray)</td></tr>
-<tr><td class="h"><a id="L201">201</a></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">if (not $strict and $date =~ /^from (.+) to (.+)/i)</td></tr>
-<tr><td class="h"><a id="L202">202</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">if (wantarray)</td></tr>
-<tr><td class="h"><a id="L208">208</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless ($date =~ /^\d{3,4}$/)</td></tr>
-<tr><td class="h"><a id="L209">209</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($strict) { }</td></tr>
-<tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif ($date =~ /^(\d{1,2})\s+([A-Z]{4,}+)\.?\s+(\d{3,4})$/i) { }</td></tr>
-<tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif ($date =~ /^(\d{1,2})\s+Mai\s+(\d{3,4})$/i) { }</td></tr>
-<tr><td class="h"></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">elsif ($date =~ /^(\d{1,2})\s+Ao\303\273t\s+(\d{3,4})$/i) { }</td></tr>
+<tr><td class="h"><a id="L396">396</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (scalar @_)</td></tr>
+<tr><td class="h"><a id="L405">405</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless scalar @_</td></tr>
+<tr><td class="h"><a id="L414">414</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if $@</td></tr>
+<tr><td class="h"><a id="L416">416</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not ref $params-&gt;{&#39;date&#39;} and my $date = $params-&gt;{&#39;date&#39;})</td></tr>
+<tr><td class="h"><a id="L424">424</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ s/^\@#D([A-Z ]+?)@\s*//)</td></tr>
+<tr><td class="h"><a id="L430">430</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^bef\s/i or $date =~ /^aft\s/i or $date =~ /^abt\s/i)</td></tr>
+<tr><td class="h"><a id="L431">431</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
+<tr><td class="h"><a id="L437">437</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^31\s+Nov/)</td></tr>
+<tr><td class="h"><a id="L444">444</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^\s*(.+\d\d)\s*\-\s*(.+\d\d)\s*$/)</td></tr>
+<tr><td class="h"><a id="L445">445</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^(\d{4})\-(\d{2})\-(\d{2})$/) { }</td></tr>
+<tr><td class="h"><a id="L447">447</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
+<tr><td class="h"><a id="L450">450</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
+<tr><td class="h"><a id="L456">456</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^bet (.+) and (.+)/i)</td></tr>
+<tr><td class="h"><a id="L457">457</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (wantarray)</td></tr>
+<tr><td class="h"><a id="L463">463</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not $strict and $date =~ /^from (.+) to (.+)/i)</td></tr>
+<tr><td class="h"><a id="L464">464</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (wantarray)</td></tr>
+<tr><td class="h"><a id="L470">470</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless ($date =~ /^\d{3,4}$/)</td></tr>
+<tr><td class="h"><a id="L472">472</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($strict) { }</td></tr>
+<tr><td class="h"><a id="L473">473</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless ($date =~ /^(\d{1,2})\s+([A-Z]{3})\s+(\d{3,4})$/i)</td></tr>
+<tr><td class="h"><a id="L474">474</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
+<tr><td class="h"><a id="L481">481</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^(\d{1,2})\s+Ao\x{FB}t\s+(\d{3,4})$/i) { }</td></tr>
+<tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif ($date =~ /^(\d{1,2})\s+([A-Z]{3,}+)\.?\s+(\d{3,4})$/i) { }</td></tr>
 <tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif ($date =~ /^(\d{1,2})\-([A-Z]{3})\-(\d{3,4})$/i) { }</td></tr>
-<tr><td class="h"><a id="L210">210</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">unless ($date =~ /^(\d{1,2})\s+([A-Z]{3})\s+(\d{3,4})$/i)</td></tr>
-<tr><td class="h"><a id="L211">211</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L218">218</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (my $abbrev = $months{ucfirst lc $2}) { }</td></tr>
-<tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif ($2 eq &#39;Janv&#39;) { }</td></tr>
-<tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif ($2 eq &#39;Juli&#39;) { }</td></tr>
-<tr><td class="h"><a id="L226">226</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L241">241</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless (defined $dfn)</td></tr>
-<tr><td class="h"><a id="L244">244</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^\d/ and my $d = $self-&gt;_date_parser_cached($date))</td></tr>
-<tr><td class="h"><a id="L246">246</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if $date =~ /\s\d{1,2}$/</td></tr>
-<tr><td class="h"><a id="L249">249</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($rc and $calendar_type ne &quot;DGREGORIAN&quot;)</td></tr>
-<tr><td class="h"><a id="L255">255</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">if (not $date =~ /^(Abt|ca?)/i and $date =~ /^[\w\s,]+$/)</td></tr>
-<tr><td class="h"><a id="L258">258</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">if (my $rc = $dfn-&gt;parse_datetime($date)) { }</td></tr>
-<tr><td class="h"><a id="L259">259</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($dfn-&gt;success)</td></tr>
-<tr><td class="h"><a id="L262">262</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L264">264</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L281">281</a></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">unless defined $date</td></tr>
-<tr><td class="h"><a id="L284">284</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if exists $self-&gt;{&#39;all_dates&#39;}{$date}</td></tr>
-<tr><td class="h"><a id="L296">296</a></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">if (my $error = $date_parser-&gt;error)</td></tr>
-<tr><td class="h"><a id="L297">297</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">unless $self-&gt;{&#39;quiet&#39;}</td></tr>
-<tr><td class="h"><a id="L302">302</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">if (ref $parsed_date eq &quot;ARRAY&quot; and @{$parsed_date;})</td></tr>
-<tr><td class="h"><a id="L312">312</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">if ($calendar_type eq &#39;DJULIAN&#39;) { }</td></tr>
-<tr><td class="h"></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">elsif ($calendar_type eq &#39;DHEBREW&#39;) { }</td></tr>
-<tr><td class="h"></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">elsif ($calendar_type =~ /FRENCH R/) { }</td></tr>
-<tr><td class="h"><a id="L327">327</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">if $@ and not $quiet</td></tr>
-<tr><td class="h"><a id="L338">338</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">if $@ and not $quiet</td></tr>
-<tr><td class="h"><a id="L340">340</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">unless $quiet</td></tr>
-<tr><td class="h"><a id="L354">354</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">if $year &lt; 1700</td></tr>
-<tr><td class="h"><a id="L355">355</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">if $year &lt; 1800</td></tr>
-<tr><td class="h"><a id="L356">356</a></td><td class="c0">0</td><td class="c0">T</td><td class="c0">F</td><td class="s">if $year &lt; 1900</td></tr>
+<tr><td class="h"><a id="L488">488</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (my $abbrev = $MONTH_ALIAS{ucfirst lc $2}) { }</td></tr>
+<tr><td class="h"></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">elsif (length $2 &gt; 3) { }</td></tr>
+<tr><td class="h"><a id="L493">493</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
+<tr><td class="h"><a id="L505">505</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($date =~ /^\d/ and my $d = $self-&gt;_date_parser_cached($date))</td></tr>
+<tr><td class="h"><a id="L508">508</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if $date =~ /\s\d{1,2}$/</td></tr>
+<tr><td class="h"><a id="L512">512</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless defined $d-&gt;{&#39;canonical&#39;}</td></tr>
+<tr><td class="h"><a id="L521">521</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless ($dfn-&gt;success)</td></tr>
+<tr><td class="h"><a id="L522">522</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
+<tr><td class="h"><a id="L526">526</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($rc and $calendar_type ne &quot;DGREGORIAN&quot;)</td></tr>
+<tr><td class="h"><a id="L538">538</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (not $date =~ /^(Abt|ca?)/i and $date =~ /^[\w\s,]+$/)</td></tr>
+<tr><td class="h"><a id="L539">539</a></td><td class="c0">50</td><td class="c3">T</td><td class="c0">F</td><td class="s">if (my $rc = $dfn-&gt;parse_datetime($date))</td></tr>
+<tr><td class="h"><a id="L540">540</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if ($dfn-&gt;success)</td></tr>
+<tr><td class="h"><a id="L543">543</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless $quiet</td></tr>
 </table>
 </body>
 </html>
