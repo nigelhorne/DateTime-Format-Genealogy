@@ -512,7 +512,21 @@ sub parse_datetime
 				# a date ending in a 1-or-2-digit year is that old.
 				return if($date =~ /\s\d{1,2}$/);
 
+				# Guard against a malformed GGD result with an undef canonical
+				# field; passing undef to DFN causes a Params::Validate croak.
+				return unless defined $d->{'canonical'};
+
 				my $rc = $dfn->parse_datetime($d->{'canonical'});
+
+				# DFN silently returns today's date when it cannot parse the
+				# canonical string (e.g. 3-digit years 100-999, very large
+				# years).  We must check success() here just as we do in the
+				# DFN fallback path below, otherwise the caller receives a
+				# completely wrong DateTime.
+				unless($dfn->success) {
+					Carp::carp($dfn->error) unless $quiet;
+					return;
+				}
 
 				if($rc && $calendar_type ne 'DGREGORIAN') {
 					return _convert_calendar($rc, $calendar_type, $quiet);
@@ -523,17 +537,22 @@ sub parse_datetime
 
 			# Last resort: try DateTime::Format::Natural on the raw string.
 			# Approximate-prefix forms are excluded here because they already
-			# returned undef above; the pattern here guards against 'Abt' leaking
-			# through when quiet is enabled.
+			# returned undef above; the pattern here guards against 'Abt'/'ca'
+			# leaking through when quiet is enabled (e.g. "Abt1Jan2000" has no
+			# space so it was not caught by the /^abt\s/i check above).
 			if(($date !~ /^(Abt|ca?)/i) && ($date =~ /^[\w\s,]+$/)) {
 				if(my $rc = $dfn->parse_datetime($date)) {
 					if($dfn->success()) {
 						return $rc;
 					}
 					Carp::carp($dfn->error()) unless($quiet);
-				} else {
-					Carp::carp("Can't parse date '$date'") unless($quiet);
 				}
+				# NOTE: DateTime::Format::Natural->parse_datetime always returns
+				# a DateTime object (today's date on failure), never undef.  The
+				# else branch that would carp "Can't parse date" is therefore
+				# dead code and has been removed.  If a future DFN version can
+				# return undef, this else must be reinstated:
+				#   else { Carp::carp("Can't parse date '$date'") unless $quiet }
 			}
 		}
 		return;

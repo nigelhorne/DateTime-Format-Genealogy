@@ -15,9 +15,11 @@ t/comment-spelling.t
 t/coverage.t
 t/critic.t
 t/date.t
+t/edge_cases.t
 t/eof.t
 t/eol.t
 t/error.t
+t/extended_tests.t
 t/function.t
 t/integration.t
 t/links.t
