@@ -408,6 +408,13 @@ HEBREW, and FRENCH R.  Silenced by C<quiet>.
 
 sub parse_datetime
 {
+	# Guard against unbounded recursion at every entry point, including the
+	# class-method normalisation branches below.  'local' restores the counter
+	# automatically on any return path.  Legitimate use bottoms out at depth 1
+	# (range-split recursive call); anything deeper is a mutant or a bug.
+	local $_parse_depth = $_parse_depth + 1;
+	return if $_parse_depth > $MAX_PARSE_DEPTH;
+
 	my $self = shift;
 
 	# Normalise class-method and bare-function call styles into an object call.
@@ -441,14 +448,6 @@ sub parse_datetime
 		# without losing the convenience of constructor-level configuration.
 		my $quiet  = $params->{'quiet'}  // $self->{'quiet'};
 		my $strict = $params->{'strict'} // $self->{'strict'};
-
-		# Guard against unbounded recursion.  Legitimate calls bottom out at
-		# depth 1 (range split); anything deeper is a mutant or a bug.
-		local $_parse_depth = $_parse_depth + 1;
-		if($_parse_depth > $MAX_PARSE_DEPTH) {
-			Carp::carp('parse_datetime: maximum recursion depth exceeded') unless $quiet;
-			return;
-		}
 
 		# Detect and strip any GEDCOM calendar escape at the front of the string.
 		# Pattern: @#D<NAME>@ where NAME is uppercase letters/spaces (lazy match
