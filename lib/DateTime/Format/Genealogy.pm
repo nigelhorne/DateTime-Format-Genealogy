@@ -73,6 +73,11 @@ Readonly my %MONTH_ALIAS => (
 #   13 days: 1 Mar 1900 onwards (catch-all, coded as literal 13 in the helper)
 Readonly my @JULIAN_OFFSET_TIERS => ([1700, 10], [1800, 11], [1900, 12]);
 
+# Maximum unique date strings cached per object before the cache is discarded.
+# Prevents adversarial callers from exhausting process memory by feeding an
+# unbounded stream of unique-but-invalid strings to parse_datetime.
+Readonly my $MAX_CACHE_SIZE => 10_000;
+
 # Accepted parameter schema for parse_datetime, used by Params::Validate::Strict
 # to reject unknown keys (typos, stale callers) at runtime.
 Readonly my %PARSE_DATETIME_SCHEMA => (
@@ -417,8 +422,12 @@ sub parse_datetime
 	# than silent misbehaviour from a typo like 'quet' instead of 'quiet'.
 	# validate_strict uses a compile-time-imported croak, so we wrap in eval
 	# and re-throw via Carp::croak (which IS interceptable by Test::Carp).
-	eval { validate_strict(schema => \%PARSE_DATETIME_SCHEMA, input => $params) };
-	Carp::croak("Invalid parse_datetime parameters: $@") if $@;
+	# Capture $@ into a lexical immediately: a DESTROY method firing between
+	# the eval and the check would otherwise silently clear the global $@.
+	my $validate_err;
+	eval { validate_strict(schema => \%PARSE_DATETIME_SCHEMA, input => $params); 1 }
+		or $validate_err = $@;
+	Carp::croak("Invalid parse_datetime parameters: $validate_err") if $validate_err;
 
 	if((!ref($params->{'date'})) && (my $date = $params->{'date'})) {
 		# Per-call flags shadow object-level defaults, enabling per-call overrides
@@ -437,14 +446,14 @@ sub parse_datetime
 		# Approximate-date prefixes (bef/aft/abt) signal "no exact date known",
 		# so a DateTime object would be misleading.
 		if($date =~ /^(?:bef|aft|abt)\s/i) {
-			Carp::carp("$date is invalid, need an exact date to create a DateTime")
+			Carp::carp(_safe_str($date) . ' is invalid, need an exact date to create a DateTime')
 				unless($quiet);
 			return;
 		}
 
 		# 31 November does not exist; catch it before any parser attempt.
 		if($date =~ /^31\s+Nov/) {
-			Carp::carp("$date is invalid, there are only 30 days in November");
+			Carp::carp(_safe_str($date) . ' is invalid, there are only 30 days in November');
 			return;
 		}
 
@@ -456,12 +465,23 @@ sub parse_datetime
 		# bare ISO date (no spaces around the hyphen) never matches this branch,
 		# eliminating the need for a combined pre-filter.
 		if($date =~ /^(\d{4})-(\d{2})-(\d{2})$/) {
-			my $month = ucfirst($short_month_names[$2 - 1]);
-			Carp::carp("Changing date '$date' to '$3 $month $1'") unless($quiet);
-			$date = "$3 $month $1";
+			my ($y, $m, $d) = ($1, $2, $3);
+			my $month_idx = $m - 1;
+			# @short_month_names is a 12-element array (indices 0-11).
+			# Month 00 would yield index -1 (wrapping silently to Dec in Perl).
+			# Month 13-99 yields undef and a runtime warning.  Reject both.
+			if($month_idx < 0 || $month_idx > 11) {
+				Carp::carp("Invalid month '$m' in date '$date'") unless $quiet;
+				return;
+			}
+			my $month = ucfirst($short_month_names[$month_idx]);
+			my $rewritten = "$d $month $y";
+			Carp::carp("Changing date '" . _safe_str($date) . "' to '$rewritten'") unless($quiet);
+			$date = $rewritten;
 		} elsif($date =~ /^(.+\d)\s+-\s+(.+\d)$/) {
-			Carp::carp("Changing date '$date' to 'bet $1 and $2'") unless($quiet);
-			$date = "bet $1 and $2";
+			my ($lhs, $rhs) = ($1, $2);
+			Carp::carp("Changing date '" . _safe_str($date) . "' to 'bet $lhs and $rhs'") unless($quiet);
+			$date = "bet $lhs and $rhs";
 		}
 
 		# Date ranges return two DateTimes in list context; undef in scalar.
@@ -485,7 +505,7 @@ sub parse_datetime
 			# Strict mode: only 3-letter GEDCOM abbreviations are valid.
 			if($strict) {
 				if($date !~ /^\d{1,2}\s+[A-Z]{3}\s+\d{3,4}$/i) {
-					Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
+					Carp::carp('Unparseable date ' . _safe_str($date) . " - often because the month name isn't 3 letters") unless($quiet);
 					return;
 				}
 			} else {
@@ -504,7 +524,7 @@ sub parse_datetime
 					} elsif(length($2) > 3) {
 						# Longer-than-3-letter names not in the alias table are
 						# truly unrecognised; there is nothing useful we can do.
-						Carp::carp("Unparseable date $date - often because the month name isn't 3 letters") unless($quiet);
+						Carp::carp('Unparseable date ' . _safe_str($date) . " - often because the month name isn't 3 letters") unless($quiet);
 						return;
 					}
 				} elsif($date =~ /^(\d{1,2})\-([A-Z]{3})\-(\d{3,4})$/i) {
@@ -594,6 +614,13 @@ sub _date_parser_cached :Protected
 
 	Carp::croak('Usage: _date_parser_cached($date)') unless defined $date;
 
+	# Evict the whole cache when it reaches the size limit.  A full clear is
+	# used instead of LRU because genealogy datasets have bounded unique-date
+	# counts in normal use; LRU overhead is not justified.
+	if(defined($self->{'all_dates'}) && scalar(keys %{$self->{'all_dates'}}) >= $MAX_CACHE_SIZE) {
+		$self->{'all_dates'} = {};
+	}
+
 	# Short-circuit on any prior result (success OR cached failure).
 	# 'exists' correctly handles undef values stored for invalid dates.
 	return $self->{'all_dates'}{$date} if exists $self->{'all_dates'}{$date};
@@ -606,7 +633,7 @@ sub _date_parser_cached :Protected
 	};
 
 	if(my $error = $date_parser->error()) {
-		Carp::carp("$date: '$error'") unless $self->{'quiet'};
+		Carp::carp(_safe_str($date) . ": '$error'") unless $self->{'quiet'};
 		# Cache the failure so subsequent calls for the same string skip GGD
 		# entirely and do not carp again.
 		return ($self->{'all_dates'}{$date} = undef);
@@ -644,7 +671,10 @@ sub _convert_calendar :Private
 	} elsif($calendar_type eq 'DHEBREW') {
 		# "return" inside eval{} exits the eval block, NOT the enclosing sub,
 		# so we capture the result in $result and return it afterwards.
+		# $@ is captured into a lexical immediately after the eval to prevent
+		# a DESTROY method from clearing the global before we can read it.
 		my $result;
+		my $convert_err;
 		eval {
 			require DateTime::Calendar::Hebrew;
 			my $h = DateTime::Calendar::Hebrew->new(
@@ -653,8 +683,10 @@ sub _convert_calendar :Private
 				day   => $dt->day
 			);
 			$result = DateTime->from_object(object => $h);
-		};
-		Carp::carp("Hebrew calendar conversion failed: $@") if $@ && !$quiet;
+			1;
+		} or $convert_err = $@;
+		Carp::carp("Hebrew calendar conversion failed: $convert_err")
+			if $convert_err && !$quiet;
 		# Return the converted DateTime on success, undef on failure.
 		# The POD (LIMITATIONS) documents that undef is returned when the
 		# optional module is unavailable rather than passing back the
@@ -662,6 +694,7 @@ sub _convert_calendar :Private
 		return $result;
 	} elsif($calendar_type eq 'DFRENCH R') {
 		my $result;
+		my $convert_err;
 		eval {
 			require DateTime::Calendar::FrenchRevolutionary;
 			my $f = DateTime::Calendar::FrenchRevolutionary->new(
@@ -670,8 +703,10 @@ sub _convert_calendar :Private
 				day   => $dt->day
 			);
 			$result = DateTime->from_object(object => $f);
-		};
-		Carp::carp("French Republican calendar conversion failed: $@") if $@ && !$quiet;
+			1;
+		} or $convert_err = $@;
+		Carp::carp("French Republican calendar conversion failed: $convert_err")
+			if $convert_err && !$quiet;
 		return $result;
 	} else {
 		# DROMAN and any other future escape types are not yet supported.
@@ -679,6 +714,30 @@ sub _convert_calendar :Private
 	}
 
 	return $dt;
+}
+
+# ---------------------------------------------------------------------------
+# _safe_str
+#
+# Purpose:      Sanitise a user-supplied string for inclusion in diagnostic
+#               messages (Carp::carp/croak).  Removes ASCII control characters
+#               that could be used for log injection (fake log lines, ANSI
+#               escape sequences) and truncates to a safe display length.
+# Entry:        $s   - string to sanitise (may be undef)
+#               $max - optional maximum length (default 120)
+# Exit:         Sanitised, length-bounded string safe for embedding in messages.
+# Side Effects: None
+# ---------------------------------------------------------------------------
+
+sub _safe_str :Private
+{
+	my ($s, $max) = @_;
+	return '(undef)' unless defined $s;
+	$max //= 120;
+	# Replace every ASCII control character (0x00-0x1F, 0x7F) with '?'.
+	# This neutralises CR/LF log injection and ANSI escape sequences.
+	(my $clean = $s) =~ s/[[:cntrl:]]/?/g;
+	return length($clean) <= $max ? $clean : substr($clean, 0, $max - 3) . '...';
 }
 
 # ---------------------------------------------------------------------------
