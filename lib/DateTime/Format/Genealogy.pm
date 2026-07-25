@@ -569,23 +569,26 @@ sub parse_datetime
 # Purpose:      Wrap Genealogy::Gedcom::Date->parse() with a per-object
 #               memoisation layer to avoid re-parsing identical strings.
 # Entry:        $self  - blessed object (must carry ->{'date_parser'} slot)
-#               date   - non-empty, non-undef date string
+#               $date  - non-empty, non-undef date string (positional)
 # Exit:         Hashref on success ({canonical, day, month, year, ...}),
 #               undef on parse failure or error.
-# Side Effects: Populates $self->{'all_dates'}{$date} on first successful
-#               parse.  Carps on parser error unless $self->{'quiet'} is set.
+# Side Effects: Populates $self->{'all_dates'}{$date} on BOTH success and
+#               failure.  Failure is stored as undef so repeated lookups of
+#               the same invalid string are O(1) and carp fires only once.
+#               Carps on parser error unless $self->{'quiet'} is set.
 # ---------------------------------------------------------------------------
 
 sub _date_parser_cached :Protected
 {
-	my $self = shift;
+	# Accept the date as a plain positional arg — this is a hot-path internal
+	# method called only from parse_datetime.  Routing through Params::Get adds
+	# measurable dispatch overhead for no external-API benefit.
+	my ($self, $date) = @_;
 
-	my $params = Params::Get::get_params('date', @_);
-	my $date = $params->{'date'};
+	Carp::croak('Usage: _date_parser_cached($date)') unless defined $date;
 
-	Carp::croak('Usage: _date_parser_cached(date => $date)') unless defined $date;
-
-	# Short-circuit if we have already parsed this string in this session.
+	# Short-circuit on any prior result (success OR cached failure).
+	# 'exists' correctly handles undef values stored for invalid dates.
 	return $self->{'all_dates'}{$date} if exists $self->{'all_dates'}{$date};
 
 	my $date_parser = $self->{'date_parser'} //= Genealogy::Gedcom::Date->new();
@@ -597,14 +600,17 @@ sub _date_parser_cached :Protected
 
 	if(my $error = $date_parser->error()) {
 		Carp::carp("$date: '$error'") unless $self->{'quiet'};
-		return;
+		# Cache the failure so subsequent calls for the same string skip GGD
+		# entirely and do not carp again.
+		return ($self->{'all_dates'}{$date} = undef);
 	}
 
 	if((ref($parsed_date) eq 'ARRAY') && @{$parsed_date}) {
 		return $self->{'all_dates'}{$date} = $parsed_date->[0];
 	}
 
-	return;
+	# Empty or unexpected result — also cache to prevent repeated GGD calls.
+	return ($self->{'all_dates'}{$date} = undef);
 }
 
 # ---------------------------------------------------------------------------
@@ -682,10 +688,13 @@ sub _julian_to_gregorian_offset :Private
 {
 	my ($year) = @_;
 
-	# Select the offset for the first tier whose boundary exceeds the year.
-	# The final catch-all (1900 onwards = 13 days) is coded as the fallback.
-	my ($pair) = grep { $year < $_->[0] } @JULIAN_OFFSET_TIERS;
-	return $pair ? $pair->[1] : 13;
+	# Iterate once with early exit; avoids the temporary list that grep would
+	# build before we discard all but the first match.
+	# @JULIAN_OFFSET_TIERS is ordered ascending, so the first hit is correct.
+	for my $tier (@JULIAN_OFFSET_TIERS) {
+		return $tier->[1] if $year < $tier->[0];
+	}
+	return 13;	# catch-all: 1 Mar 1900 onwards
 }
 
 1;

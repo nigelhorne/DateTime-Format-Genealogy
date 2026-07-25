@@ -570,29 +570,36 @@ subtest '_date_parser_cached - cache hit path (second call returns same ref)' =>
 
 	Readonly my $DATE => '29 Sep 1939';
 
-	my $first  = $obj->_date_parser_cached(date => $DATE);
-	my $second = $obj->_date_parser_cached(date => $DATE);
+	# _date_parser_cached now accepts a plain positional string (no Params::Get).
+	my $first  = $obj->_date_parser_cached($DATE);
+	my $second = $obj->_date_parser_cached($DATE);
 
 	ok(defined $first && defined $second, 'both calls return defined values');
 	is(Scalar::Util::refaddr($first), Scalar::Util::refaddr($second),
 		'second call returns identical cached reference');
 };
 
-subtest '_date_parser_cached - GGD error path sets undef in cache and returns undef' => sub {
+subtest '_date_parser_cached - GGD error path caches undef and returns undef' => sub {
 	my $obj = $PKG->new(quiet => 1);
 
-	# An unparseable string causes GGD to report an error; the cache entry
-	# should NOT be populated (so the expensive GGD call does not get memoised
-	# as a false undef that would later appear to be a cache hit).
-	my $result = $obj->_date_parser_cached(date => 'not a date xyzzy 99999');
+	Readonly my $BAD_DATE => 'not a date xyzzy 99999';
+
+	# An unparseable string causes GGD to report an error.
+	# The module now caches the failure as undef so that repeated lookups for
+	# the same invalid string are O(1) and the carp fires only once.
+	my $result = $obj->_date_parser_cached($BAD_DATE);
 	ok(!defined $result, 'GGD error: returns undef');
 
-	# The cache must NOT contain an entry for the failed parse — we do NOT
-	# want to memoize failure as undef (which `exists $cache{$key}` would
-	# distinguish from "never tried", but the module currently does not
-	# populate the cache on failure so the key is absent).
-	ok(!exists($obj->{'all_dates'}{'not a date xyzzy 99999'}),
-		'GGD error: failed parse NOT added to cache');
+	# Verify the failure WAS written to the cache (performance optimisation:
+	# subsequent calls skip the GGD parse entirely via the exists() guard).
+	ok(exists($obj->{'all_dates'}{$BAD_DATE}),
+		'GGD error: failed parse stored in cache');
+	ok(!defined($obj->{'all_dates'}{$BAD_DATE}),
+		'GGD error: cached value is undef');
+
+	# A second call must return undef without invoking GGD again.
+	my $second = $obj->_date_parser_cached($BAD_DATE);
+	ok(!defined $second, 'GGD error: second call also returns undef (cache hit)');
 };
 
 # ===========================================================================

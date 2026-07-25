@@ -137,8 +137,9 @@ subtest '_date_parser_cached - croak on undef date' => sub {
 
 	# The croak must fire when the date value is explicitly undef, giving
 	# callers a clear usage message rather than a cryptic deep exception.
+	# _date_parser_cached now takes a plain positional arg (no Params::Get).
 	throws_ok(
-		sub { $obj->_date_parser_cached(date => undef) },
+		sub { $obj->_date_parser_cached(undef) },
 		qr/Usage: _date_parser_cached/,
 		'croaks with a usage message when date is undef',
 	);
@@ -149,7 +150,7 @@ subtest '_date_parser_cached - successful parse' => sub {
 
 	Readonly my $DATE_STR => '25 Dec 2022';
 
-	my $result = $obj->_date_parser_cached(date => $DATE_STR);
+	my $result = $obj->_date_parser_cached($DATE_STR);
 	returns_ok($result, { type => 'hashref' }, 'returns a hashref on success');
 
 	# The hashref must carry the keys that parse_datetime relies on
@@ -167,8 +168,8 @@ subtest '_date_parser_cached - result is memoised' => sub {
 
 	Readonly my $DATE_STR => '29 Sep 1939';
 
-	my $first  = $obj->_date_parser_cached(date => $DATE_STR);
-	my $second = $obj->_date_parser_cached(date => $DATE_STR);
+	my $first  = $obj->_date_parser_cached($DATE_STR);
+	my $second = $obj->_date_parser_cached($DATE_STR);
 
 	# Both calls must return the *identical* reference, proving the
 	# Genealogy::Gedcom::Date parser was not invoked a second time.
@@ -181,8 +182,9 @@ subtest '_date_parser_cached - result is memoised' => sub {
 subtest '_date_parser_cached - undef on unparseable input' => sub {
 	my $obj = $PKG->new(quiet => 1);
 
-	# The quiet attribute on $self suppresses the internal carp here
-	my $result = $obj->_date_parser_cached(date => 'not a date xyzzy 99999');
+	# The quiet attribute on $self suppresses the internal carp here.
+	# Failures are now cached as undef so repeated calls are O(1).
+	my $result = $obj->_date_parser_cached('not a date xyzzy 99999');
 	ok(!defined $result, 'returns undef for garbage input');
 };
 
