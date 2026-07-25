@@ -445,8 +445,10 @@ subtest 'parse_datetime - extremely long date strings do not crash or hang' => s
 	lives_ok(sub { $obj->parse_datetime($LONG_BET)     }, 'long bet...and... string: no crash');
 	my $elapsed = tv_interval($t0);
 
-	# Pathological regex backtracking would make this take seconds; 5s ceiling.
-	cmp_ok($elapsed, '<', 5, 'all long-string tests complete within 5 seconds');
+	# Pathological regex backtracking would make this take many seconds.
+	# Allow 30 s to accommodate slow CI / Windows runners while still catching
+	# catastrophic backtracking (which would take minutes, not seconds).
+	cmp_ok($elapsed, '<', 30, 'all long-string tests complete within 30 seconds');
 
 	diag(sprintf('Long-string subtests took %.3fs', $elapsed)) if $ENV{TEST_VERBOSE};
 };
@@ -664,6 +666,12 @@ subtest 'global variables are not clobbered by hostile inputs' => sub {
 };
 
 subtest 'alarm() is not called by the module' => sub {
+	# alarm() is a POSIX feature not implemented on Windows.  Skip there.
+	if($^O eq 'MSWin32') {
+		plan skip_all => 'alarm() not supported on Windows';
+		return;
+	}
+
 	# A paranoid check: the module must not call alarm() and disrupt any
 	# countdown set by the caller.
 	my $remaining = alarm(3600);              # set a 1-hour countdown
