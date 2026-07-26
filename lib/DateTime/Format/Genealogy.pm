@@ -179,8 +179,7 @@ sub new
 		return bless { %{$class}, ($params ? %{$params} : ()) }, ref($class);
 	}
 
-	$params = Object::Configure::configure($class, $params);
-	return bless $params, $class;
+	return bless Object::Configure::configure($class, $params), $class;
 }
 
 =head2 parse_datetime
